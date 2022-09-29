@@ -6,7 +6,7 @@ import os
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['flynnt-knapp-test-app.herokuapp.com']
+ALLOWED_HOSTS = ['flynnt-knapp-print-tracker.herokuapp.com']
 
 
 MIDDLEWARE = MIDDLEWARE + ['whitenoise.middleware.WhiteNoiseMiddleware']

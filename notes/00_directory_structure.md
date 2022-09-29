@@ -2,11 +2,12 @@
 
 * `tree /f /a`:  
     ```
-    PS C:\Users\Bruce\Programming\DjangoCustomUserStarter> tree /f /a
+    PS C:\Users\Bruce\Programming\see-3d> tree /f /a
     Folder PATH listing for volume OS
     Volume serial number is CC00-DD12
     C:.
     |   .gitignore
+    |   db.sqlite3
     |   LICENSE
     |   manage.py
     |   Pipfile
@@ -14,16 +15,8 @@
     |   Procfile
     |   README.md
     |
-    +---print_tracker
-    |   |   asgi.py
-    |   |   urls.py
-    |   |   wsgi.py
-    |   |   __init__.py
-    |   |
-    |   \---settings
-    |           common.py
-    |           development.py
-    |           production.py
+    +---local_things
+    |       notes.md
     |
     +---notes
     |       00_commands_and_links.md
@@ -37,6 +30,17 @@
     |       07_add_database_settings_to_config_vars.md
     |       08_modify_allowed_hosts.md
     |       09_push_to_heroku_and_createsuperuser.md
+    |
+    +---print_tracker
+    |   |   asgi.py
+    |   |   urls.py
+    |   |   wsgi.py
+    |   |   __init__.py
+    |   |
+    |   \---settings
+    |           common.py
+    |           development.py
+    |           production.py
     |
     +---templates
     |   |   base.html
@@ -59,8 +63,8 @@
         \---migrations
                 0001_initial.py
                 __init__.py
-
-    PS C:\Users\Bruce\Programming\DjangoCustomUserStarter>
+    
+    PS C:\Users\Bruce\Programming\see-3d>
     ```
 
 
