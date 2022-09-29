@@ -14,7 +14,7 @@
     |   Procfile
     |   README.md
     |
-    +---my_current_project
+    +---print_tracker
     |   |   asgi.py
     |   |   urls.py
     |   |   wsgi.py

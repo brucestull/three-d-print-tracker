@@ -19,15 +19,15 @@
 
 1. First config var we will add is `DJANGO_SETTINGS_MODULE`. This is the dotted path from project root directory to project `production.py` file. But we will not include the `py` extension. This value is used by `wsgi.py` and `manage.py` to set the production deployment to use the `production.py` settings:
     * My absolute path:  
-    `C:\Users\Bruce\Programming\my-local-repository\my_current_project\settings\production.py`
+    `C:\Users\Bruce\Programming\my-local-repository\print_tracker\settings\production.py`
     * My example file slash path to `production.py`:  
-    `my_current_project\settings\production.py`
+    `print_tracker\settings\production.py`
     * My example dotted path:  
-    `my_current_project.settings.production`
+    `print_tracker.settings.production`
     * So, the `KEY` is:  
     `DJANGO_SETTINGS_MODULE`
     * And the `VALUE` is:  
-    `my_current_project.settings.production`
+    `print_tracker.settings.production`
 ![04_django_settings_module_entered](https://user-images.githubusercontent.com/47562501/174794977-931e5f9f-9c5d-4097-ab33-881184de6d9d.png)
 
 1. Click "Add" button:

@@ -1,4 +1,4 @@
-from my_current_project.settings.common import *
+from print_tracker.settings.common import *
 
 
 DEBUG = True
