@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.admindocs',
 
     'users.apps.UsersConfig',
+
+    'prints.apps.PrintsConfig',
 ]
 
 MIDDLEWARE = [

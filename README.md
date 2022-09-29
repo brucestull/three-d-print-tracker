@@ -1,24 +1,11 @@
-# Django Starter with CustomUser, Django Documentation Generator, DEV-PROD settings, pipenv, and Heroku Procfile.
+# Flynnt Knapp's Print Tracker
 
 * NOTE: Author is using PowerShell for this guide.
 
-## Features:
-* Custom user model.
-* Django admin documentation generator.
-* Separate DEV and PROD settings.
-* Pipfile included.
-* Heroku Procfile included.
+## Notes:
 * [Project Directory Structure](notes_setup/00_directory_structure.md)
 
-## Assumptions:
-* User has functioning [Python](https://www.python.org/downloads/) 3.10 installation.
-* User has functioning [pipenv](https://pypi.org/project/pipenv/) installation.
-* User has functioning [git](https://git-scm.com/downloads) installation.
-* User is familiar with how to use terminal commands.
-* User has [Heroku](https://www.heroku.com/) account.
-* User has [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli) installed.
-
-## Process:
+## Setup Process:
 1. [Create Repository from DjangoCustomUserStarter Template](notes_setup/01_create_repository_from_template.md)
 1. [Run Application Locally](notes_setup/02_run_application_locally.md)
 1. [Create Heroku Application Server Instance](notes_setup/03_create_heroku_application_server_instance.md)
@@ -29,11 +16,12 @@
 1. [Modify ALLOWED_HOSTS](notes_setup/08_modify_allowed_hosts.md)
 1. [Push to Heroku and Create Superuser](notes_setup/09_push_to_heroku_and_createsuperuser.md)
 
+## Build the Application:
+
 ## Excellent resources, this project wouldn't have been possible without these:
 * CustomUser method: [Django Best Practices: Custom User Model - Will Vincent - learndjango.com](https://learndjango.com/tutorials/django-custom-user-model)
 * Docutils: [The Django admin documentation generator - docs.djangoproject.com](https://docs.djangoproject.com/en/4.0/ref/contrib/admin/admindocs/)
 * DEV and PROD settings: [Configuring Django Settings for Production - thinkster.io](https://thinkster.io/tutorials/configuring-django-settings-for-production)
 
 ## Links to this project's pages:
-* DjangoCustomUserStarter [Project Board](https://github.com/brucestull/DjangoCustomUserStarter/projects/1)
-* DjangoCustomUserStarter [Repository](https://github.com/brucestull/DjangoCustomUserStarter)
+* Repository: [Flynnt Knapp's Print Tracker](https://github.com/brucestull/see-3d)
