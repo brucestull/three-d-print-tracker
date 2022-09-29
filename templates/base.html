@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}DjangoCustomUserStarter - Base{% endblock %}</title>
+    </head>
+    <body>
+        <main>
+            <a
+                href="https://github.com/brucestull/DjangoCustomUserStarter"
+                target="_blank"
+                >
+                DjangoCustomUserStarter Git Repository
+            </a><br>
+            <a
+                href="/"
+                >
+                Home
+            </a><br>
+            {% block content %}
+            {% endblock %}
+        </main>
+    </body>
+</html>
