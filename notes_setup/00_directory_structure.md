@@ -18,7 +18,7 @@
     +---local_things
     |       notes.md
     |
-    +---notes
+    +---notes_setup
     |       00_commands_and_links.md
     |       00_directory_structure.md
     |       01_create_repository_from_template.md

@@ -8,39 +8,41 @@
     `git push heroku main`
     * Sample output:
         ```
-        PS C:\Users\Bruce\Programming\my-local-repository> git push heroku main
-        Enumerating objects: 412, done.
-        Counting objects: 100% (412/412), done.
+        PS C:\Users\Bruce\Programming\see-3d> git push heroku main
+        Enumerating objects: 73, done.
+        Counting objects: 100% (73/73), done.
         Delta compression using up to 8 threads
-        Compressing objects: 100% (175/175), done.
-        Writing objects: 100% (412/412), 138.32 KiB | 138.32 MiB/s, done.
-        Total 412 (delta 241), reused 399 (delta 232), pack-reused 0
+        Compressing objects: 100% (70/70), done.
+        Writing objects: 100% (73/73), 38.82 KiB | 19.41 MiB/s, done.
+        Total 73 (delta 25), reused 42 (delta 2), pack-reused 0
         remote: Compressing source files... done.
         remote: Building source:
         remote:
-        remote: -----> Building on the Heroku-20 stack
+        remote: -----> Building on the Heroku-22 stack
         remote: -----> Determining which buildpack to use for this app
         remote: -----> Python app detected
         remote: -----> Using Python version specified in Pipfile.lock
-        remote: cp: cannot stat '/tmp/build_02de82b2/requirements.txt': No such file or directory
-        remote: -----> Installing python-3.10.5
-        remote: -----> Installing pip 22.1.2, setuptools 60.10.0 and wheel 0.37.1
+        remote: -----> Installing python-3.10.7
+        remote: -----> Installing pip 22.2.2, setuptools 63.4.3 and wheel 0.37.1
         remote: -----> Installing dependencies with Pipenv 2020.11.15
-        remote:        Installing dependencies from Pipfile.lock (16fbc4)...
-        remote:        Ignoring tzdata: markers 'sys_platform == "win32"' don't match your environment
+        remote:        Installing dependencies from Pipfile.lock (69aa94)...
         remote: -----> Installing SQLite3
         remote: -----> $ python manage.py collectstatic --noinput
-        remote:        128 static files copied to '/tmp/build_02de82b2/staticfiles'.
+        remote:        128 static files copied to '/tmp/build_097ad8f2/staticfiles'.
         remote:
         remote: -----> Discovering process types
         remote:        Procfile declares types -> release, web
         remote:
         remote: -----> Compressing...
-        remote:        Done: 45.1M
+        remote:        Done: 44.8M
         remote: -----> Launching...
         remote:  !     Release command declared: this new release will not be available until the command succeeds.
-        remote:        Released v14
-        remote:        https://totally-new-heroku-app-name.herokuapp.com/ deployed to Heroku
+        remote:        Released v12
+        remote:        https://flynnt-knapp-print-tracker.herokuapp.com/ deployed to Heroku
+        remote:
+        remote: Starting November 28th, 2022, free Heroku Dynos, free Heroku Postgres, and free Heroku Data for Redis® will no longer be available.
+        remote:
+        remote: If you have apps using any of these resources, you must upgrade to paid plans by this date to ensure your apps continue to run and to retain your data. For students, we will announce a new program by the end of September. Learn more at https://blog.heroku.com/next-chapter
         remote:
         remote: Verifying deploy... done.
         remote: Running release command...
@@ -71,8 +73,9 @@
         remote:   Applying admin.0003_logentry_add_action_flag_choices... OK
         remote:   Applying sessions.0001_initial... OK
         remote: Waiting for release.... done.
-        To https://git.heroku.com/totally-new-heroku-app-name.git
-        * [new branch]      main -> main
+        To https://git.heroku.com/flynnt-knapp-print-tracker.git
+         * [new branch]      main -> main
+        PS C:\Users\Bruce\Programming\see-3d>
         ```
 
 1. Log in to Heroku CLI if not already logged in:  
