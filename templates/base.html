@@ -18,9 +18,14 @@
                 Home
             </a><br>
             <a
-                href="/prints/"
+                href={% url 'prints:home' %}
                 >
                 Models Home
+            </a><br>
+            <a
+                href={% url 'prints:model_create' %}
+                >
+                Add New Model Print Here
             </a><br>
             {% block content %}
             {% endblock %}
