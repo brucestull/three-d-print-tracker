@@ -17,6 +17,7 @@
 1. [Push to Heroku and Create Superuser](notes_setup/09_push_to_heroku_and_createsuperuser.md)
 
 ## Build the Application:
+1. [Build Print Tracker Application](./notes/README.md)
 
 ## Excellent resources, this project wouldn't have been possible without these:
 * CustomUser method: [Django Best Practices: Custom User Model - Will Vincent - learndjango.com](https://learndjango.com/tutorials/django-custom-user-model)
