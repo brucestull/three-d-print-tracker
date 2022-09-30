@@ -51,7 +51,7 @@
 
     app_name = 'prints'
     urlpatterns = [
-        path('', views.ModelPrintListView.as_view(), name='model_prints'),
+        path('', views.ModelPrintListView.as_view(), name='home'),
     ]
     ```
 
