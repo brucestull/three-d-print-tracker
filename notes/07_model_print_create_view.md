@@ -4,6 +4,8 @@
 
 1. Add view `ModelPrintCreateView` to [`prints/views.py`](../prints/views.py):
     ```
+    from django.views.generic.edit import CreateView
+    
     class ModelPrintCreateView(CreateView):
         model = ModelPrint
         template_name ='model_print_create.html'
@@ -38,11 +40,10 @@
     {% endblock %}
     ```
 
+1. `ModelPrint` `CreateView` completed. Ready to add some other functionality.
 
-
-
-
+1. Proceed to [Create `ModelPrint` `UpdateView`](./08_model_update_view.md)
 
 ## Repository Links:
-* Back to [Experiment with Model Method `SET()`](./05_experiment_with_model_method_set.md)
+* Back to [Create `ModelPrint` `DetailView`](./06_model_print_detail_view.md)
 * [README.md](../README.md)
