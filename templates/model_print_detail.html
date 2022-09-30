@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - {{ modelprint.name }}{% endblock %}
+
+
+{% block content %}
+
+<h2>Model Detail</h2>
+{{ modelprint.name }}<br>
+{{ modelprint.filament.material }}<br>
+{{ modelprint.creator.username }}<br>
+
+{% endblock %}

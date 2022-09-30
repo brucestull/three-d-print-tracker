@@ -184,7 +184,7 @@
 
 1. Implementation seems to work for now.
 
-1. Proceed to
+1. Proceed to [Create `ModelPrint` `DetailView`](./06_create_model_print_detail_view.md)
 
 
 ## Repository Links:

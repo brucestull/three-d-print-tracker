@@ -8,15 +8,12 @@
 <ul>
 {% for model in object_list %}
     <li>
-        {{ model.name }}
+        <a href={% url 'prints:model_detail' model.id %}>{{ model.name }}</a>
         <ul>
             <li>{{ model.filament.material }}</li>
-            <li>{{ model.creator.username }} : {{ model.creator.prints.count }}</li>
         </ul>
     </li>
 {% endfor %}
 </ul>
-
-{{ object_list }}
 
 {% endblock %}
