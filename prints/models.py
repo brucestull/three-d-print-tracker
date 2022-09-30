@@ -16,7 +16,7 @@ class ModelPrint(models.Model):
     filament = models.ForeignKey(Filament, related_name='prints', null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return f'{self.id} : {self.name} : {self.creator.username} : {self.filament.material}'
+        return f'{self.id} : {self.name} : {self.creator.username} : {self.filament.material if self.filament else "No filament provided"}'
 
 
 class Manufacturer(models.Model):

@@ -46,12 +46,12 @@
 * `git remote -v`
 
 ## Production deployment links:
-* 'prints' application URLs:
-    * http://flynnt-knapp-print-tracker.herokuapp.com/prints/
 * Dashboard:
     * https://dashboard.heroku.com/apps
 * Server Root:
     * https://flynnt-knapp-print-tracker.herokuapp.com/
+* Models Home:
+    * http://flynnt-knapp-print-tracker.herokuapp.com/prints/
 * Create user:
 * Django Admin:
 * Django Admin Documentation:
@@ -61,7 +61,7 @@
     * http://localhost:8000/users/signup/
 * Server Root:
     * http://localhost:8000/
-* 'prints' application URLs:
+* Models Home:
     * http://localhost:8000/prints/
 * Django Admin:
     * http://localhost:8000/admin/
