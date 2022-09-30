@@ -2,11 +2,11 @@
 
 {% block title %}Print Tracker - {{ modelprint.name }}{% endblock %}
 
-
 {% block content %}
 
 <h2>Model Detail</h2>
 {{ modelprint.name }}<br>
+<a href={% url 'prints:model_update' modelprint.id %}>Edit this Model Print</a><br>
 {{ modelprint.filament.material }}<br>
 {{ modelprint.creator.username }}<br>
 
