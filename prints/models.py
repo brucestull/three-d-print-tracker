@@ -10,6 +10,13 @@ class Filament(models.Model):
         return f'{self.id} : {self.material}'
 
 
+def get_or_create_a_deleted_filament():
+    """
+    Gets an existing `Filament` object or creates a new `Filament` object which has `material` attribute of `deleted`. The [0] gets the first element of the QuerySet.
+    """
+    return Filament.objects.get_or_create(material='deleted')[0]
+
+
 class ModelPrint(models.Model):
     name = models.CharField(max_length=255)
     creator = models.ForeignKey(
@@ -20,7 +27,9 @@ class ModelPrint(models.Model):
     filament = models.ForeignKey(
         Filament,
         related_name='prints',
-        on_delete=models.PROTECT
+        on_delete=models.SET(
+            get_or_create_a_deleted_filament
+        )
     )
 
     def __str__(self):
