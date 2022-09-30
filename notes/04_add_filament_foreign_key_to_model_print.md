@@ -260,7 +260,6 @@
         PS C:\Users\Bruce\Programming\see-3d>
         ```
 
-
 1. Make migrations:
     * `python .\manage.py makemigrations`
         ```
@@ -280,8 +279,32 @@
         PS C:\Users\Bruce\Programming\see-3d>
         ```
 
+1. `Filament`s are currently set up so they can't be deleted if they are associated with a `ModelPrint`. This may change in the future.
+    * Possible changes:
+        * Use [`SET_DEFAULT`](https://docs.djangoproject.com/en/4.0/ref/models/fields/#django.db.models.SET_DEFAULT) and set a default.
+            * What to use for default:
+                * Create a `Filament` object in database and use it?
+        * Use [`SET_NULL`](https://docs.djangoproject.com/en/4.0/ref/models/fields/#django.db.models.SET_NULL) but this will allow a `NULL` value, which is weird for me right now since I don't know how to handle those cases yet.
+        * Use [`SET()`](https://docs.djangoproject.com/en/4.0/ref/models/fields/#django.db.models.SET):
+            * This seems like a great solution.
+                ```
+                Set the ForeignKey to the value passed to SET(), or if a callable is passed in, the result of calling it. In most cases, passing a callable will be necessary to avoid executing queries at the time your models.py is imported:
 
+                from django.conf import settings
+                from django.contrib.auth import get_user_model
+                from django.db import models
 
+                def get_sentinel_user():
+                    return get_user_model().objects.get_or_create(username='deleted')[0]
+
+                class MyModel(models.Model):
+                    user = models.ForeignKey(
+                        settings.AUTH_USER_MODEL,
+                        on_delete=models.SET(get_sentinel_user),
+                    )
+                ```
+
+1. Proceed to [Experiment with Model Method `SET()`](./05_experiment_with_model_method_set.md)
 
 ## Repository Links:
 * Back to [Add `AUTH_USER_MODEL` `ForeignKey` to `ModelPrint`](./03_add_user_foreign_key_to_model_print.md)
