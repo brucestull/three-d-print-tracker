@@ -9,7 +9,7 @@
 1. [Add Database Settings to Config Vars](./07_add_database_settings_to_config_vars.md)
 1. [Modify ALLOWED_HOSTS](./08_modify_allowed_hosts.md)
 1. [Push to Heroku and Create Superuser](./09_push_to_heroku_and_createsuperuser.md)
-
+1. Proceed to [Notes on Creation of Print Tracker Application](../notes/README.md)
 
 ## Repository Links:
 [README.md](../README.md)
