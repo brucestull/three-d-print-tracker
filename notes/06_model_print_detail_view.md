@@ -56,7 +56,7 @@
 
 1. We now have a simple detail view. We can add more functionality later.
 
-1. Proceed to 
+1. Proceed to [Create `ModelPrint` `CreateView`](./07_model_print_create_view.md)
 
 
 ## Repository Links:

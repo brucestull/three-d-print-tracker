@@ -52,5 +52,5 @@
 
 
 ## Repository Links:
-* Back to [Create `ModelPrint` List View](./02_create_model_print_list_view.md)
+* Back to [Create `ModelPrint` List View](./02_model_print_list_view.md)
 * [README.md](../README.md)
