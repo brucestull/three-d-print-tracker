@@ -182,11 +182,12 @@
     * Django Admin:
         * http://localhost:8000/admin/
 
-
 1. Add a few `Manufacturer`s:
     * http://localhost:8000/admin/prints/
     * http://localhost:8000/admin/prints/manufacturer/
     * http://localhost:8000/admin/prints/manufacturer/add/
 
+1. Proceed to [Create `ModelPrint` List View](./02_create_model_print_list_view.md)
+
 ## Repository Links:
-[README.md](../README.md)
+* [README.md](../README.md)

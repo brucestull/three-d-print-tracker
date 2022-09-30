@@ -27,14 +27,12 @@
     * Class Name:
         * `Filament`
     * Attributes:
+        * `material`:
+            * Type of plastic: `PLA`, `PLA+`, `PET`, etc.
+            * Possibly use `choices` here?
         * `manufacturer`:
             * ForeignKey of `Manufacturer`.
         * `diameter`
-        * `material`:
-            * Type of plastic: `PLA`, `PLA+`, `PET`, etc.
-        * `filament_type`:
-            * The plastic 'type' or 'polymer': `PLA`, `PLA+`, etc.
-            * Possibly use `choices` here?
 
 * Model for filamant manufacturer:
     * Class Name:
@@ -46,3 +44,4 @@
 
 ## Repository Links:
 * [Application Planning](./00_application_planning.md)
+* [README.md](../README.md)

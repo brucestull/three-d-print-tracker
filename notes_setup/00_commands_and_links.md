@@ -57,6 +57,8 @@
     * http://localhost:8000/users/signup/
 * Server Root:
     * http://localhost:8000/
+* 'prints' application URLs:
+    * http://localhost:8000/prints/
 * Django Admin:
     * http://localhost:8000/admin/
 * Django Admin Documentation:

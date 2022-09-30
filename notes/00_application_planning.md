@@ -16,3 +16,4 @@
 
 ## Repository Links:
 * [Model Planning](./00_model_planning.md)
+* [README.md](../README.md)
