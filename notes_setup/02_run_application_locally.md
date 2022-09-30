@@ -1,4 +1,4 @@
-# 02 - Run Application Locally
+# Run Application Locally
 
 ## Resources:
 

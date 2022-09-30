@@ -1,4 +1,4 @@
-# 03 - Create Heroku Application Server Instance
+# Create Heroku Application Server Instance
 
 ## Resources:
 * [Deploy a Django Project on Heroku - PDX Code Guild - Class Otter](https://github.com/PdxCodeGuild/class_otter/blob/main/5%20Capstone/Heroku%20Deployment.md)

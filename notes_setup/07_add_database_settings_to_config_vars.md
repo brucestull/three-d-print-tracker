@@ -1,4 +1,4 @@
-# 07 - Add Database Settings to Config Vars
+# Add Database Settings to Config Vars
 
 ## Resources:
 * [Deploy a Django App to Heroku - Video - Pretty Printed](https://www.youtube.com/watch?v=GMbVzl_aLxM)

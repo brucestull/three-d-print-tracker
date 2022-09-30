@@ -1,4 +1,4 @@
-# 05 - Add DJANGO_SETTINGS_MODULE to Config Vars
+# Add DJANGO_SETTINGS_MODULE to Config Vars
 
 ## Resources:
 

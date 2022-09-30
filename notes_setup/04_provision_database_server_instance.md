@@ -1,4 +1,4 @@
-# 04 - Provision Database Server Instance
+# Provision Database Server Instance
 
 ## Resources:
 * [Heroku](https://www.heroku.com/)

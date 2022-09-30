@@ -1,4 +1,4 @@
-# 08 - Modify ALLOWED_HOSTS
+# Modify ALLOWED_HOSTS
 
 ## Resources:
 * [Deploy a Django App to Heroku - Video - Pretty Printed](https://www.youtube.com/watch?v=GMbVzl_aLxM)

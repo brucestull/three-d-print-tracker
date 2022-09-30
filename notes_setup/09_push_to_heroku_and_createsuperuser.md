@@ -1,4 +1,4 @@
-# 09 - Push to Heroku and Create Superuser
+# Push to Heroku and Create Superuser
 
 ## Resources:
 

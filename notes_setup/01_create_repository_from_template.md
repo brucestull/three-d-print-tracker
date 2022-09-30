@@ -1,4 +1,4 @@
-# 01 - Create Repository from DjangoCustomUserStarter Template
+# Create Repository from DjangoCustomUserStarter Template
 
 ## Resources:
 

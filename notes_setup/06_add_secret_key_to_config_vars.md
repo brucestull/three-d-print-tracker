@@ -1,4 +1,4 @@
-# 06 - Add Django SECRET_KEY to Config Vars
+# Add Django SECRET_KEY to Config Vars
 
 ## Resources:
 
