@@ -34,7 +34,28 @@
     ```
 
 1. Add template [`templates/model_print_delete.html`](../templates/model_print_delete.html):
+    * This page is used for delete confirmation.
+    ```
+    {% extends "base.html" %}
 
+    {% block title %}Print Tracker - Delete {{ modelprint.name }}{% endblock %}
+
+    {% block content %}
+
+    <h2>Delete Model Print</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Do you really want to delete "{{ modelprint.name }}"?</p>
+        <input type="submit" value="Confirm Delete" />
+    </form>
+
+    {% endblock %}
+    ```
+
+1. Add delete link to template [`templates/model_print_detail.html`](../templates/model_print_detail.html):
+    ```
+    <a href={% url 'prints:model_delete' modelprint.id %}>Delete this Model Print</a><br>
+    ```
 
 1. Proceed to 
 

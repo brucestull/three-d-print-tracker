@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 
-from .models import ModelPrint
+from prints.models import ModelPrint
 
 
 class ModelPrintListView(ListView):

@@ -36,6 +36,7 @@ class ModelPrint(models.Model):
     Model for each instance of a printed 3D object.
     """
     name = models.CharField(max_length=255)
+    # created = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(
         AUTH_USER_MODEL,
         related_name='prints',
