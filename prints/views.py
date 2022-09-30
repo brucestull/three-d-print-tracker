@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
 
 from .models import ModelPrint
 
@@ -23,4 +24,9 @@ class ModelPrintCreateView(CreateView):
     template_name ='model_print_create.html'
     fields = ['name', 'creator', 'filament']
 
+
+class ModelPrintUpdateView(UpdateView):
+    model = ModelPrint
+    template_name ='model_print_update.html'
+    fields = ['name', 'creator', 'filament']
 
