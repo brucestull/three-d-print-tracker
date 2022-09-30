@@ -9,6 +9,7 @@
 
 <ul>
 {% for model in object_list %}
+<li>{{ model.creator.username }}</li>
 <li>{{ model }}</li>
 {% endfor %}
 </ul>
