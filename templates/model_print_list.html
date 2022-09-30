@@ -5,14 +5,18 @@
 
 {% block content %}
 
-{{ object_list }}
-
 <ul>
 {% for model in object_list %}
-<li>{{ model.creator.username }}</li>
-<li>{{ model.filament.material }}</li>
-<li>{{ model }}</li>
+    <li>
+        {{ model.name }}
+        <ul>
+            <li>{{ model.filament.material }}</li>
+            <li>{{ model.creator.username }}</li>
+        </ul>
+    </li>
 {% endfor %}
 </ul>
+
+{{ object_list }}
 
 {% endblock %}
