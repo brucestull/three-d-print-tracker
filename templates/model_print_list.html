@@ -11,7 +11,7 @@
         {{ model.name }}
         <ul>
             <li>{{ model.filament.material }}</li>
-            <li>{{ model.creator.username }}</li>
+            <li>{{ model.creator.username }} : {{ model.creator.prints.count }}</li>
         </ul>
     </li>
 {% endfor %}
