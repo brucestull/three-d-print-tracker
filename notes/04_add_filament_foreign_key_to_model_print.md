@@ -98,7 +98,18 @@
         #...
     ```
 
+1. Above code allows deletion of `Filament` objects. But it may be better to preserve database since if a `Filament` is used by a `ModelPrint` object, it makes sense to still require the `Filament`:
+    * So, will refactor code to keep `Filament`.
+    * Will keep current form of dunder string since it helped me learn.
 
+1. Current `filament` attribute and new dunder string for `ModelPrint`:
+    ```
+    filament = models.ForeignKey(
+        Filament,
+        related_name='prints',
+        on_delete=models.PROTECT
+    )
+    ```
 
 
 

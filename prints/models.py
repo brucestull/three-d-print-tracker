@@ -12,11 +12,24 @@ class Filament(models.Model):
 
 class ModelPrint(models.Model):
     name = models.CharField(max_length=255)
-    creator = models.ForeignKey(AUTH_USER_MODEL, related_name='prints', on_delete=models.CASCADE)
-    filament = models.ForeignKey(Filament, related_name='prints', null=True, on_delete=models.SET_NULL)
+    creator = models.ForeignKey(
+        AUTH_USER_MODEL,
+        related_name='prints',
+        on_delete=models.CASCADE
+    )
+    filament = models.ForeignKey(
+        Filament,
+        related_name='prints',
+        on_delete=models.PROTECT
+    )
 
     def __str__(self):
-        return f'{self.id} : {self.name} : {self.creator.username} : {self.filament.material if self.filament else "No filament provided"}'
+        return (
+            f'{self.id} : '
+            f'{self.name} : '
+            f'{self.creator.username} : '
+            f'{self.filament.material if self.filament else "No filament provided"}'
+        )
 
 
 class Manufacturer(models.Model):
