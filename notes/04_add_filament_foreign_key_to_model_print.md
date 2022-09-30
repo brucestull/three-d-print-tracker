@@ -111,6 +111,176 @@
     )
     ```
 
+1. Had some issues. Learned a bit.
+
+1. Tried some stuff:
+<details>
+<summary>Sample output:</summary>
+
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py makemigrations
+    Running python manage.py makemigrations on ⬢ flynnt-knapp-print-tracker... up, run.2647 (Hobby)
+    It is impossible to change a nullable field 'filament' on modelprint to non-nullable without providing a default. This is because the database needs something to populate existing rows.
+    Please select a fix:
+     1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+     2) Ignore for now. Existing rows that contain NULL values will have to be handled manually, for example with a RunPython or RunSQL operation.
+     3) Quit and manually define a default value in models.py.
+    Select an option: ^[[A^H^H^H^H^H^H^H
+    Please select a valid option: 2
+    Migrations for 'prints':
+      prints/migrations/0006_alter_modelprint_filament.py
+        - Alter field filament on modelprint
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py migrate
+    Running python manage.py migrate on ⬢ flynnt-knapp-print-tracker... up, run.8383 (Hobby)
+    Operations to perform:
+      Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+    Running migrations:
+      No migrations to apply.
+      Your models in app(s): 'prints' have changes that are not yet reflected in a migration, and so won't be applied.
+      Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py makemigrations
+    Running python manage.py makemigrations on ⬢ flynnt-knapp-print-tracker... up, run.5052 (Hobby)
+    It is impossible to change a nullable field 'filament' on modelprint to non-nullable without providing a default. This is because the database needs something to populate existing rows.
+    Please select a fix:
+     1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+     2) Ignore for now. Existing rows that contain NULL values will have to be handled manually, for example with a RunPython or RunSQL operation.
+     3) Quit and manually define a default value in models.py.
+    Select an option: 2
+    Migrations for 'prints':
+      prints/migrations/0006_alter_modelprint_filament.py
+        - Alter field filament on modelprint
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py migrate
+    Running python manage.py migrate on ⬢ flynnt-knapp-print-tracker... up, run.9285 (Hobby)
+    Operations to perform:
+      Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+    Running migrations:
+      No migrations to apply.
+      Your models in app(s): 'prints' have changes that are not yet reflected in a migration, and so won't be applied.
+      Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d> heroku run manage.py makemigrations prints
+    Running manage.py makemigrations prints on ⬢ flynnt-knapp-print-tracker... up, run.3185 (Hobby)
+    bash: line 1: manage.py: command not found
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py makemigrations prints
+    Running python manage.py makemigrations prints on ⬢ flynnt-knapp-print-tracker... up, run.6716 (Hobby)
+    It is impossible to change a nullable field 'filament' on modelprint to non-nullable without providing a default. This is because the database needs something to populate existing rows.
+    Please select a fix:
+     1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+     2) Ignore for now. Existing rows that contain NULL values will have to be handled manually, for example with a RunPython or RunSQL operation.
+     3) Quit and manually define a default value in models.py.
+    Select an option: 2
+    Migrations for 'prints':
+      prints/migrations/0006_alter_modelprint_filament.py
+        - Alter field filament on modelprint
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py makemigrations
+    Running python manage.py makemigrations on ⬢ flynnt-knapp-print-tracker... up, run.5514 (Hobby)
+    It is impossible to change a nullable field 'filament' on modelprint to non-nullable without providing a default. This is because the database needs something to populate existing rows.
+    Please select a fix:
+     1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+     2) Ignore for now. Existing rows that contain NULL values will have to be handled manually, for example with a RunPython or RunSQL operation.
+     3) Quit and manually define a default value in models.py.
+    Select an option: 2
+    Migrations for 'prints':
+      prints/migrations/0006_alter_modelprint_filament.py
+        - Alter field filament on modelprint
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py migrate prints
+    Running python manage.py migrate prints on ⬢ flynnt-knapp-print-tracker... up, run.9828 (Hobby)
+    Operations to perform:
+      Apply all migrations: prints
+    Running migrations:
+      No migrations to apply.
+      Your models in app(s): 'prints' have changes that are not yet reflected in a migration, and so won't be applied.
+      Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py migrate
+    Running python manage.py migrate on ⬢ flynnt-knapp-print-tracker... up, run.4505 (Hobby)
+    Operations to perform:
+      Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+    Running migrations:
+      No migrations to apply.
+      Your models in app(s): 'prints' have changes that are not yet reflected in a migration, and so won't be applied.
+      Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py makemigrations prints
+    Running python manage.py makemigrations prints on ⬢ flynnt-knapp-print-tracker... up, run.9242 (Hobby)
+    It is impossible to change a nullable field 'filament' on modelprint to non-nullable without providing a default. This is because the database needs something to populate existing rows.
+    Please select a fix:
+     1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+     2) Ignore for now. Existing rows that contain NULL values will have to be handled manually, for example with a RunPython or RunSQL operation.
+     3) Quit and manually define a default value in models.py.
+    Select an option: 2
+    Migrations for 'prints':
+      prints/migrations/0006_alter_modelprint_filament.py
+        - Alter field filament on modelprint
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py migrate
+    Running python manage.py migrate on ⬢ flynnt-knapp-print-tracker... up, run.6515 (Hobby)
+    Operations to perform:
+      Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+    Running migrations:
+      No migrations to apply.
+      Your models in app(s): 'prints' have changes that are not yet reflected in a migration, and so won't be applied.
+      Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d>
+    PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py migrate prints
+    Running python manage.py migrate prints on ⬢ flynnt-knapp-print-tracker... up, run.5678 (Hobby)
+    Operations to perform:
+      Apply all migrations: prints
+    Running migrations:
+      No migrations to apply.
+      Your models in app(s): 'prints' have changes that are not yet reflected in a migration, and so won't be applied.
+      Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+    PS C:\Users\Bruce\Programming\see-3d>
+</details>
+
+1. Try migrations locally again.
+
+1. Make migrations:
+    * `python .\manage.py makemigrations prints`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py makemigrations prints
+        It is impossible to change a nullable field 'filament' on modelprint to non-nullable without providing a default. This is because the database needs something to populate existing rows.
+        Please select a fix:
+         1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+         2) Ignore for now. Existing rows that contain NULL values will have to be handled manually, for example with a RunPython or RunSQL operation.
+         3) Quit and manually define a default value in models.py.
+        Select an option: 1
+        Please enter the default value as valid Python.
+        The datetime and django.utils.timezone modules are available, so it is possible to provide e.g. timezone.now as a value.
+        Type 'exit' to exit this prompt
+        >>> 2
+        Migrations for 'prints':
+          prints\migrations\0006_alter_modelprint_filament.py
+            - Alter field filament on modelprint
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+
+1. Make migrations:
+    * `python .\manage.py makemigrations`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py makemigrations
+        No changes detected
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Perform migrations:
+    * `python .\manage.py migrate`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py migrate
+        Operations to perform:
+          Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+        Running migrations:
+          Applying prints.0006_alter_modelprint_filament... OK
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+
 
 
 ## Repository Links:
