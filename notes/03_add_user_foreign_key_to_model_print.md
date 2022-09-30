@@ -1,4 +1,4 @@
-# Add User `ForeignKey` to `ModelPrint`
+# Add `AUTH_USER_MODEL` `ForeignKey` to `ModelPrint`
 
 ## Process:
 
@@ -48,6 +48,7 @@
         PS C:\Users\Bruce\Programming\see-3d>
         ```
 
+1. Proceed to [Add `Filament` `ForeignKey` to `ModelPrint`](./04_add_filament_foreign_key_to_model_print.md)
 
 
 ## Repository Links:
