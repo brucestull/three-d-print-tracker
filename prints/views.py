@@ -1,7 +1,9 @@
+from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
 
 from .models import ModelPrint
 
@@ -29,4 +31,11 @@ class ModelPrintUpdateView(UpdateView):
     model = ModelPrint
     template_name ='model_print_update.html'
     fields = ['name', 'creator', 'filament']
+
+
+class ModelPrintDeleteView(DeleteView):
+    model = ModelPrint
+    template_name ='model_print_delete.html'
+    success_url = reverse_lazy('prints:home')
+
 

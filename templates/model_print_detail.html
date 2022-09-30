@@ -7,6 +7,7 @@
 <h2>Model Detail</h2>
 {{ modelprint.name }}<br>
 <a href={% url 'prints:model_update' modelprint.id %}>Edit this Model Print</a><br>
+<a href={% url 'prints:model_delete' modelprint.id %}>Delete this Model Print</a><br>
 {{ modelprint.filament.material }}<br>
 {{ modelprint.creator.username }}<br>
 

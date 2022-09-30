@@ -41,9 +41,7 @@
 
 1. Simple `ModelPrint` `UpdateView` completed.
 
-1. Proceed to 
-
-
+1. Proceed to [Create `ModelPrint` `DeleteView`](./09_model_print_delete_view.md)
 
 ## Repository Links:
 * Back to [Create `ModelPrint` `CreateView`](./07_model_print_create_view.md)
