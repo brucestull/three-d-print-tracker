@@ -52,6 +52,16 @@ class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         model_print = self.get_object()
+        # print('self.request.user: ', self.request.user)
+        # self.request.user:  admin
+        # print('type(self.request.user): ', type(self.request.user))
+        # type(self.request.user):  <class 'django.utils.functional.SimpleLazyObject'>
+        # print('model_print.creator: ', model_print.creator)
+        # model_print.creator:  admin
+        # print('type(model_print.creator): ', type(model_print.creator))
+        # type(model_print.creator):  <class 'users.models.CustomUser'>
+        return True
+
         # print('type(model_print): ', type(model_print))
         # type(model_print):  <class 'prints.models.ModelPrint'>
         # print('self.request.POST: ', self.request.POST)
@@ -70,7 +80,6 @@ class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         #     model_print.name
         # )
         # admin is attempting to update  Cat
-        return True
 
 
 class ModelPrintDeleteView(DeleteView):
