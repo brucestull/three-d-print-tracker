@@ -36,9 +36,6 @@
         return self.request.user == model_print.creator
     ```
 
-
-
-
 1. Proceed to 
 
 ## Repository Links:

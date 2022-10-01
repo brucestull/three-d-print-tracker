@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Print Tracker - New Model Print{% endblock %}
+{% block title %}Print Tracker - New 3D Model Print{% endblock %}
 
 {% block content %}
 
-<h2>Create New Model Print</h2>
+<h2>Create New 3D Model Print</h2>
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Create New Model Print" />
+    <input type="submit" value="Create New 3D Model Print" />
 </form>
 
 {% endblock %}
