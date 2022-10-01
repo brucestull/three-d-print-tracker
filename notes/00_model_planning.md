@@ -13,10 +13,11 @@
                     * `Lower GI`
                     * `Letter B`
                     * `Dog`
-            * `mass` or `weight`:
-        * Secondary:
             * `filament`:
                 * ForeignKey of `Filament`.
+        * Secondary:
+            * `mass` or `weight`:
+            * `public`
             * `filament_length_consumed`
             * `filament_mass_consumed`
             * `notes`

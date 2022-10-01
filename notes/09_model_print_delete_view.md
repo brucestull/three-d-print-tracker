@@ -57,7 +57,7 @@
     <a href={% url 'prints:model_delete' modelprint.id %}>Delete this Model Print</a><br>
     ```
 
-1. Proceed to 
+1. Proceed to [Require Login for `ModelPrint` `CreateView`](./10_require_login_for_create_model_print.md)
 
 ## Repository Links:
 * Back to [Create `ModelPrint` `UpdateView`](./08_model_update_view.md)
