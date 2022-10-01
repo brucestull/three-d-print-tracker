@@ -46,43 +46,19 @@ class ModelPrintCreateView(LoginRequiredMixin, CreateView):
 
 
 class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+    Class-based view, which inherits from `LoginRequiredMixin`, `UserPassesTestMixin`, and `django.views.generic.UpdateView`. Allows users to update their own `ModelPrint` instances.
+    """
     model = ModelPrint
     template_name ='model_print_update.html'
     fields = ['name', 'filament']
 
     def test_func(self):
+        """
+        Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to update the `ModelPrint` is the user who is associated with the `ModelPrint`.
+        """
         model_print = self.get_object()
-        print('"User" is "ModelPrint" creator: ', self.request.user == model_print.creator)
-        return True
-
-
-        # print('self.request.user: ', self.request.user)
-        # self.request.user:  admin
-        # print('type(self.request.user): ', type(self.request.user))
-        # type(self.request.user):  <class 'django.utils.functional.SimpleLazyObject'>
-        # print('model_print.creator: ', model_print.creator)
-        # model_print.creator:  admin
-        # print('type(model_print.creator): ', type(model_print.creator))
-        # type(model_print.creator):  <class 'users.models.CustomUser'>
-
-        # print('type(model_print): ', type(model_print))
-        # type(model_print):  <class 'prints.models.ModelPrint'>
-        # print('self.request.POST: ', self.request.POST)
-        """
-        self.request.POST:  <QueryDict: {
-            'csrfmiddlewaretoken': ['e0gQBHrC1ii1RIax5Pd0GdLrtTG99cw1glVHnao60rDBbWzqjtWbNejZBy5C6WTb'],
-            'name': ['Cat'],
-            'filament': ['3']
-        }>
-        """
-        # print('self.request.user: ', self.request.user)
-        # self.request.user:  admin
-        # print(
-        #     model_print.creator.username,
-        #     'is attempting to update ',
-        #     model_print.name
-        # )
-        # admin is attempting to update  Cat
+        return self.request.user == model_print.creator
 
 
 class ModelPrintDeleteView(DeleteView):

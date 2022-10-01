@@ -5,8 +5,8 @@
 {% block content %}
 
 User: {{ user.username | capfirst }}<br>
-Model.creator: {{ modelprint.creator.username | capfirst }}<br>
-Same Creator: {% if user.id == modelprint.creator.id %} Yep! {% else %} Nope! {% endif %}
+ModelPrint Creator: {{ modelprint.creator.username | capfirst }}<br>
+User is the Model Print Creator: {% if user.id == modelprint.creator.id %} Yep! {% else %} Nope! {% endif %}
 
 <h2>Model Detail</h2>
 {{ modelprint.name }}<br>
