@@ -20,6 +20,7 @@
 * `python .\manage.py startapp the_app`
 * `python .\manage.py runserver`
 * `<Ctrl+C>`
+* `python .\manage.py makemigrations users`
 * `python .\manage.py makemigrations`
 * `python .\manage.py migrate`
 * `python .\manage.py createsuperuser`

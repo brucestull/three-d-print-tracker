@@ -30,7 +30,7 @@
         return self.request.user == model_print.creator
     ```
 
-1. Proceed to 
+1. Proceed to [Recreate Database](./13_recreate_database.md)
 
 ## Repository Links:
 * Back to [Require Ownership of `ModelPrint` to Update the Properties](./11_require_ownership_for_model_print_update.md)
