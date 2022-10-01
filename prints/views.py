@@ -21,11 +21,17 @@ class ModelPrintListView(ListView):
 
 
 class ModelPrintDetailView(DetailView):
+    """
+    Class-based view, which inherits from `django.views.generic.DetailView`, to provide detail view of model `ModelPrint`.
+    """
     model = ModelPrint
     template_name ='model_print_detail.html'
 
 
 class ModelPrintCreateView(LoginRequiredMixin, CreateView):
+    """
+    Class-based view, which inherits from `django.views.generic.CreateView` and ``, to provide a `CreateView` for `ModelPrint`.
+    """
     model = ModelPrint
     template_name ='model_print_create.html'
     fields = ['name', 'filament']
