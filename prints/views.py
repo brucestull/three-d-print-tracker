@@ -8,6 +8,7 @@ from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 from prints.models import ModelPrint
 
@@ -44,10 +45,32 @@ class ModelPrintCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ModelPrintUpdateView(UpdateView):
+class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = ModelPrint
     template_name ='model_print_update.html'
-    fields = ['name', 'creator', 'filament']
+    fields = ['name', 'filament']
+
+    def test_func(self):
+        model_print = self.get_object()
+        # print('type(model_print): ', type(model_print))
+        # type(model_print):  <class 'prints.models.ModelPrint'>
+        # print('self.request.POST: ', self.request.POST)
+        """
+        self.request.POST:  <QueryDict: {
+            'csrfmiddlewaretoken': ['e0gQBHrC1ii1RIax5Pd0GdLrtTG99cw1glVHnao60rDBbWzqjtWbNejZBy5C6WTb'],
+            'name': ['Cat'],
+            'filament': ['3']
+        }>
+        """
+        # print('self.request.user: ', self.request.user)
+        # self.request.user:  admin
+        # print(
+        #     model_print.creator.username,
+        #     'is attempting to update ',
+        #     model_print.name
+        # )
+        # admin is attempting to update  Cat
+        return True
 
 
 class ModelPrintDeleteView(DeleteView):
