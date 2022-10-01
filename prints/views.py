@@ -35,7 +35,7 @@ class ModelPrintCreateView(LoginRequiredMixin, CreateView):
     """
     model = ModelPrint
     template_name ='model_print_create.html'
-    fields = ['name', 'filament_instance']
+    fields = ['name', 'filament']
 
     def form_valid(self, form):
         """
@@ -51,7 +51,7 @@ class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
     model = ModelPrint
     template_name ='model_print_update.html'
-    fields = ['name', 'filament_instance']
+    fields = ['name', 'filament']
 
     def test_func(self):
         """
