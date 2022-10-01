@@ -15,7 +15,7 @@ from prints.models import ModelPrint
 
 class ModelPrintListView(ListView):
     """
-    Class-based view, which inherits from `django.views.generic.ListView`, to provide list view of model `ModelPrint`.
+    Class-based view, which inherits from `django.views.generic.list.ListView`, to provide list view of model `ModelPrint`.
     """
     model = ModelPrint
     template_name = 'model_print_list.html'
@@ -23,7 +23,7 @@ class ModelPrintListView(ListView):
 
 class ModelPrintDetailView(DetailView):
     """
-    Class-based view, which inherits from `django.views.generic.DetailView`, to provide detail view of model `ModelPrint`.
+    Class-based view, which inherits from `django.views.generic.detail.DetailView`, to provide detail view of model `ModelPrint`.
     """
     model = ModelPrint
     template_name ='model_print_detail.html'
@@ -31,7 +31,7 @@ class ModelPrintDetailView(DetailView):
 
 class ModelPrintCreateView(LoginRequiredMixin, CreateView):
     """
-    Class-based view, which inherits from `django.views.generic.CreateView` and ``, to provide a `CreateView` for `ModelPrint`.
+    Class-based view, which inherits from `django.views.generic.edit.CreateView` and ``, to provide a `CreateView` for `ModelPrint`.
     """
     model = ModelPrint
     template_name ='model_print_create.html'
@@ -63,7 +63,7 @@ class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
-    Class-based view, which inherits from `LoginRequiredMixin`, `UserPassesTestMixin`, and `DeleteView`. Allows users to delete their own `ModelPrint` instances.
+    Class-based view, which inherits from `django.contrib.auth.mixins.LoginRequiredMixin`, `django.contrib.auth.mixins.UserPassesTestMixin`, and `django.views.generic.edit.DeleteView`. Allows users to delete their own `ModelPrint` instances.
     """
     model = ModelPrint
     template_name ='model_print_delete.html'
