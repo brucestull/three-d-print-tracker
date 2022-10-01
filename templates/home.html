@@ -3,21 +3,13 @@
 {% block title %}Print Tracker - Home{% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        Hi, {{ user.username | capfirst }}:
-        <p><a href="{% url 'logout' %}">Log Out</a></p>
-        {% if user.is_staff %}
-            <h2>Staff Links:</h2>
-            <a
-                href="/admin"
-                target="_blank"
-                >
-                Django Admin Interface
-            </a><br>
-        {% endif %}
-    {% else %}
-        <p>You are not logged in</p>
-        <a href="{% url 'login' %}">Log In</a> |
-        <a href="{% url 'signup' %}">Sign Up</a>
+    {% if user.is_staff %}
+    <h2>Staff Links:</h2>
+    <a
+        href="/admin"
+        target="_blank"
+        >
+        Django Admin Interface
+    </a><br>
     {% endif %}
 {% endblock %}
