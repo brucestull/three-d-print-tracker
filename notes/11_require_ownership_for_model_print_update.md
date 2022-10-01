@@ -36,7 +36,7 @@
         return self.request.user == model_print.creator
     ```
 
-1. Proceed to 
+1. Proceed to [Require Ownership of `ModelPrint` to Delete the Instance](./12_require_ownership_for_model_print_delete.md)
 
 ## Repository Links:
 * Back to [Require Login for `ModelPrint` `CreateView`](./10_require_login_for_create_model_print.md)

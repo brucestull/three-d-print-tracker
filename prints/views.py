@@ -61,9 +61,18 @@ class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user == model_print.creator
 
 
-class ModelPrintDeleteView(DeleteView):
+class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """
+    Class-based view, which inherits from `LoginRequiredMixin`, `UserPassesTestMixin`, and `DeleteView`. Allows users to delete their own `ModelPrint` instances.
+    """
     model = ModelPrint
     template_name ='model_print_delete.html'
     success_url = reverse_lazy('prints:home')
 
+    def test_func(self):
+        """
+        Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to delete the `ModelPrint` is the user who is associated with the `ModelPrint`.
+        """
+        model_print = self.get_object()
+        return self.request.user == model_print.creator
 
