@@ -1,6 +1,7 @@
 # Require Ownership of `ModelPrint` to Delete the Instance
 
 ## Resources:
+* [`test_func()`](https://docs.djangoproject.com/en/4.1/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin.test_func)
 
 ## Process:
 

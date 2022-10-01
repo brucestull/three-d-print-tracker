@@ -1,6 +1,7 @@
 # Require Ownership of `ModelPrint` to Update the Properties
 
 ## Resources:
+* [`test_func()`](https://docs.djangoproject.com/en/4.1/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin.test_func)
 
 ## Process:
 
