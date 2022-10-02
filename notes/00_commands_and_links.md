@@ -25,6 +25,7 @@
 * `python .\manage.py migrate`
 * `python .\manage.py createsuperuser`
 * `python .\manage.py createsuperuser --email admin@email.app --username admin`
+* `python .\manage.py runserver`
 
 ### Django Create `SECRET_KEY`:
 * `python manage.py shell`
