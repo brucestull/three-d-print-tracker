@@ -6,7 +6,7 @@ from print_tracker.settings.common import AUTH_USER_MODEL
 
 class Manufacturer(models.Model):
     """
-    Model for the `Manufacturer` of a `FilamentInstance` object.
+    Model for the `prints.manufacturer` of a `prints.filamentinstance` object.
     """
     name = models.CharField(max_length=255)
 
@@ -14,9 +14,11 @@ class Manufacturer(models.Model):
         return f'{self.id} : {self.name}'
 
 
-class FilamentInstance(models.Model):
+class FilamentRoll(models.Model):
     """
-    Model for the `FilamentInstance` used in `ModelPrint`.
+    Model for the `prints.filamentroll` used in each `prints.filamentinstance` instance.
+    Need to figure out a way to make a unique 'id'.
+    Might use 'choices', in future, for 'material'.
     """
     material = models.CharField(max_length=255)
 
@@ -26,7 +28,7 @@ class FilamentInstance(models.Model):
 
 def get_or_create_a_deleted_filament_instance():
     """
-    Gets an existing `FilamentInstance` object or creates a new `FilamentInstance` object which has `material` attribute of `deleted`. The [0] gets the first element of the QuerySet.
+    Gets an existing `prints.filamentinstance` object or creates a new `prints.filamentinstance` object which has `filament_roll` attribute of `deleted`. The [0] gets the first element of the QuerySet.
     """
     return FilamentInstance.objects.get_or_create(material='deleted')[0]
 
@@ -40,14 +42,14 @@ class ModelPrint(models.Model):
     creator = models.ForeignKey(
         AUTH_USER_MODEL,
         related_name='prints',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     filament_instance = models.ForeignKey(
         FilamentInstance,
         related_name='prints',
         on_delete=models.SET(
             get_or_create_a_deleted_filament_instance
-        )
+        ),
     )
 
     def __str__(self):
