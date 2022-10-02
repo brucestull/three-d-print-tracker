@@ -10,7 +10,7 @@ User is the 3D Model Print Creator: {% if user.id == modelprint.creator.id %} Ye
 
 <h2>Model Detail</h2>
 {{ modelprint.name }}<br>
-{{ modelprint.filament_instance.material }}<br>
+{{ modelprint.filament_instance.filament_roll }}<br>
 {{ modelprint.creator.username }}<br>
 {% if user.id == modelprint.creator.id %}
     <a href={% url 'prints:model_update' modelprint.id %}>Edit this 3D Model Print</a><br>

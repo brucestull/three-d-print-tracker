@@ -26,6 +26,29 @@ class FilamentRoll(models.Model):
         return f'{self.id} : {self.material}'
 
 
+def get_or_create_a_deleted_filament_roll():
+    """
+    Gets an existing `prints.filamentroll` object or creates a new `prints.filamentroll` object which has `material` attribute of `deleted`. The [0] gets the first element of the QuerySet.
+    """
+    return FilamentRoll.objects.get_or_create(material='deleted')[0]
+
+
+class FilamentInstance(models.Model):
+    """
+    Model for the `prints.filamentinstance` used in `prints.modelprint`.
+    """
+    material = models.CharField(max_length=255)
+    filament_roll = models.ForeignKey(
+        FilamentRoll,
+        on_delete=models.SET(
+            get_or_create_a_deleted_filament_roll
+        ),
+    )
+
+    def __str__(self):
+        return f'{self.id} : {self.filament_roll}'
+
+
 def get_or_create_a_deleted_filament_instance():
     """
     Gets an existing `prints.filamentinstance` object or creates a new `prints.filamentinstance` object which has `filament_roll` attribute of `deleted`. The [0] gets the first element of the QuerySet.
@@ -57,7 +80,7 @@ class ModelPrint(models.Model):
             f'{self.id} : '
             f'{self.name} : '
             f'{self.creator.username} : '
-            f'{self.filament_instance.material if self.filament_instance else "No filament_instance provided"}'
+            f'{self.filament_instance.filament_roll if self.filament_instance else "No filament_instance provided"}'
         )
     
     def get_absolute_url(self):
