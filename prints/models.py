@@ -53,7 +53,7 @@ class ModelPrint(models.Model):
     )
     filament_instance = models.ForeignKey(
         FilamentInstance,
-        related_name='prints',
+        related_name='print',
         on_delete=models.PROTECT,
     )
 
