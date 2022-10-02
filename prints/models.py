@@ -26,34 +26,18 @@ class FilamentRoll(models.Model):
         return f'{self.id} : {self.material}'
 
 
-def get_or_create_a_deleted_filament_roll():
-    """
-    Gets an existing `prints.filamentroll` object or creates a new `prints.filamentroll` object which has `material` attribute of `deleted`. The [0] gets the first element of the QuerySet.
-    """
-    return FilamentRoll.objects.get_or_create(material='deleted')[0]
-
-
 class FilamentInstance(models.Model):
     """
     Model for the `prints.filamentinstance` used in `prints.modelprint`.
     """
-    material = models.CharField(max_length=255)
+    filament_consumed = models.FloatField(default=0)
     filament_roll = models.ForeignKey(
         FilamentRoll,
-        on_delete=models.SET(
-            get_or_create_a_deleted_filament_roll
-        ),
+        on_delete=models.PROTECT,
     )
 
     def __str__(self):
-        return f'{self.id} : {self.filament_roll}'
-
-
-def get_or_create_a_deleted_filament_instance():
-    """
-    Gets an existing `prints.filamentinstance` object or creates a new `prints.filamentinstance` object which has `filament_roll` attribute of `deleted`. The [0] gets the first element of the QuerySet.
-    """
-    return FilamentInstance.objects.get_or_create(material='deleted')[0]
+        return f'{self.id} : {self.filament_roll.material}'
 
 
 class ModelPrint(models.Model):
@@ -70,9 +54,7 @@ class ModelPrint(models.Model):
     filament_instance = models.ForeignKey(
         FilamentInstance,
         related_name='prints',
-        on_delete=models.SET(
-            get_or_create_a_deleted_filament_instance
-        ),
+        on_delete=models.PROTECT,
     )
 
     def __str__(self):

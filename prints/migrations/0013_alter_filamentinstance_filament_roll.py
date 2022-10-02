@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='filamentinstance',
             name='filament_roll',
-            field=models.ForeignKey(on_delete=models.SET(prints.models.get_or_create_a_deleted_filament_roll), to='prints.filamentroll'),
+            field=models.ForeignKey(on_delete=models.PROTECT, to='prints.filamentroll'),
         ),
     ]

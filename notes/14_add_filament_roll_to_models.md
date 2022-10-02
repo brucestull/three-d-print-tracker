@@ -193,6 +193,122 @@
 
 1. Lots of issues using [`SET()`](https://docs.djangoproject.com/en/4.0/ref/models/fields/#django.db.models.SET), so a good solution might be to preserve dependencies rather than allow deletion of the fields.
     * Change [Field option](https://docs.djangoproject.com/en/4.0/ref/models/fields/#field-options)s to [`PROTECT`](https://docs.djangoproject.com/en/4.0/ref/models/fields/#django.db.models.PROTECT).
+    * [`RESTRICT`](https://docs.djangoproject.com/en/4.0/ref/models/fields/#django.db.models.RESTRICT) might be a better option.
+        * This will involve use of [`CASCADE`](https://docs.djangoproject.com/en/4.0/ref/models/fields/#django.db.models.CASCADE).
+
+1. Current state of [`prints/models.py`](../prints/models.py):
+    ```
+    class Manufacturer(models.Model):
+        """
+        Model for the `prints.manufacturer` of a `prints.filamentinstance` object.
+        """
+        name = models.CharField(max_length=255)
+
+        def __str__(self):
+            return f'{self.id} : {self.name}'
+
+
+    class FilamentRoll(models.Model):
+        """
+        Model for the `prints.filamentroll` used in each `prints.filamentinstance` instance.
+        Need to figure out a way to make a unique 'id'.
+        Might use 'choices', in future, for 'material'.
+        """
+        material = models.CharField(max_length=255)
+
+        def __str__(self):
+            return f'{self.id} : {self.material}'
+
+
+    class FilamentInstance(models.Model):
+        """
+        Model for the `prints.filamentinstance` used in `prints.modelprint`.
+        """
+        filament_consumed = models.FloatField(default=0)
+        filament_roll = models.ForeignKey(
+            FilamentRoll,
+            on_delete=models.PROTECT,
+        )
+
+        def __str__(self):
+            return f'{self.id} : {self.filament_roll.material}'
+
+
+    class ModelPrint(models.Model):
+        """
+        Model for each instance of a printed 3D object.
+        """
+        name = models.CharField("Name of 3D Print Model", max_length=255)
+        # created = models.DateTimeField(auto_now_add=True)
+        creator = models.ForeignKey(
+            AUTH_USER_MODEL,
+            related_name='prints',
+            on_delete=models.CASCADE,
+        )
+        filament_instance = models.ForeignKey(
+            FilamentInstance,
+            related_name='prints',
+            on_delete=models.PROTECT,
+        )
+
+        def __str__(self):
+            return (
+                f'{self.id} : '
+                f'{self.name} : '
+                f'{self.creator.username} : '
+                f'{self.filament_instance.filament_roll if self.filament_instance else "No filament_instance provided"}'
+            )
+
+        def get_absolute_url(self):
+            return reverse('prints:model_detail', args=(self.pk,))
+    ```
+
+1. Make migrations:
+    * `python .\manage.py makemigrations`
+        ```
+        AttributeError: module 'prints.models' has no attribute 'get_or_create_a_deleted_filament_instance'
+        ```
+
+1. Maybe edit `migrations` manually?
+
+1. Migrations modified:
+    * [`0007_alter_modelprint_filament.py`](../prints/migrations/0007_alter_modelprint_filament.py):
+        ```
+        - field=models.ForeignKey(on_delete=models.SET(prints.models.get_or_create_a_deleted_filament_instance), related_name='prints', to='prints.filament'),
+        + field=models.ForeignKey(on_delete=models.PROTECT, related_name='prints', to='prints.filament'),
+        ```
+    * [`0013_alter_filamentinstance_filament_roll.py`](../prints/migrations/0013_alter_filamentinstance_filament_roll.py):
+        ```
+        - field=models.ForeignKey(on_delete=models.SET(prints.models.get_or_create_a_deleted_filament_roll), to='prints.filamentroll'),
+        + field=models.ForeignKey(on_delete=models.PROTECT, to='prints.filamentroll'),
+        ```
+
+1. Make migrations:
+    * `python .\manage.py makemigrations`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py makemigrations
+        Migrations for 'prints':
+          prints\migrations\0015_remove_filamentinstance_material_and_more.py
+            - Remove field material from filamentinstance
+            - Add field filament_consumed to filamentinstance
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Perform migrations:
+    * `python .\manage.py migrate`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py migrate
+        Operations to perform:
+          Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+        Running migrations:
+          Applying prints.0015_remove_filamentinstance_material_and_more... OK
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Test local server version.
+
+1. Push to Heroku:
+    * `git push heroku main`
 
 
 
