@@ -10,7 +10,7 @@
     <li>
         <a href={% url 'prints:model_detail' model.id %}>{{ model.name }}</a>
         <ul>
-            <li>{{ model.filament.material }}</li>
+            <li>{{ model.filament_instance.material }}</li>
             <li>{{ model.creator.username }}</li>
         </ul>
     </li>

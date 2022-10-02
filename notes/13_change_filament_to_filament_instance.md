@@ -69,6 +69,16 @@
     * [`prints/migrations/0007_alter_modelprint_filament.py`](../prints/migrations/0007_alter_modelprint_filament.py)
     * [`prints/models.py`](../prints/models.py)
 
+1. Push to Heroku:
+    * `git push heroku main`
+
+1. Test production deployment.
+
+1. Change `filament` to `filament_instance` in [`prints/models.py`](../prints/models.py) and other project files:
+    * [`prints/models.py`](../prints/models.py)
+    * [`prints/models.py`](../prints/views.py)
+    * [`templates/model_print_detail.html`](../templates/model_print_detail.html)
+    * [`templates/model_print_list.html`](../templates/model_print_list.html)
 
 
 
