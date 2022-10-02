@@ -521,6 +521,83 @@
         PS C:\Users\Bruce\Programming\see-3d>
         ```
 
+1. Create superuser.
+
+1. Test development server:
+    * `python .\manage.py runserver`
+    * http://localhost:8000/
+
+1. Test `Profile` change:
+    * Remove 'python manage.py migrate users &&' from 'Procfile'.
+
+1. Push to Heroku:
+    * `git push heroku main`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> git push heroku main
+        Enumerating objects: 31, done.
+        Counting objects: 100% (31/31), done.
+        Delta compression using up to 8 threads
+        Compressing objects: 100% (20/20), done.
+        Writing objects: 100% (21/21), 4.24 KiB | 2.12 MiB/s, done.
+        Total 21 (delta 14), reused 0 (delta 0), pack-reused 0
+        remote: Compressing source files... done.
+        remote: Building source:
+        remote:
+        remote: -----> Building on the Heroku-22 stack
+        remote: -----> Using buildpack: heroku/python
+        remote: -----> Python app detected
+        remote: -----> Using Python version specified in Pipfile.lock
+        remote: -----> Using cached install of python-3.10.7
+        remote: -----> Installing pip 22.2.2, setuptools 63.4.3 and wheel 0.37.1
+        remote:        Skipping installation, as Pipfile.lock hasn't changed since last deploy.
+        remote: -----> Installing SQLite3
+        remote: -----> $ python manage.py collectstatic --noinput
+        remote:        128 static files copied to '/tmp/build_5e4ddb1d/staticfiles'.
+        remote:
+        remote: -----> Discovering process types
+        remote:        Procfile declares types -> release, web
+        remote:
+        remote: -----> Compressing...
+        remote:        Done: 45.2M
+        remote: -----> Launching...
+        remote:  !     Release command declared: this new release will not be available until the command succeeds.
+        remote:        Released v35
+        remote:        https://flynnt-knapp-print-tracker.herokuapp.com/ deployed to Heroku
+        remote:
+        remote: Verifying deploy... done.
+        remote: Running release command...
+        remote:
+        remote: Operations to perform:
+        remote:   Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+        remote: Running migrations:
+        remote:   Applying contenttypes.0001_initial... OK
+        remote:   Applying contenttypes.0002_remove_content_type_name... OK
+        remote:   Applying auth.0001_initial... OK
+        remote:   Applying auth.0002_alter_permission_name_max_length... OK
+        remote:   Applying auth.0003_alter_user_email_max_length... OK
+        remote:   Applying auth.0004_alter_user_username_opts... OK
+        remote:   Applying auth.0005_alter_user_last_login_null... OK
+        remote:   Applying auth.0006_require_contenttypes_0002... OK
+        remote:   Applying auth.0007_alter_validators_add_error_messages... OK
+        remote:   Applying auth.0008_alter_user_username_max_length... OK
+        remote:   Applying auth.0009_alter_user_last_name_max_length... OK
+        remote:   Applying auth.0010_alter_group_name_max_length... OK
+        remote:   Applying auth.0011_update_proxy_permissions... OK
+        remote:   Applying auth.0012_alter_user_first_name_max_length... OK
+        remote:   Applying users.0001_initial... OK
+        remote:   Applying admin.0001_initial... OK
+        remote:   Applying admin.0002_logentry_remove_auto_add... OK
+        remote:   Applying admin.0003_logentry_add_action_flag_choices... OK
+        remote:   Applying prints.0001_initial... OK
+        remote:   Applying sessions.0001_initial... OK
+        remote: Waiting for release.... done.
+        To https://git.heroku.com/flynnt-knapp-print-tracker.git
+           a67e055..65d601d  main -> main
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Create superuser:
+    * `heroku run python manage.py createsuperuser --email admin@email.app --username admin`
 
 1. Proceed to 
 

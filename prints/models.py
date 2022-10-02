@@ -51,7 +51,7 @@ class ModelPrint(models.Model):
         related_name='prints',
         on_delete=models.CASCADE,
     )
-    filament_instance = models.ForeignKey(
+    filament_instance = models.OneToOneField(
         FilamentInstance,
         related_name='print',
         on_delete=models.PROTECT,
