@@ -382,8 +382,144 @@
 
 1. Try removing all migrations and starting anew.
 
+1. Try migrations as two steps:
+    1. Make migrations for `users`:
+        * `python .\manage.py makemigrations users`
+            ```
+            PS C:\Users\Bruce\Programming\see-3d> python .\manage.py makemigrations users
+            Migrations for 'users':
+              users\migrations\0001_initial.py
+                - Create model CustomUser
+            PS C:\Users\Bruce\Programming\see-3d>
+            ```
 
+    1. Make migrations for project:
+        * `python .\manage.py makemigrations`
+            ```
+            PS C:\Users\Bruce\Programming\see-3d> python .\manage.py makemigrations
+            Migrations for 'prints':
+              prints\migrations\0001_initial.py
+                - Create model FilamentInstance
+                - Create model FilamentRoll
+                - Create model Manufacturer
+                - Create model ModelPrint
+                - Add field filament_roll to filamentinstance
+            PS C:\Users\Bruce\Programming\see-3d>
+            ```
 
+1. Try migrations as one step:
+    * Creates an additional migration file `0002_initial.py`. Need to explore this more later.
+    * `python .\manage.py makemigrations`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py makemigrations
+        Migrations for 'prints':
+          prints\migrations\0001_initial.py
+            - Create model FilamentInstance
+            - Create model FilamentRoll
+            - Create model Manufacturer
+            - Create model ModelPrint
+          prints\migrations\0002_initial.py
+            - Add field creator to modelprint
+            - Add field filament_instance to modelprint
+            - Add field filament_roll to filamentinstance
+        Migrations for 'users':
+          users\migrations\0001_initial.py
+            - Create model CustomUser
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Will use two separate migrations:
+    1. Make migrations for `users`:
+        * `python .\manage.py makemigrations users`
+            ```
+            PS C:\Users\Bruce\Programming\see-3d> python .\manage.py makemigrations users
+            Migrations for 'users':
+              users\migrations\0001_initial.py
+                - Create model CustomUser
+            PS C:\Users\Bruce\Programming\see-3d>
+            ```
+    1. Make migrations for project:
+        * `python .\manage.py makemigrations`
+            ```
+            PS C:\Users\Bruce\Programming\see-3d> python .\manage.py makemigrations
+            Migrations for 'prints':
+              prints\migrations\0001_initial.py
+                - Create model FilamentInstance
+                - Create model FilamentRoll
+                - Create model Manufacturer
+                - Create model ModelPrint
+                - Add field filament_roll to filamentinstance
+            PS C:\Users\Bruce\Programming\see-3d>
+            ```
+
+1. Perform migrations in one step:
+    * `python .\manage.py migrate`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py migrate
+        Operations to perform:
+          Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+        Running migrations:
+          Applying contenttypes.0001_initial... OK
+          Applying contenttypes.0002_remove_content_type_name... OK
+          Applying auth.0001_initial... OK
+          Applying auth.0002_alter_permission_name_max_length... OK
+          Applying auth.0003_alter_user_email_max_length... OK
+          Applying auth.0004_alter_user_username_opts... OK
+          Applying auth.0005_alter_user_last_login_null... OK
+          Applying auth.0006_require_contenttypes_0002... OK
+          Applying auth.0007_alter_validators_add_error_messages... OK
+          Applying auth.0008_alter_user_username_max_length... OK
+          Applying auth.0009_alter_user_last_name_max_length... OK
+          Applying auth.0010_alter_group_name_max_length... OK
+          Applying auth.0011_update_proxy_permissions... OK
+          Applying auth.0012_alter_user_first_name_max_length... OK
+          Applying users.0001_initial... OK
+          Applying admin.0001_initial... OK
+          Applying admin.0002_logentry_remove_auto_add... OK
+          Applying admin.0003_logentry_add_action_flag_choices... OK
+          Applying prints.0001_initial... OK
+          Applying sessions.0001_initial... OK
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Perform migrations in two steps:
+    * Seems everything follows same order.
+    1. `python .\manage.py migrate users`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py migrate users
+        Operations to perform:
+          Apply all migrations: users
+        Running migrations:
+          Applying contenttypes.0001_initial... OK
+          Applying contenttypes.0002_remove_content_type_name... OK
+          Applying auth.0001_initial... OK
+          Applying auth.0002_alter_permission_name_max_length... OK
+          Applying auth.0003_alter_user_email_max_length... OK
+          Applying auth.0004_alter_user_username_opts... OK
+          Applying auth.0005_alter_user_last_login_null... OK
+          Applying auth.0006_require_contenttypes_0002... OK
+          Applying auth.0007_alter_validators_add_error_messages... OK
+          Applying auth.0008_alter_user_username_max_length... OK
+          Applying auth.0009_alter_user_last_name_max_length... OK
+          Applying auth.0010_alter_group_name_max_length... OK
+          Applying auth.0011_update_proxy_permissions... OK
+          Applying auth.0012_alter_user_first_name_max_length... OK
+          Applying users.0001_initial... OK
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+    1. `python .\manage.py migrate`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py migrate
+        Operations to perform:
+          Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+        Running migrations:
+          Applying admin.0001_initial... OK
+          Applying admin.0002_logentry_remove_auto_add... OK
+          Applying admin.0003_logentry_add_action_flag_choices... OK
+          Applying prints.0001_initial... OK
+          Applying sessions.0001_initial... OK
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
 
 
 1. Proceed to 
