@@ -30,7 +30,7 @@
         return self.request.user == model_print.creator
     ```
 
-1. Proceed to [Recreate Database](./13_recreate_database.md)
+1. Proceed to [Change `Filament` to `FilamentInstance`](./13_change_filament_to_filament_instance.md)
 
 ## Repository Links:
 * Back to [Require Ownership of `ModelPrint` to Update the Properties](./11_require_ownership_for_model_print_update.md)

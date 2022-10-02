@@ -6,7 +6,7 @@ from print_tracker.settings.common import AUTH_USER_MODEL
 
 class Manufacturer(models.Model):
     """
-    Model for the `Manufacturer` of a `Filament` object.
+    Model for the `Manufacturer` of a `FilamentInstance` object.
     """
     name = models.CharField(max_length=255)
 
@@ -14,9 +14,9 @@ class Manufacturer(models.Model):
         return f'{self.id} : {self.name}'
 
 
-class Filament(models.Model):
+class FilamentInstance(models.Model):
     """
-    Model for the `Filament` used in `ModelPrint`.
+    Model for the `FilamentInstance` used in `ModelPrint`.
     """
     material = models.CharField(max_length=255)
 
@@ -24,11 +24,11 @@ class Filament(models.Model):
         return f'{self.id} : {self.material}'
 
 
-def get_or_create_a_deleted_filament():
+def get_or_create_a_deleted_filament_instance():
     """
-    Gets an existing `Filament` object or creates a new `Filament` object which has `material` attribute of `deleted`. The [0] gets the first element of the QuerySet.
+    Gets an existing `FilamentInstance` object or creates a new `FilamentInstance` object which has `material` attribute of `deleted`. The [0] gets the first element of the QuerySet.
     """
-    return Filament.objects.get_or_create(material='deleted')[0]
+    return FilamentInstance.objects.get_or_create(material='deleted')[0]
 
 
 class ModelPrint(models.Model):
@@ -43,10 +43,10 @@ class ModelPrint(models.Model):
         on_delete=models.CASCADE
     )
     filament = models.ForeignKey(
-        Filament,
+        FilamentInstance,
         related_name='prints',
         on_delete=models.SET(
-            get_or_create_a_deleted_filament
+            get_or_create_a_deleted_filament_instance
         )
     )
 
