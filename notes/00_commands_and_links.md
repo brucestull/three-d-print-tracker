@@ -37,6 +37,8 @@
 * Can't have leading `.\` when running command with `heroku run`:
     * `heroku run python manage.py createsuperuser --email admin@email.app --username admin`
 * `heroku login`
+* `heroku run python manage.py migrate users`
+* `heroku run python manage.py migrate`
 
 ### PowerShell:
 * `Get-Command python | Format-List *`

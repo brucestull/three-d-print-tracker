@@ -309,6 +309,80 @@
 
 1. Push to Heroku:
     * `git push heroku main`
+        ```
+        django.db.utils.DataError: invalid input syntax for type bigint: "PLA"
+        ```
+
+1. Reset Heroku database.
+
+1. Push to Heroku:
+    * `git push heroku main`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> git push heroku main
+        Everything up-to-date
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Perform migrations on `users`:
+    * `heroku run python manage.py migrate users`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py migrate users
+        Running python manage.py migrate users on ⬢ flynnt-knapp-print-tracker... up, run.6946 (Hobby)
+        Operations to perform:
+          Apply all migrations: users
+        Running migrations:
+          Applying contenttypes.0001_initial... OK
+          Applying contenttypes.0002_remove_content_type_name... OK
+          Applying auth.0001_initial... OK
+          Applying auth.0002_alter_permission_name_max_length... OK
+          Applying auth.0003_alter_user_email_max_length... OK
+          Applying auth.0004_alter_user_username_opts... OK
+          Applying auth.0005_alter_user_last_login_null... OK
+          Applying auth.0006_require_contenttypes_0002... OK
+          Applying auth.0007_alter_validators_add_error_messages... OK
+          Applying auth.0008_alter_user_username_max_length... OK
+          Applying auth.0009_alter_user_last_name_max_length... OK
+          Applying auth.0010_alter_group_name_max_length... OK
+          Applying auth.0011_update_proxy_permissions... OK
+          Applying auth.0012_alter_user_first_name_max_length... OK
+          Applying users.0001_initial... OK
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Perform migrations:
+    * `heroku run python manage.py migrate`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> heroku run python manage.py migrate
+        Running python manage.py migrate on ⬢ flynnt-knapp-print-tracker... up, run.6948 (Hobby)
+        Operations to perform:
+          Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+        Running migrations:
+          Applying admin.0001_initial... OK
+          Applying admin.0002_logentry_remove_auto_add... OK
+          Applying admin.0003_logentry_add_action_flag_choices... OK
+          Applying prints.0001_initial... OK
+          Applying prints.0002_filament... OK
+          Applying prints.0003_manufacturer... OK
+          Applying prints.0004_modelprint_creator... OK
+          Applying prints.0005_modelprint_filament... OK
+          Applying prints.0006_alter_modelprint_filament... OK
+          Applying prints.0007_alter_modelprint_filament... OK
+          Applying prints.0008_alter_modelprint_name... OK
+          Applying prints.0009_rename_filament_filamentinstance... OK
+          Applying prints.0010_rename_filament_modelprint_filament_instance... OK
+          Applying sessions.0001_initial... OK
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Need to create new superuser.
+    * `heroku run python manage.py createsuperuser --email admin@email.app --username admin`
+
+1. Some models are not showing in production Django Admin Interface:
+    * `FilamentRoll`
+
+1. Try removing all migrations and starting anew.
+
+
 
 
 
