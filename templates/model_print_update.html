@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Print Tracker - Update {{ modelprint.name }}{% endblock %}
+{% block title %}Print Tracker - Update: {{ modelprint.name }}{% endblock %}
 
 {% block content %}
 
 <h2>Update 3D Model Print</h2>
+<a href={% url 'prints:model_detail' modelprint.id %}>Cancel Update of {{ modelprint.name }}</a><br>
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}

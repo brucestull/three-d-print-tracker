@@ -80,6 +80,49 @@
     * [`templates/model_print_detail.html`](../templates/model_print_detail.html)
     * [`templates/model_print_list.html`](../templates/model_print_list.html)
 
+1. Probably don't need new migrations but check anyway:
+    * `python .\manage.py makemigrations`
+        * As expected:
+            ```
+            PS C:\Users\Bruce\Programming\see-3d> python .\manage.py makemigrations
+            No changes detected
+            PS C:\Users\Bruce\Programming\see-3d>
+            ```
+
+1. http://localhost:8000/prints/print/1/edit/
+    ```
+    Exception Value: Unknown field(s) (filament_instance) specified for ModelPrint
+    ```
+
+1. Forgot a hanging 'save' on [`prints/models.py`](../prints/models.py).
+
+1. Probably need new migrations:
+    * `python .\manage.py makemigrations`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py makemigrations
+        Was modelprint.filament renamed to modelprint.filament_instance (a ForeignKey)? [y/N] y
+        Migrations for 'prints':
+          prints\migrations\0010_rename_filament_modelprint_filament_instance.py
+            - Rename field filament on modelprint to filament_instance
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Perform migrations:
+    * `python .\manage.py migrate`
+        ```
+        PS C:\Users\Bruce\Programming\see-3d> python .\manage.py migrate
+        Operations to perform:
+          Apply all migrations: admin, auth, contenttypes, prints, sessions, users
+        Running migrations:
+          Applying prints.0010_rename_filament_modelprint_filament_instance... OK
+        PS C:\Users\Bruce\Programming\see-3d>
+        ```
+
+1. Test local server deployment:
+    * http://localhost:8000/
+
+1. Push to Heroku:
+    * `git push heroku main`
 
 
 

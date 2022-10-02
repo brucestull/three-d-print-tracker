@@ -42,7 +42,7 @@ class ModelPrint(models.Model):
         related_name='prints',
         on_delete=models.CASCADE
     )
-    filament = models.ForeignKey(
+    filament_instance = models.ForeignKey(
         FilamentInstance,
         related_name='prints',
         on_delete=models.SET(
@@ -55,7 +55,7 @@ class ModelPrint(models.Model):
             f'{self.id} : '
             f'{self.name} : '
             f'{self.creator.username} : '
-            f'{self.filament.material if self.filament else "No filament provided"}'
+            f'{self.filament_instance.material if self.filament_instance else "No filament_instance provided"}'
         )
     
     def get_absolute_url(self):
