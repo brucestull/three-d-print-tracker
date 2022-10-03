@@ -11,7 +11,7 @@ class Manufacturer(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
-        return f'{self.id} : {self.name}'
+        return self.name
 
 
 class FilamentRoll(models.Model):
@@ -20,10 +20,11 @@ class FilamentRoll(models.Model):
     Need to figure out a way to make a unique 'id'.
     Might use 'choices', in future, for 'material'.
     """
+    manufacturer = models.CharField(max_length=255)
     material = models.CharField(max_length=255)
 
     def __str__(self):
-        return f'{self.id} : {self.material}'
+        return f'{self.manufacturer} - {self.material}'
 
 
 class FilamentInstance(models.Model):
@@ -37,7 +38,7 @@ class FilamentInstance(models.Model):
     )
 
     def __str__(self):
-        return f'{self.id} : {self.filament_roll.material}'
+        return f'{self.filament_consumed} - {self.filament_roll}'
 
 
 class ModelPrint(models.Model):

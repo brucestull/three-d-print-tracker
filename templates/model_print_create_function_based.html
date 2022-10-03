@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - New 3D Model Print{% endblock %}
+
+{% block content %}
+
+<h2>Create New 3D Model Print</h2>
+<form action="{% url 'prints:model_create_function_based' %}" method="post">
+    {% csrf_token %}
+
+    <label for="model-print-input">Model Print Name</label>
+    <input type="text" name="model-print-name" id="model-print-input" placeholder="Model Print Name"><br>
+
+    <label for="filament-consumed-input">Amount of Filament Consumed</label>
+    <input type="number" name="amount-of-filament-consumed" id="filament-consumed-input" placeholder="Amount of Filament Consumed"><br>
+
+    <input type="submit" value="Create New 3D Model Print" />
+</form>
+
+{% endblock %}

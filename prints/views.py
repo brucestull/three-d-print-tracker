@@ -10,9 +10,19 @@ from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+
+from django.shortcuts import render
+
+from django.urls import reverse
 
 from prints.models import ModelPrint
+from prints.models import FilamentRoll
+from prints.models import FilamentInstance
+
+from users.models import CustomUser
+
+from django.contrib import auth
 
 
 class ModelPrintListView(ListView):
@@ -48,7 +58,68 @@ class ModelPrintCreateView(LoginRequiredMixin, CreateView):
 
 
 def create_model_print(request):
-    return HttpResponse("We're hoping to make a new ModelPrint instance! ...someday...")
+    if request.method == 'POST':
+
+        # # print('POST - request: ', request)
+        # print('POST - request.method: ', request.method)
+        # # POST - request.method:  POST
+        # print('request.POST.keys(): ', request.POST.keys())
+        
+        # print("reverse('prints:model_create_function_based'): ", reverse('prints:model_create_function_based'))
+        # # reverse('prints:model_create_function_based'):  /prints/print/create-function-based/
+
+        # Do `POST` logic here.
+
+        #### 1. Maybe have drop-down for `FilamentRoll`. Temporarily use dummy roll:
+        current_filament_roll = FilamentRoll.objects.all()[0]
+        print("current_filament_roll: ", current_filament_roll)
+        # # current_filament_roll:  6 : PLA+ : Very First Absolute Roll
+
+        #### 1. Input for `current_filament_consumed`:
+        current_filament_consumed = request.POST.get('amount-of-filament-consumed')
+        print("current_filament_consumed: ", current_filament_consumed)
+
+        #### 1. Get the `model-print-name` value:
+        current_model_print_name = request.POST.get('model-print-name')
+        print("current_model_print_name: ", current_model_print_name)
+        # print('type(current_model_print_name): ', type(current_model_print_name))
+        # # type(current_model_print_name):  <class 'str'>
+
+        #### 1. Create a `FilamentInstance` instance from `amount-of-filament-consumed` and `current_filament_roll`:
+        current_filament_instance = FilamentInstance.objects.create(
+            filament_consumed=current_filament_consumed,
+            filament_roll=current_filament_roll
+        )
+
+        #### 1. Get `current_user`:
+
+        # print("type(current_user): ", type(current_user))
+        # # type(current_user):  <class 'users.models.CustomUser'>
+        # print("current_user: ", current_user)
+
+        current_user = auth.get_user(request)
+
+
+        #### 1. Create a `ModelPrint` instance from `current_model_print_name`, `current_user`, and `current_filament_instance`:
+        new_model_print = ModelPrint.objects.create(
+            name=current_model_print_name,
+            creator=current_user,
+            filament_instance=current_filament_instance
+        )
+        print('new_model_print: ', new_model_print)
+
+        return HttpResponseRedirect(reverse('prints:model_create_function_based'))
+
+
+    elif request.method == 'GET':
+
+        # print('GET - request: ', request)
+        # # GET - request:  <WSGIRequest: GET '/prints/print/create-function-based/'>
+        # print('GET - request.method: ', request.method)
+        # # GET - request.method:  GET
+
+        # Do `GET` logic here.
+        return render(request, 'model_print_create_function_based.html')
 
 
 class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

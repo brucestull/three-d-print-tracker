@@ -1,8 +1,13 @@
 # Convert `ModelPrint` `CreateView` to Function-Based View
 
 ## Resources:
-* [`CreateView`](https://docs.djangoproject.com/en/4.1/ref/class-based-views/generic-editing/#django.views.generic.edit.CreateView)
-* 
+* [`django.views.generic.edit.CreateView`](https://docs.djangoproject.com/en/4.1/ref/class-based-views/generic-editing/#django.views.generic.edit.CreateView)
+* [`django.shortcuts.render()`](https://docs.djangoproject.com/en/4.1/topics/http/shortcuts/#django.shortcuts.render)
+* [`django.http.HttpResponse`](https://docs.djangoproject.com/en/4.1/ref/request-response/#django.http.HttpResponse)
+* [`django.http.HttpResponseRedirect`](https://docs.djangoproject.com/en/4.1/ref/request-response/#django.http.HttpResponseRedirect)
+* [`django.urls.reverse()`](https://docs.djangoproject.com/en/4.1/ref/urlresolvers/#django.urls.reverse)
+* [`<input>` - www.w3schools.com](https://www.w3schools.com/tags/tag_input.asp)
+* [`<input type="number">` - www.w3schools.com](https://www.w3schools.com/tags/att_input_type_number.asp)
 
 ## Process:
 
@@ -38,6 +43,12 @@
     * http://localhost:8000/prints/print/create-function-based/
 
 1. Route and View are connected and functioning.
+
+1. Create `POST` and `GET` logic to handle the request:
+    * `POST` should create a new instance of `ModelPrint`.
+    * `GET` should render the template.
+
+1. Create template []()
 
 
 
