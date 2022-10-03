@@ -3,11 +3,14 @@
 ## Resources:
 * [`django.views.generic.edit.CreateView`](https://docs.djangoproject.com/en/4.1/ref/class-based-views/generic-editing/#django.views.generic.edit.CreateView)
 * [`django.shortcuts.render()`](https://docs.djangoproject.com/en/4.1/topics/http/shortcuts/#django.shortcuts.render)
+* [`django.shortcuts.get_object_or_404()`](https://docs.djangoproject.com/en/4.1/topics/http/shortcuts/#django.shortcuts.get_object_or_404)
 * [`django.http.HttpResponse`](https://docs.djangoproject.com/en/4.1/ref/request-response/#django.http.HttpResponse)
 * [`django.http.HttpResponseRedirect`](https://docs.djangoproject.com/en/4.1/ref/request-response/#django.http.HttpResponseRedirect)
 * [`django.urls.reverse()`](https://docs.djangoproject.com/en/4.1/ref/urlresolvers/#django.urls.reverse)
+* [`{{ filament_rolls_in_template|length }}`](https://docs.djangoproject.com/en/4.1/ref/templates/builtins/#length)
 * [`<input>` - www.w3schools.com](https://www.w3schools.com/tags/tag_input.asp)
 * [`<input type="number">` - www.w3schools.com](https://www.w3schools.com/tags/att_input_type_number.asp)
+* [`<select>` - www.w3schools.com](https://www.w3schools.com/tags/tag_select.asp)
 
 ## Process:
 
@@ -48,7 +51,15 @@
     * `POST` should create a new instance of `ModelPrint`.
     * `GET` should render the template.
 
-1. Create template []()
+1. Create template [`templates/model_print_create_function_based.html`](../templates/model_print_create_function_based.html):
+
+1. Modify `create_model_print()` to [`prints/views.py`](../prints/views.py):
+
+1. Modify route `print/create-function-based/` in [`prints/urls.py`](../prints/urls.py):
+
+1. Modify links in [`templates/base.html`](../templates/base.html):
+
+
 
 
 

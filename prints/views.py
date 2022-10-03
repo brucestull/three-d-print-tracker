@@ -13,6 +13,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import HttpResponse, HttpResponseRedirect
 
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 
 from django.urls import reverse
 
@@ -68,30 +69,40 @@ def create_model_print(request):
         # print("reverse('prints:model_create_function_based'): ", reverse('prints:model_create_function_based'))
         # # reverse('prints:model_create_function_based'):  /prints/print/create-function-based/
 
-        # Do `POST` logic here.
+        # ##### Do `POST` logic here.
 
-        #### 1. Maybe have drop-down for `FilamentRoll`. Temporarily use dummy roll:
-        current_filament_roll = FilamentRoll.objects.all()[0]
+        # #### 1. Maybe have drop-down for `FilamentRoll`. Temporarily use dummy roll:
+            # #### Check request.POST.keys():
+        # print('request.POST.keys(): ', request.POST.keys())
+        # # request.POST.keys():  dict_keys(['csrfmiddlewaretoken', 'model-print-name', 'filament-roll-chosen', 'amount-of-filament-consumed'])
+
+        # Where is this documented?
+        # filament_roll_id = request.POST.get('filament-roll-chosen', None)
+        
+        filament_roll_id = request.POST.get('filament-roll-chosen')
+        print(filament_roll_id)
+        # current_filament_roll = FilamentRoll.objects.all()[0]
+        current_filament_roll = get_object_or_404(FilamentRoll, pk=filament_roll_id)
         print("current_filament_roll: ", current_filament_roll)
         # # current_filament_roll:  6 : PLA+ : Very First Absolute Roll
 
-        #### 1. Input for `current_filament_consumed`:
+        # #### 1. Input for `current_filament_consumed`:
         current_filament_consumed = request.POST.get('amount-of-filament-consumed')
         print("current_filament_consumed: ", current_filament_consumed)
 
-        #### 1. Get the `model-print-name` value:
+        # #### 1. Get the `model-print-name` value:
         current_model_print_name = request.POST.get('model-print-name')
         print("current_model_print_name: ", current_model_print_name)
         # print('type(current_model_print_name): ', type(current_model_print_name))
         # # type(current_model_print_name):  <class 'str'>
 
-        #### 1. Create a `FilamentInstance` instance from `amount-of-filament-consumed` and `current_filament_roll`:
+        # #### 1. Create a `FilamentInstance` instance from `amount-of-filament-consumed` and `current_filament_roll`:
         current_filament_instance = FilamentInstance.objects.create(
             filament_consumed=current_filament_consumed,
             filament_roll=current_filament_roll
         )
 
-        #### 1. Get `current_user`:
+        # #### 1. Get `current_user`:
 
         # print("type(current_user): ", type(current_user))
         # # type(current_user):  <class 'users.models.CustomUser'>
@@ -100,7 +111,7 @@ def create_model_print(request):
         current_user = auth.get_user(request)
 
 
-        #### 1. Create a `ModelPrint` instance from `current_model_print_name`, `current_user`, and `current_filament_instance`:
+        # #### 1. Create a `ModelPrint` instance from `current_model_print_name`, `current_user`, and `current_filament_instance`:
         new_model_print = ModelPrint.objects.create(
             name=current_model_print_name,
             creator=current_user,
@@ -118,8 +129,17 @@ def create_model_print(request):
         # print('GET - request.method: ', request.method)
         # # GET - request.method:  GET
 
-        # Do `GET` logic here.
-        return render(request, 'model_print_create_function_based.html')
+        # ##### Do `GET` logic here.
+        # #### 1. Get `FilamentRoll` instance(S) information so we can display in a drop-down:
+        filament_rolls = FilamentRoll.objects.all()
+
+        # #### 1. Add `filament_rolls` to `context`:
+        context = {
+            'filament_rolls_in_template': filament_rolls
+        }
+        # #### 1. Display `FilamenRoll` instance information in a drop-down on template.
+
+        return render(request, 'model_print_create_function_based.html', context)
 
 
 class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
