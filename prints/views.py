@@ -78,7 +78,7 @@ def create_model_print(request):
 
         # Where is this documented?
         # filament_roll_id = request.POST.get('filament-roll-chosen', None)
-        
+
         filament_roll_id = request.POST.get('filament-roll-chosen')
         print(filament_roll_id)
         # current_filament_roll = FilamentRoll.objects.all()[0]
@@ -118,6 +118,14 @@ def create_model_print(request):
             filament_instance=current_filament_instance
         )
         print('new_model_print: ', new_model_print)
+
+        """
+        Production Test:
+        2022-10-03T14:31:23.037359+00:00 app[web.1]: current_filament_roll:  Hatchbox - PLA+
+        2022-10-03T14:31:23.037421+00:00 app[web.1]: current_filament_consumed:  91
+        2022-10-03T14:31:23.037472+00:00 app[web.1]: current_model_print_name:  ShayShay
+        2022-10-03T14:31:23.052928+00:00 app[web.1]: new_model_print:  5 : ShayShay : FlynntKnapp : Hatchbox - PLA+
+        """
 
         return HttpResponseRedirect(reverse('prints:model_create_function_based'))
 
