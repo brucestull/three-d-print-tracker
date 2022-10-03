@@ -3,6 +3,7 @@
 * NOTE: Author is using PowerShell for this guide.
 
 ## Notes:
+* **TODO**: Need to check [Deployment checklist - docs.djangoproject.com](https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/)
 * [Project Directory Structure](notes/00_directory_structure.md)
 
 ## Setup Process:
