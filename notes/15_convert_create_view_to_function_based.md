@@ -208,8 +208,7 @@
     {% endblock %}
     ```
 
-
-
+1. Convert 'function-based' 'create' view parts in [`prints/views.py`](../prints/views.py) and [`templates/model_print_create_function_based.html`](../templates/model_print_create_function_based.html) to use Django forms.
 
 1. Proceed to []()
 
