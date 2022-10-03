@@ -24,7 +24,7 @@ class FilamentRoll(models.Model):
     material = models.CharField(max_length=255)
 
     def __str__(self):
-        return f'{self.manufacturer} - {self.material}'
+        return f'{self.id} - {self.manufacturer} - {self.material}'
 
 
 class FilamentInstance(models.Model):

@@ -8,28 +8,7 @@
 <form action="{% url 'prints:model_create_function_based' %}" method="post">
     {% csrf_token %}
 
-    <label for="model-print-input">Model Print Name</label>
-    <input type="text" name="model-print-name" id="model-print-input" placeholder="Model Print Name">
-    <br>
-
-    {% comment %} Filament Roll Available Attributes: {% endcomment %}
-        {% comment %} id {% endcomment %}
-        {% comment %} manufacturer {% endcomment %}
-        {% comment %} material {% endcomment %}
-        {% comment %} filamentinstance_set.all {% endcomment %}
-        {% comment %} filamentinstance_set.count {% endcomment %}
-    {{ filament_rolls_in_template }}
-    <br>
-    <label for="filament-rolls-input">Available Filament Rolls: {{ filament_rolls_in_template|length }}</label>
-    <select name="filament-roll-chosen" id="filament-rolls-input">
-        {% for filament_roll in filament_rolls_in_template %}
-        <option value={{ filament_roll.id }}>{{ filament_roll }} : Roll-{{ filament_roll.id }}</option>
-        {% endfor %}
-    </select>
-    <br>
-
-    <label for="filament-consumed-input">Amount of Filament Consumed</label>
-    <input type="number" name="amount-of-filament-consumed" id="filament-consumed-input" placeholder="Filament Consumed"><br>
+    {{ form.as_p }}
 
     <input type="submit" value="Create New 3D Model Print" />
 </form>
