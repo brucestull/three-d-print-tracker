@@ -599,7 +599,7 @@
 1. Create superuser:
     * `heroku run python manage.py createsuperuser --email admin@email.app --username admin`
 
-1. Proceed to 
+1. Proceed to [Convert `ModelPrint` `CreateView` to Function-Based View](./15_convert_create_view_to_function_based.md)
 
 ## Repository Links:
 * Back to [Change `Filament` to `FilamentInstance`](./13_change_filament_to_filament_instance.md)

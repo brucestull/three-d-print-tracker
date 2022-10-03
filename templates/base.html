@@ -34,7 +34,12 @@
             <a
                 href={% url 'prints:model_create' %}
                 >
-                Add New 3D Model Print
+                Add New 3D Model Print - Class-Based-View
+            </a><br>
+            <a
+                href={% url 'prints:model_create_function_based' %}
+                >
+                Add New 3D Model Print - Function-Based-View
             </a><br>
             {% endif %}
             {% block content %}

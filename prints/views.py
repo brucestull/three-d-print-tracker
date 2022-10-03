@@ -10,6 +10,8 @@ from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 
+from django.http import HttpResponse
+
 from prints.models import ModelPrint
 
 
@@ -43,6 +45,10 @@ class ModelPrintCreateView(LoginRequiredMixin, CreateView):
         """
         form.instance.creator = self.request.user
         return super().form_valid(form)
+
+
+def create_model_print(request):
+    return HttpResponse("We're hoping to make a new ModelPrint instance! ...someday...")
 
 
 class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
