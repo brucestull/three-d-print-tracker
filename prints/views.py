@@ -14,6 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
@@ -43,19 +44,16 @@ class ModelPrintDetailView(DetailView):
     template_name ='model_print_detail.html'
 
 
-class FilamentRollCreateView(LoginRequiredMixin, CreateView):
-    """
-    Class-based view, which inherits from `django.views.generic.edit.CreateView` and `django.contrib.auth.mixins.LoginRequiredMixin`, to provide a `CreateView` for `FilamentRoll`.
-    """
-    # TODO: Maybe use `context` here so I don't have to route back to `create_model_print`, but, I would need to get 'rolls' in both cases.
-    model = FilamentRoll
-    fields = [
-        'manufacturer',
-        'material',
-    ]
-
-    def get_success_url(self):
-        return reverse('prints:create_model_print')
+def create_filament_roll(request):
+    current_manufacturer = request.POST.get('manufacturer')
+    current_material = request.POST.get('material')
+    new_filament_roll = FilamentRoll.objects.create(
+        manufacturer=current_manufacturer,
+        material=current_material,
+    )
+    return HttpResponseRedirect(
+        reverse('prints:create_model_print')
+    )
 
 
 def create_model_print(request):

@@ -21,10 +21,12 @@ class CreateModelPrintForm(forms.Form):
     )
 
 
-class CreateFilamentRollForm(forms.ModelForm):
-    class Meta:
-        model = FilamentRoll
-        fields = [
-            'material',
-            'manufacturer'
-        ]
+class CreateFilamentRollForm(forms.Form):
+    manufacturer = forms.CharField(
+        label='Manufacturer',
+        max_length=255,
+    )
+    material = forms.CharField(
+        label='Material',
+        max_length=255,
+    )
