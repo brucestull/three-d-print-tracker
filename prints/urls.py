@@ -6,7 +6,13 @@ app_name = 'prints'
 urlpatterns = [
     path('', views.ModelPrintListView.as_view(), name='home'),
 
-    path('print/create-model-print/', views.create_model_print, name='create_model_print'),
+    path(
+        'print/cb-create-model-print/',
+        views.ModelPrintCreateView.as_view(),
+        name='cb_create_model_print'
+    ),
+
+    path('print/create-model-print/', views.model_print_create_function, name='model_print_create'),
     path('print/create-filament-roll/', views.create_filament_roll, name='create_filament_roll'),
 
     path('print/<int:pk>/', views.ModelPrintDetailView.as_view(), name='model_detail'),

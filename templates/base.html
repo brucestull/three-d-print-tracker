@@ -32,9 +32,14 @@
             {% endif %}
             {% if user.is_authenticated %}
             <a
-                href={% url 'prints:create_model_print' %}
+                href={% url 'prints:model_print_create' %}
                 >
-                Add New 3D Model Print
+                Add New 3D Model Print : function-based
+            </a><br>
+            <a
+                href={% url 'prints:cb_create_model_print' %}
+                >
+                Add New 3D Model Print : class-based
             </a><br>
             {% endif %}
             {% block content %}

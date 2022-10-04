@@ -75,7 +75,7 @@
         )
     ```
 
-1. Add route `print/create-model-print/` to [`prints/urls.py`](../prints/urls.py):
+1. Add route `print/create-filament-roll/` to [`prints/urls.py`](../prints/urls.py):
     ```
     urlpatterns = [
         #...
@@ -87,7 +87,6 @@
 1. Test new views:
     * `python .\manage.py runserver`
     * http://localhost:8000/prints/print/create-model-print/
-
 
 1. Proceed to []()
 

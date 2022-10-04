@@ -7,6 +7,7 @@ from django.views.generic import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
+from django.views.generic.edit import FormView
 
 from django.contrib import auth
 
@@ -52,11 +53,45 @@ def create_filament_roll(request):
         material=current_material,
     )
     return HttpResponseRedirect(
-        reverse('prints:create_model_print')
+        reverse('prints:model_print_create')
     )
 
 
-def create_model_print(request):
+class ModelPrintCreateView(LoginRequiredMixin, CreateView):
+    """
+    Class-based view to create `ModelPrint` instances.
+    """
+    # model = ModelPrint
+    # template_name = 'cb_model_print_create.html'
+    # # Using ModelFormMixin (base class of ModelPrintCreateView) without the 'fields' attribute is prohibited.
+
+    # form = CreateModelPrintForm
+    # template_name ='cb_model_print_create.html'
+    # # ModelPrintCreateView is missing a QuerySet. Define ModelPrintCreateView.model, ModelPrintCreateView.queryset, or override ModelPrintCreateView.get_queryset().
+    
+    ##### SUCCESS #####
+    model = ModelPrint
+    template_name = 'cb_model_print_create.html'
+    fields = [
+        'name',
+        'creator',
+        'filament_instance',
+    ]
+    ###################
+
+    def get_success_url(self):
+        print('self: ', self)
+        # self:  <prints.views.ModelPrintCreateView object at 0x0000018AC1FF1FF0>
+        print('self.object: ', self.object)
+        # `self.object` returns the object created by the view:
+            # self.object:  38 : Stupor Model : NotAnAdmin : 7 - Inland - PLA+
+        return reverse(
+            'prints:model_detail',
+            kwargs={ 'pk': self.object.id}
+        )
+
+
+def model_print_create_function(request):
     
     if request.method == 'POST':
         filament_roll_id = request.POST.get('filament_roll_chosen')
