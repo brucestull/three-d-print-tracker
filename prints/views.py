@@ -49,7 +49,10 @@ class FilamentRollCreateView(LoginRequiredMixin, CreateView):
     """
     # TODO: Maybe use `context` here so I don't have to route back to `create_model_print`, but, I would need to get 'rolls' in both cases.
     model = FilamentRoll
-    fields = ['manufacturer', 'material']
+    fields = [
+        'manufacturer',
+        'material',
+    ]
 
     def get_success_url(self):
         return reverse('prints:create_model_print')
