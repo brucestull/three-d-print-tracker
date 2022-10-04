@@ -5,7 +5,7 @@
 {% block content %}
 
 <h2>Create New 3D Model Print</h2>
-<form action="{% url 'prints:model_print_create' %}" method="post">
+<form action="{% url 'prints:create_model_print' %}" method="post">
     {% csrf_token %}
 
     {{ model_print_form.as_p }}

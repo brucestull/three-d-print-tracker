@@ -14,12 +14,13 @@
 </form>
 
 <h2>Create New Filament Roll</h1>
-<form action="{% url 'prints:create_filament_roll' %}" method="post">
+<h3>UNDER CONSTRUCTION</h3>
+{% comment %} <form action="{% url 'prints:create_filament_roll' %}" method="post">
     {% csrf_token %}
 
     {{ filament_roll_form.as_p }}
 
     <input type="submit" value="Create New Filament Roll" />
-</form>
+</form> {% endcomment %}
 
 {% endblock %}
