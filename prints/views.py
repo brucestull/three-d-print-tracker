@@ -80,7 +80,7 @@ def create_model_print(request):
             creator=current_user,
         )
         return HttpResponseRedirect(
-            reverse('prints:create_model_print')
+            reverse('prints:model_detail', kwargs={ 'pk': new_model_print.id})
         )
 
     elif request.method == 'GET':
@@ -92,7 +92,7 @@ def create_model_print(request):
         }
         return render(
             request,
-            'model_print_create_function_based.html',
+            'model_print_create.html',
             context
         )
 
