@@ -22,12 +22,12 @@
         return HttpResponse("We're hoping to make a new ModelPrint instance! ...someday...")
     ```
 
-1. Add route `print/create-function-based/` to [`prints/urls.py`](../prints/urls.py):
+1. Add route `print/create-model-print/` to [`prints/urls.py`](../prints/urls.py):
     ```
     urlpatterns = [
 
         #...
-        path('print/create-function-based/', views.create_model_print, name='model_create_function_based'),
+        path('print/create-model-print/', views.create_model_print, name='create_model_print'),
         #...
     ]
     ```
@@ -35,7 +35,7 @@
 1. Add temporary link to [`templates/base.html`](../templates/base.html):
     ```
     <a
-        href={% url 'prints:model_create_function_based' %}
+        href={% url 'prints:create_model_print' %}
         >
         Add New 3D Model Print - Function-Based-View
     </a><br>
@@ -44,8 +44,8 @@
 1. Start development server:
     * `python .\manage.py runserver`
 
-1. Test `model_create_function_based`:
-    * http://localhost:8000/prints/print/create-function-based/
+1. Test `create_model_print`:
+    * http://localhost:8000/prints/print/create-model-print/
 
 1. Route and View are connected and functioning.
 
@@ -65,8 +65,8 @@
             # # POST - request.method:  POST
             # print('request.POST.keys(): ', request.POST.keys())
 
-            # print("reverse('prints:model_create_function_based'): ", reverse('prints:model_create_function_based'))
-            # # reverse('prints:model_create_function_based'):  /prints/print/create-function-based/
+            # print("reverse('prints:create_model_print'): ", reverse('prints:create_model_print'))
+            # # reverse('prints:create_model_print'):  /prints/print/create-model-print/
 
             # ##### Do `POST` logic here.
 
@@ -126,13 +126,13 @@
             2022-10-03T14:31:23.052928+00:00 app[web.1]: new_model_print:  5 : ShayShay : FlynntKnapp : Hatchbox - PLA+
             """
 
-            return HttpResponseRedirect(reverse('prints:model_create_function_based'))
+            return HttpResponseRedirect(reverse('prints:create_model_print'))
 
 
         elif request.method == 'GET':
 
             # print('GET - request: ', request)
-            # # GET - request:  <WSGIRequest: GET '/prints/print/create-function-based/'>
+            # # GET - request:  <WSGIRequest: GET '/prints/print/create-model-print/'>
             # print('GET - request.method: ', request.method)
             # # GET - request.method:  GET
 
@@ -149,11 +149,11 @@
             return render(request, 'model_print_create_function_based.html', context)
     ```
 
-1. Current route `print/create-function-based/` in [`prints/urls.py`](../prints/urls.py):
+1. Current route `print/create-model-print/` in [`prints/urls.py`](../prints/urls.py):
     ```
     urlpatterns = [
         #...
-        path('print/create-function-based/', views.create_model_print, name='model_create_function_based'),
+        path('print/create-model-print/', views.create_model_print, name='create_model_print'),
         #...
     ]
     ```
@@ -161,7 +161,7 @@
 1. Modify links in [`templates/base.html`](../templates/base.html):
     ```
     <a
-        href={% url 'prints:model_create_function_based' %}
+        href={% url 'prints:create_model_print' %}
         >
         Add New 3D Model Print - Function-Based-View
     </a><br>
@@ -176,7 +176,7 @@
     {% block content %}
     
     <h2>Create New 3D Model Print</h2>
-    <form action="{% url 'prints:model_create_function_based' %}" method="post">
+    <form action="{% url 'prints:create_model_print' %}" method="post">
         {% csrf_token %}
     
         <label for="model-print-input">Model Print Name</label>

@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.urls import reverse
 
 from django.views.generic import ListView
 from django.views.generic import DetailView
@@ -7,23 +8,24 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 
+from django.contrib import auth
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 
-from django.urls import reverse
-
-from django.contrib import auth
 
 from prints.models import ModelPrint
 from prints.models import FilamentRoll
 from prints.models import FilamentInstance
 
 from .forms import CreateModelPrintForm
+from .forms import CreateFilamentRollForm
+
 
 class ModelPrintListView(ListView):
     """
@@ -41,50 +43,52 @@ class ModelPrintDetailView(DetailView):
     template_name ='model_print_detail.html'
 
 
-class ModelPrintCreateView(LoginRequiredMixin, CreateView):
+class FilamentRollCreateView(LoginRequiredMixin, CreateView):
     """
-    Class-based view, which inherits from `django.views.generic.edit.CreateView` and ``, to provide a `CreateView` for `ModelPrint`.
+    Class-based view, which inherits from `django.views.generic.edit.CreateView` and `django.contrib.auth.mixins.LoginRequiredMixin`, to provide a `CreateView` for `FilamentRoll`.
     """
-    model = ModelPrint
-    template_name ='model_print_create.html'
-    fields = ['name', 'filament_instance']
+    # TODO: Maybe use `context` here so I don't have to route back to `create_model_print`, but, I would need to get 'rolls' in both cases.
+    model = FilamentRoll
+    fields = ['manufacturer', 'material']
 
-    def form_valid(self, form):
-        """
-        Set `form.instance.creator` as `self.request.user` when valid form data is provided.
-        """
-        form.instance.creator = self.request.user
-        return super().form_valid(form)
+    def get_success_url(self):
+        return reverse('prints:create_model_print')
 
 
 def create_model_print(request):
     
     if request.method == 'POST':
         filament_roll_id = request.POST.get('filament_roll_chosen')
+
+        # Create a current `FilamentInstance` from user input:
         current_filament_roll = get_object_or_404(
             FilamentRoll,
             pk=filament_roll_id
         )
         current_filament_consumed = request.POST.get('filament_consumed')
-        current_model_print_name = request.POST.get('model_print_name')
         current_filament_instance = FilamentInstance.objects.create(
+            filament_roll=current_filament_roll,
             filament_consumed=current_filament_consumed,
-            filament_roll=current_filament_roll
         )
+
+        # Create a new `ModelPrint` from user input and `auth.get_user()`:
+        current_model_print_name = request.POST.get('model_print_name')
         current_user = auth.get_user(request)
         new_model_print = ModelPrint.objects.create(
+            filament_instance=current_filament_instance,
             name=current_model_print_name,
             creator=current_user,
-            filament_instance=current_filament_instance
         )
         return HttpResponseRedirect(
-            reverse('prints:model_create_function_based')
+            reverse('prints:create_model_print')
         )
 
     elif request.method == 'GET':
         create_model_print_form = CreateModelPrintForm()
+        create_filament_roll_form = CreateFilamentRollForm()
         context = {
-            'form': create_model_print_form,
+            'model_print_form': create_model_print_form,
+            'filament_roll_form': create_filament_roll_form,
         }
         return render(
             request,

@@ -68,7 +68,7 @@
 * Models Home:
     * http://localhost:8000/prints/
     * http://localhost:8000/prints/print/create/
-    * http://localhost:8000/prints/print/create-function-based/
+    * http://localhost:8000/prints/print/create-model-print/
     * http://localhost:8000/prints/print/1/
 * Django Admin:
     * http://localhost:8000/admin/
