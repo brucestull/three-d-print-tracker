@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - New 3D Model Print{% endblock %}
+
+{% block content %}
+
+{% comment %} <h2>Create New 3D Model Print : {{ the_view_name }}</h2> {% endcomment %}
+<h2>Create New 3D Model Print : model_print_form_view</h2>
+<form action="{% url 'prints:model_print_form_view' %}" method="post">
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+    
+    <input type="submit" value="Create New 3D Model Print" />
+</form>
+
+<h2>Create New 3D Model Print : model_print_create_view</h2>
+{% comment %} <h2>Create New 3D Model Print : {{ the_view_name }}</h2> {% endcomment %}
+<form action="{% url 'prints:model_print_create_view' %}" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Create New 3D Model Print" />
+</form>
+
+
+<h2>Create New Filament Roll</h1>
+<h3>UNDER CONSTRUCTION</h3>
+{% comment %} <form action="{% url 'prints:create_filament_roll' %}" method="post">
+    {% csrf_token %}
+
+    {{ filament_roll_form.as_p }}
+
+    <input type="submit" value="Create New Filament Roll" />
+</form> {% endcomment %}
+
+{% endblock %}

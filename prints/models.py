@@ -63,7 +63,8 @@ class ModelPrint(models.Model):
             f'{self.id} : '
             f'{self.name} : '
             f'{self.creator.username} : '
-            f'{self.filament_instance.filament_roll if self.filament_instance else "No filament_instance provided"}'
+            f'{self.filament_instance.filament_consumed if self.filament_instance else "No FilamentInstance provided"} grams of '
+            f'"{self.filament_instance.filament_roll if self.filament_instance else "No FilamentInstance provided"}"'
         )
     
     def get_absolute_url(self):

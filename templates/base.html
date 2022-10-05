@@ -34,7 +34,17 @@
             <a
                 href={% url 'prints:create_model_print' %}
                 >
-                Add New 3D Model Print
+                Add New 3D Model Print : create_model_print
+            </a><br>
+            <a
+                href={% url 'prints:model_print_create_view' %}
+                >
+                Add New 3D Model Print : model_print_create_view
+            </a><br>
+            <a
+                href={% url 'prints:model_print_form_view' %}
+                >
+                Add New 3D Model Print : model_print_form_view
             </a><br>
             {% endif %}
             {% block content %}

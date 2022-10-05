@@ -8,11 +8,10 @@ class CreateModelPrintForm(forms.Form):
         label='Model Print Name',
         max_length=255,
     )
-    filament_consumed = forms.CharField(
+    filament_consumed = forms.IntegerField(
         label="Filament Consumed",
         help_text='Units of grams (g)',
-        max_length=100,
-        widget=forms.NumberInput(),
+        min_value=0,
     )
     filament_roll_chosen = forms.ModelChoiceField(
         label='Filament Roll Chosen',
