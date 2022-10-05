@@ -8,7 +8,7 @@ User: {{ user.username | capfirst }}<br>
 ModelPrint Creator: {{ modelprint.creator.username | capfirst }}<br>
 User is the 3D Model Print Creator: {% if user.id == modelprint.creator.id %} Yep! {% else %} Nope! {% endif %}
 
-<h2>Model Detail</h2>
+<h2>Model Print Detail</h2>
 {{ modelprint.name }}<br>
 {{ modelprint.filament_instance.filament_consumed }} grams of {{ modelprint.filament_instance.filament_roll }} used.<br>
 {{ modelprint.creator.username }}<br>
