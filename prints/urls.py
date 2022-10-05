@@ -7,9 +7,15 @@ urlpatterns = [
     path('', views.ModelPrintListView.as_view(), name='home'),
 
     path(
-        'print/cb-create-model-print/',
+        'print/model-print-form-view/',
+        views.ModelPrintFormView.as_view(),
+        name='model_print_form_view',
+    ),
+
+    path(
+        'print/model-print-create-view/',
         views.ModelPrintCreateView.as_view(),
-        name='cb_create_model_print'
+        name='model_print_create_view'
     ),
 
     path(
