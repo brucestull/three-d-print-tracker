@@ -69,7 +69,7 @@ def create_filament_roll(request):
     )
     return HttpResponseRedirect(the_url_we_want_to_go)
     return HttpResponseRedirect(
-        reverse('prints:create_model_print')
+        reverse('prints:model_print_function_view')
     )
 
 

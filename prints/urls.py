@@ -21,7 +21,7 @@ urlpatterns = [
     path(
         'print/create-model-print/',
         views.model_print_create_function,
-        name='create_model_print'
+        name='model_print_function_view'
     ),
     path(
         'print/create-filament-roll/',

@@ -6,7 +6,7 @@
 
 <h1><code>model_print_create_function()</code></h1>
 <h2>Create New 3D Model Print</h2>
-<form action="{% url 'prints:create_model_print' %}" method="post">
+<form action="{% url 'prints:model_print_function_view' %}" method="post">
     {% csrf_token %}
 
     {{ model_print_form.as_p }}
