@@ -57,72 +57,36 @@ def create_filament_roll(request):
         reverse('prints:create_model_print')
     )
 
-"""
-from myapp.forms import ContactForm
-from django.views.generic.edit import FormView
 
-class ContactFormView(FormView):
-    template_name = 'contact.html'
-    form_class = ContactForm
-    success_url = '/thanks/'
 
-    def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        form.send_email()
-        return super().form_valid(form)
-"""
-
-class ModelPrintCreateView(LoginRequiredMixin, FormView):
+class ModelPrintCreateView(LoginRequiredMixin, CreateView):
     """
     Class-based view to create `ModelPrint` instances.
     """
+    model = ModelPrint
     template_name = 'cb_model_print_create.html'
-    form_class = CreateModelPrintForm
-    
+    fields = [
+        'name',
+        'filament_instance',
+    ]
+
     def form_valid(self, form):
-        print("'form_valid()' has been called")
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-
-        # print('type(self): ', type(self))
-        # # type(self):  <class 'prints.views.ModelPrintCreateView'>
-        # print('type(form): ', type(form))
-        # # type(form):  <class 'prints.forms.CreateModelPrintForm'>
-
-        print('form.cleaned_data: ', form.cleaned_data)
-        # # form.cleaned_data:  {
-        # #     'model_print_name': 'Totally New Print',
-        # #     'filament_consumed': 2,
-        # #     'filament_roll_chosen': <FilamentRoll: 28 - Manufacturer To Delete - Material To Delete>
-        # # }
-
-        return super().form_valid(form)
-
-    # We want to give the template the current `FilamentRoll`s.
-    def get_context_data(self,**kwargs):
-        print("'get_context_data()' has been called")
-        context = super().get_context_data(**kwargs)
-        # Here we are adding more 'context' attributes.
-        # print('context: ', context)
-        # # context:  {
-        # #     'form': <CreateModelPrintForm bound=False, valid=Unknown, fields=(model_print_name;filament_consumed;filament_roll_chosen)>,
-        # #     'view': <prints.views.ModelPrintCreateView object at 0x000001DEDA8A2800>
-        # # }
-
-        context['filament_rolls'] = FilamentRoll.objects.all()
-        # print('context: ', context)
-        return context
-
-    # Can I somehow pass the id of the newly created model `ModelPrint` to `get_success_url`?
-    def get_success_url(self):
-        print("'get_success_url()' has been called")
+        print("'form_valid()' has been called:")
         # print('self: ', self)
-        # # self:  <prints.views.ModelPrintCreateView object at 0x0000018AC1FF1FF0>
-
-        return reverse(
-            'prints:create_model_print',
-        )
+        # # self:  <prints.views.ModelPrintCreateView object at 0x000002B6B3A81780>
+        # print('form: ', form)
+        # # An HTML form.
+        form.instance.creator = self.request.user
+        return super(ModelPrintCreateView, self).form_valid(form)
+    
+    def get_success_url(self):
+        print("'get_success_url()' has been called:")
+        # print('type(self.object): ', type(self.object))
+        # # type(self.object):  <class 'prints.models.ModelPrint'>
+        print('self.object.name: ', self.object.name)
+        print('self.object.id: ', self.object.id)
+        new_model_print = self.object
+        return reverse('prints:model_detail', kwargs={ 'pk': new_model_print.id})
 
 
 def model_print_create_function(request):
