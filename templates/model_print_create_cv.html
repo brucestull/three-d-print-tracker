@@ -10,7 +10,21 @@
     {% csrf_token %}
     
     {{ form.as_p }}
-    
+
+    <p>
+    <label for="filament-consumed-input">Filament Consumed</label>
+    <input type="number" name="filament_consumed" id="filament-consumed-input" placeholder="Filament Consumed">
+    </p>
+
+    <p>
+    <label for="filament-roll-input">Filament Roll Chosen:</label>
+    <select name="filament_roll" id="filament-roll-input">
+        {% for filament_roll in filament_rolls_in_template %}
+        <option value="{{ filament_roll.id }}">{{ filament_roll }}</option>
+        {% endfor %}
+    </select>
+    </p>
+
     <input type="submit" value="Create New 3D Model Print" />
 </form>
 

@@ -26,6 +26,8 @@ from prints.models import ModelPrint
 from prints.models import FilamentRoll
 from prints.models import FilamentInstance
 
+from django.forms.models import modelform_factory
+
 from .forms import CreateModelPrintForm
 from .forms import CreateFilamentRollForm
 
@@ -133,13 +135,13 @@ class ModelPrintCreateView(LoginRequiredMixin, CreateView):
     """
     Class-based `CreateView` to create `ModelPrint` instance.
 
-    This view doesn't function as needed yet. Haven't figured out how to programmatically create `FilemantInstance`.
+    This view doesn't function as needed yet. Haven't figured out how to programmatically create `FilamentInstance`.
     """
     model = ModelPrint
     template_name = 'model_print_create_cv.html'
     fields = [
         'name',
-        'filament_instance',
+        # 'filament_instance',
     ]
     
     def get_context_data(self, **kwargs):
@@ -165,8 +167,31 @@ class ModelPrintCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         print("'form_valid()' has been called:")
-        form.instance.creator = self.request.user
-        return super(ModelPrintCreateView, self).form_valid(form)
+        the_request_post_keys = self.request.POST.keys()
+        print('the_request_post_keys:', the_request_post_keys)
+
+        filament_roll_id = self.request.POST.get('filament_roll')
+        current_filament_roll = get_object_or_404(
+            FilamentRoll,
+            pk=filament_roll_id
+        )
+        current_filament_consumed = self.request.POST.get('filament_consumed')
+        new_filament_instance = FilamentInstance.objects.create(
+            filament_roll=current_filament_roll,
+            filament_consumed=current_filament_consumed,
+        )
+
+        current_model_print_name = self.request.POST.get('name')
+        current_user = auth.get_user(self.request)
+        new_model_print = ModelPrint.objects.create(
+            filament_instance=new_filament_instance,
+            name=current_model_print_name,
+            creator=current_user,
+        )
+
+        return HttpResponseRedirect(
+            reverse('prints:model_detail', kwargs={ 'pk': new_model_print.id})
+        )
 
 
 def model_print_create_function(request):
