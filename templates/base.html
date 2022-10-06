@@ -25,6 +25,7 @@
             {% if user.is_authenticated %}
                 Who am I: {{ user.username | capfirst }}<br>
                 <p><a href="{% url 'logout' %}">Log Out</a></p>
+                <p><a href="{% url 'edit_profile' user.id %}">Edit Profile</a></p>
             {% else %}
                 <p>You are not logged in.</p>
                 <a href="{% url 'login' %}">Log In</a> <b>OR</b>
