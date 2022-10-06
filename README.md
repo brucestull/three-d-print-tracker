@@ -13,7 +13,7 @@
 1. [Build Print Tracker Application](./notes/README.md)
 
 ## Project State at Commits:
-* [`ModelPrintFormView`, `ModelPrintCreateView`, and `model_print_create_function` views example comparison](https://github.com/brucestull/see-3d/tree/df16b65892b0c7100eb11763e5b964297ee3a42d)
+* [`ModelPrintFormView`, `ModelPrintCreateView`, and `model_print_create_function` views example comparison - includes print statements](https://github.com/brucestull/see-3d/tree/df16b65892b0c7100eb11763e5b964297ee3a42d)
 
 ## Excellent resources, this project wouldn't have been possible without these:
 * CustomUser method: [Django Best Practices: Custom User Model - Will Vincent - learndjango.com](https://learndjango.com/tutorials/django-custom-user-model)
