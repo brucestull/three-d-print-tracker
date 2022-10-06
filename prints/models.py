@@ -51,7 +51,7 @@ class ModelPrint(models.Model):
     creator = models.ForeignKey(
         AUTH_USER_MODEL,
         related_name='prints',
-        # `CASCADE` deletes `ModelPrint` on deletion of associated `CustomUser` instance.
+        # `CASCADE` allows deletion of `CustomUser` and also does a cascading deletion of `ModelPrint`.
         on_delete=models.CASCADE,
     )
     filament_instance = models.OneToOneField(
