@@ -243,7 +243,7 @@ class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """
     model = ModelPrint
     template_name ='model_print_update.html'
-    fields = ['name', 'filament_instance']
+    fields = ['name']
 
     def test_func(self):
         """
