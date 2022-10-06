@@ -31,7 +31,7 @@ class FilamentInstance(models.Model):
     """
     Model for the `prints.filamentinstance` used in `prints.modelprint`.
     """
-    filament_consumed = models.FloatField(default=0)
+    filament_consumed = models.IntegerField(default=0)
     filament_roll = models.ForeignKey(
         FilamentRoll,
         on_delete=models.PROTECT,
