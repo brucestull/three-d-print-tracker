@@ -34,6 +34,7 @@ class FilamentInstance(models.Model):
     filament_consumed = models.IntegerField(default=0)
     filament_roll = models.ForeignKey(
         FilamentRoll,
+        # `PROTECT` prevents deletion of `FilamentRoll` instance if it is associated with a `FilamentInstance` instance.
         on_delete=models.PROTECT,
     )
 
@@ -50,11 +51,13 @@ class ModelPrint(models.Model):
     creator = models.ForeignKey(
         AUTH_USER_MODEL,
         related_name='prints',
+        # `CASCADE` deletes `ModelPrint` on deletion of associated `CustomUser` instance.
         on_delete=models.CASCADE,
     )
     filament_instance = models.OneToOneField(
         FilamentInstance,
         related_name='print',
+        # `PROTECT` prevents deletion of `FilamentInstance` instance if it is associated with a `ModelPrint` instance.
         on_delete=models.PROTECT,
     )
 
