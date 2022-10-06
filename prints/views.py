@@ -31,6 +31,8 @@ from django.forms.models import modelform_factory
 from .forms import CreateModelPrintForm
 from .forms import CreateFilamentRollForm
 
+import pprint
+
 
 class ModelPrintListView(ListView):
     """
@@ -49,17 +51,11 @@ class ModelPrintDetailView(DetailView):
 
 
 def create_filament_roll(request):
-    # print(request)
-    # print('dir(request): ', dir(request))
-    # print('request.path: ', request.path)
-    # print('request.headers: ', request.headers)
-    print("request.headers['Origin']: ", request.headers['Origin'])
-    print("request.headers['Referer']: ", request.headers['Referer'])
+    print("\n\ncreate_filament_roll() has been called:")
 
     the_origin = request.headers['Origin']
     the_referer = request.headers['Referer']
     the_url_we_want_to_go = the_referer.replace(the_origin, '')
-    print('the_url_we_want_to_go: ', the_url_we_want_to_go)
 
     current_manufacturer = request.POST.get('manufacturer')
     current_material = request.POST.get('material')
@@ -68,9 +64,6 @@ def create_filament_roll(request):
         material=current_material,
     )
     return HttpResponseRedirect(the_url_we_want_to_go)
-    return HttpResponseRedirect(
-        reverse('prints:model_print_function_view')
-    )
 
 
 class ModelPrintFormView(LoginRequiredMixin, FormView):
@@ -91,16 +84,18 @@ class ModelPrintFormView(LoginRequiredMixin, FormView):
 
         hard_coded_view_name = 'model_print_form_view'
         context['the_view_name'] = hard_coded_view_name
-        print("'get_context_data()' has been called: ", context['the_view_name'])
+        print("\n\n'get_context_data()' has been called:", context['the_view_name'])
+        print('context: ')
+        pprint.pprint(context)
         return context
 
     def get_success_url(self, model_print=None):
         the_url = reverse('prints:model_detail', kwargs={ 'pk': model_print.id})
-        print("'get_success_url()' has been called: ", the_url)
+        print("\n\n'get_success_url()' has been called:", the_url)
         return the_url
 
     def form_valid(self, form):
-        print("'form_valid() has been called:")
+        print("\n\n'form_valid() has been called:")
 
         current_filament_roll = form.cleaned_data['filament_roll_chosen']
         print('current_filament_roll: ', current_filament_roll)
@@ -127,7 +122,7 @@ class ModelPrintFormView(LoginRequiredMixin, FormView):
         print('new_model_print: ', new_model_print)
 
         the_success_url = self.get_success_url(new_model_print)
-
+        print('new_model_print: ', new_model_print)
         return HttpResponseRedirect(the_success_url)
 
 
@@ -156,20 +151,18 @@ class ModelPrintCreateView(LoginRequiredMixin, CreateView):
         hard_coded_view_name = 'model_print_create_view'
         context['the_view_name'] = hard_coded_view_name
 
-        print("'get_context_data()' has been called: ", context['the_view_name'])
+        print("\n\n'get_context_data()' has been called:", context['the_view_name'])
+        print('context: ')
+        pprint.pprint(context)
         return context
 
     def get_success_url(self):
         new_model_print = self.object
         the_url = reverse('prints:model_detail', kwargs={ 'pk': new_model_print.id})
-        print("'get_success_url()' has been called: ", the_url)
+        print("\n\n'get_success_url()' has been called:", the_url)
         return the_url
 
     def form_valid(self, form):
-        print("'form_valid()' has been called:")
-        the_request_post_keys = self.request.POST.keys()
-        print('the_request_post_keys:', the_request_post_keys)
-
         filament_roll_id = self.request.POST.get('filament_roll')
         current_filament_roll = get_object_or_404(
             FilamentRoll,
@@ -189,13 +182,15 @@ class ModelPrintCreateView(LoginRequiredMixin, CreateView):
             creator=current_user,
         )
 
+        print("\n\n'form_valid()' has been called:")
+        print("new_model_print: ", new_model_print)
         return HttpResponseRedirect(
             reverse('prints:model_detail', kwargs={ 'pk': new_model_print.id})
         )
 
 
 def model_print_create_function(request):
-    print("'model_print_create_function()' has been called:")
+    print("\n\n'model_print_create_function()' has been called:")
     
     if request.method == 'POST':
         filament_roll_id = request.POST.get('filament_roll_chosen')
@@ -217,6 +212,7 @@ def model_print_create_function(request):
             name=current_model_print_name,
             creator=current_user,
         )
+        print('new_model_print: ', new_model_print)
         return HttpResponseRedirect(
             reverse('prints:model_detail', kwargs={ 'pk': new_model_print.id})
         )
@@ -232,6 +228,8 @@ def model_print_create_function(request):
         filament_rolls = FilamentRoll.objects.all()
         context['filament_rolls_in_template'] = filament_rolls
 
+        print('context: ')
+        pprint.pprint(context)
         return render(
             request,
             'model_print_create.html',
