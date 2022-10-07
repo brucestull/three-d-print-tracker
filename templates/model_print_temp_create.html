@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - New 3D Print{% endblock %}
+
+{% block content %}
+
+<h2>New 3D Print</h1>
+<form action="{% url 'prints:model_print_create_view' %}" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Create New 3D Print" />
+</form>
+
+{% endblock %}

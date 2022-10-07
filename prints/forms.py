@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import FilamentRoll
+from .models import FilamentRoll, Manufacturer
 
 
 class CreateModelPrintForm(forms.Form):
@@ -21,9 +21,10 @@ class CreateModelPrintForm(forms.Form):
 
 
 class CreateFilamentRollForm(forms.Form):
-    manufacturer = forms.CharField(
+    manufacturer = forms.ModelChoiceField(
         label='Manufacturer',
-        max_length=255,
+        help_text='Available Manufacturers',
+        queryset=Manufacturer.objects.all(),
     )
     material = forms.CharField(
         label='Material',

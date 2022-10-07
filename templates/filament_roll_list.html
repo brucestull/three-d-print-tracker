@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - Filament Roll List View{% endblock %}
+
+{% block content %}
+
+<h2>Filament Rolls</h1>
+<ul>
+    {% for filament_roll in object_list %}
+    <li>
+        <a href={% url 'prints:filament_roll' filament_roll.id %}>{{ filament_roll }}</a>
+        <br>
+        <ul>
+            {% if filament_roll.instances.all %}
+                Filament Instances ({{ filament_roll.instances.count }}):
+                <ul>
+                {% for filament_instance in filament_roll.instances.all %}
+                    {% if filament_instance.print %}
+                    <li>
+                        {{ filament_instance }} for 
+                        <a href={% url 'prints:model_detail' filament_instance.print.id %}>
+                            {{ filament_instance.print }}
+                        </a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </ul>
+        <br>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

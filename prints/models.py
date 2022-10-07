@@ -17,14 +17,23 @@ class Manufacturer(models.Model):
 class FilamentRoll(models.Model):
     """
     Model for the `prints.filamentroll` used in each `prints.filamentinstance` instance.
-    Need to figure out a way to make a unique 'id'.
+    Need to figure out a way to make a unique identifier other than `id`.
+    Something more than just one or two characters.
     Might use 'choices', in future, for 'material'.
     """
-    manufacturer = models.CharField(max_length=255)
+    manufacturer = models.ForeignKey(
+        Manufacturer,
+        related_name='rolls',
+        # `PROTECT` prevents deletion of `Manufacturer` instance if it is associated with a `FilamentRoll` instance.
+        on_delete=models.PROTECT,
+    )
     material = models.CharField(max_length=255)
 
     def __str__(self):
-        return f'{self.id} - {self.manufacturer} - {self.material}'
+        return f'{self.material} - {self.manufacturer.name} - #{self.id}'
+
+    def get_absolute_url(self):
+        return reverse('prints:filament_roll', args=(self.pk,))
 
 
 class FilamentInstance(models.Model):
@@ -34,12 +43,14 @@ class FilamentInstance(models.Model):
     filament_consumed = models.IntegerField(default=0)
     filament_roll = models.ForeignKey(
         FilamentRoll,
+        related_name='instances',
         # `PROTECT` prevents deletion of `FilamentRoll` instance if it is associated with a `FilamentInstance` instance.
         on_delete=models.PROTECT,
     )
 
     def __str__(self):
-        return f'{self.filament_consumed} - {self.filament_roll}'
+        return f'{self.filament_consumed}g'
+        return f'{self.filament_consumed}g of {self.filament_roll}'
 
 
 class ModelPrint(models.Model):
@@ -63,11 +74,13 @@ class ModelPrint(models.Model):
 
     def __str__(self):
         return (
-            f'{self.id} : '
-            f'{self.name} : '
-            f'{self.creator.username} : '
-            f'{self.filament_instance.filament_consumed if self.filament_instance else "No FilamentInstance provided"} grams of '
-            f'"{self.filament_instance.filament_roll if self.filament_instance else "No FilamentInstance provided"}"'
+            self.name
+
+            # f'{self.id} : '
+            # f'{self.name} : '
+            # f'{self.creator.username} : '
+            # f'{self.filament_instance.filament_consumed if self.filament_instance else "No FilamentInstance provided"} grams of '
+            # f'"{self.filament_instance.filament_roll if self.filament_instance else "No FilamentInstance provided"}"'
         )
     
     def get_absolute_url(self):
