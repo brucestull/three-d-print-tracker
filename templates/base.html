@@ -47,8 +47,21 @@
                 >
                 Add New 3D Model Print : model_print_form_view
             </a><br>
+            <br>
+            <a
+                href={% url 'prints:filament_rolls' %}
+                >
+                Filament Rolls
+            </a><br>
+            <a
+                href={% url 'prints:filament_roll_create_view' %}
+                >
+                New Filament Roll
+            </a><br>
             {% endif %}
+
             {% block content %}
+
             {% endblock %}
         </main>
     </body>

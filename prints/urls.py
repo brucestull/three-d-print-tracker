@@ -30,6 +30,22 @@ urlpatterns = [
     ),
 
     path(
+        'print/filament-roll-create-view/',
+        views.FilamentRollCreateView.as_view(),
+        name='filament_roll_create_view'
+    ),
+    path(
+        'print/filament-roll/<int:pk>/',
+        views.FilamentRollDetailView.as_view(),
+        name='filament_roll'
+    ),
+    path(
+        'print/filament-rolls/',
+        views.FilamentRollListView.as_view(),
+        name='filament_rolls',
+    ),
+
+    path(
         'print/<int:pk>/',
         views.ModelPrintDetailView.as_view(),
         name='model_detail'

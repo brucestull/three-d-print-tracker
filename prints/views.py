@@ -33,21 +33,30 @@ from .forms import CreateFilamentRollForm
 
 import pprint
 
-
-class ModelPrintListView(ListView):
-    """
-    Class-based view, which inherits from `django.views.generic.list.ListView`, to provide list view of model `ModelPrint`.
-    """
-    model = ModelPrint
-    template_name = 'model_print_list.html'
+#================================================================
+## `Manufacturer` Views:
+#================================================================
 
 
-class ModelPrintDetailView(DetailView):
-    """
-    Class-based view, which inherits from `django.views.generic.detail.DetailView`, to provide detail view of model `ModelPrint`.
-    """
-    model = ModelPrint
-    template_name ='model_print_detail.html'
+#================================================================
+## `FilamentRoll` Views:
+class FilamentRollListView(ListView):
+    model = FilamentRoll
+    template_name = 'filament_roll_list.html'
+
+
+class FilamentRollCreateView(CreateView):
+    model = FilamentRoll
+    template_name = 'filament_roll_create.html'
+    fields = [
+        'manufacturer',
+        'material',
+    ]
+
+
+class FilamentRollDetailView(DetailView):
+    model = FilamentRoll
+    template_name = 'filament_roll_detail.html'
 
 
 def create_filament_roll(request):
@@ -64,8 +73,67 @@ def create_filament_roll(request):
         material=current_material,
     )
     return HttpResponseRedirect(the_url_we_want_to_go)
+#================================================================
 
 
+#================================================================
+## `FilamentInstance` Views:
+#================================================================
+
+
+#================================================================
+## `ModelPrint` Views:
+class ModelPrintListView(ListView):
+    """
+    Class-based view, which inherits from `django.views.generic.list.ListView`, to provide list view of model `ModelPrint`.
+    """
+    model = ModelPrint
+    template_name = 'model_print_list.html'
+
+
+class ModelPrintDetailView(DetailView):
+    """
+    Class-based view, which inherits from `django.views.generic.detail.DetailView`, to provide detail view of model `ModelPrint`.
+    """
+    model = ModelPrint
+    template_name = 'model_print_detail.html'
+
+
+class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+    Class-based view, which inherits from `LoginRequiredMixin`, `UserPassesTestMixin`, and `django.views.generic.UpdateView`. Allows users to update their own `ModelPrint` instances.
+    """
+    model = ModelPrint
+    template_name ='model_print_update.html'
+    fields = ['name']
+
+    def test_func(self):
+        """
+        Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to update the `ModelPrint` is the user who is associated with the `ModelPrint`.
+        """
+        model_print = self.get_object()
+        return self.request.user == model_print.creator
+
+
+class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """
+    Class-based view, which inherits from `django.contrib.auth.mixins.LoginRequiredMixin`, `django.contrib.auth.mixins.UserPassesTestMixin`, and `django.views.generic.edit.DeleteView`. Allows users to delete their own `ModelPrint` instances.
+    """
+    model = ModelPrint
+    template_name ='model_print_delete.html'
+    success_url = reverse_lazy('prints:home')
+
+    def test_func(self):
+        """
+        Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to delete the `ModelPrint` is the user who is associated with the `ModelPrint`.
+        """
+        model_print = self.get_object()
+        return self.request.user == model_print.creator
+#================================================================
+
+
+#================================================================
+## `ModelPrint` **CREATE** Views:
 class ModelPrintFormView(LoginRequiredMixin, FormView):
     """
     Class-based `FormView` to create `ModelPrint` instance.
@@ -237,34 +305,25 @@ def model_print_create_function(request):
         )
 
 
-class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    """
-    Class-based view, which inherits from `LoginRequiredMixin`, `UserPassesTestMixin`, and `django.views.generic.UpdateView`. Allows users to update their own `ModelPrint` instances.
-    """
-    model = ModelPrint
-    template_name ='model_print_update.html'
-    fields = ['name']
+#================================================================
 
-    def test_func(self):
-        """
-        Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to update the `ModelPrint` is the user who is associated with the `ModelPrint`.
-        """
-        model_print = self.get_object()
-        return self.request.user == model_print.creator
+# #================================================================
+# #### **TESTING**: Needs `FilamentInstance` to be already created.
+# ## `ModelPrint` **CREATE** Views:
+# class ModelPrintCreateView(LoginRequiredMixin, CreateView):
+#     model = ModelPrint
+#     template_name = 'model_print_temp_create.html'
+#     fields = [
+#         'name',
+#         'creator',
+#         'filament_instance',
+#     ]
 
+#     def get_success_url(self):
+#         new_model_print = self.object
+#         the_url = reverse('prints:model_detail', kwargs={ 'pk': new_model_print.id})
+#         print("\n\n'get_success_url()' has been called:", the_url)
+#         return the_url
+# #================================================================
 
-class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    """
-    Class-based view, which inherits from `django.contrib.auth.mixins.LoginRequiredMixin`, `django.contrib.auth.mixins.UserPassesTestMixin`, and `django.views.generic.edit.DeleteView`. Allows users to delete their own `ModelPrint` instances.
-    """
-    model = ModelPrint
-    template_name ='model_print_delete.html'
-    success_url = reverse_lazy('prints:home')
-
-    def test_func(self):
-        """
-        Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to delete the `ModelPrint` is the user who is associated with the `ModelPrint`.
-        """
-        model_print = self.get_object()
-        return self.request.user == model_print.creator
 

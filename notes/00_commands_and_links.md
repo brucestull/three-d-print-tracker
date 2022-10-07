@@ -65,6 +65,9 @@
     * http://localhost:8000/users/signup/
 * Server Root:
     * http://localhost:8000/
+* Filament Rolls:
+    * http://localhost:8000/prints/print/filament-roll-create-view/
+    * http://localhost:8000/prints/print/filament-rolls/
 * Models Home:
     * http://localhost:8000/prints/
     * http://localhost:8000/prints/print/create/
