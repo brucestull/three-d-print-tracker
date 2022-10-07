@@ -5,7 +5,7 @@ from . import views
 app_name = 'prints'
 urlpatterns = [
     #================================================================
-    ## `Manufacturer` Views:
+    ## `Manufacturer` Routes:
     #================================================================
 
 
