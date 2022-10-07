@@ -4,12 +4,16 @@
 
 {% block content %}
 
-<h2> 3D Model Print</h2>
-<a href={% url 'prints:roll_detail' filamentroll.id %}>Cancel Edit of {{ filamentroll }}</a><br>
+<h2> Filament Roll</h2>
+<a href={% url 'prints:roll_detail' filamentroll.id %}>Cancel Edit</a><br>
+{% if filamentroll.instances.count == 0 %}
+<a href={% url 'prints:roll_delete' filamentroll.id %}>Delete Filament Roll</a><br>
+{% endif %}
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save changes to Filament Roll" />
 </form>
+
 
 {% endblock %}

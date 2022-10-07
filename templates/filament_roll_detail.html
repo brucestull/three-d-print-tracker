@@ -4,9 +4,29 @@
 
 {% block content %}
 
-<h2>Filament Roll Detail</h1>
-    {{ filamentroll }}<br>
+<h2>Filament Roll: {{ filamentroll }}</h1>
+    <ul>
+        <p>Filament Instance Count: {{ filamentroll.instances.count }}</p>
+        <p>Filament Consumed: sum of 'filament_consumed' </p>
+    </ul>
+
+    {% if filamentroll.instances.all %}
+    <h3>Filament Consumed Per Print</h3>
+    <ul>
+    {% for filament_instance in filamentroll.instances.all %}
+        <li>
+        {% if filament_instance.print %}
+            {{ filament_instance }} for 
+            <a href={% url 'prints:model_detail' filament_instance.print.id %}>
+                {{ filament_instance.print }}
+            </a>
+        {% else %}
+            {{ filament_instance }} for a deleted print<br>
+        {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
     
     <a href={% url 'prints:roll_edit' filamentroll.id %}>Edit {{ filamentroll }}</a><br>
-    <a href={% url 'prints:roll_delete' filamentroll.id %}>Delete this Filament Roll</a><br>
 {% endblock %}

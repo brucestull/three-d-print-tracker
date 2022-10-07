@@ -9,26 +9,8 @@
     {% for filament_roll in object_list %}
     <li>
         <a href={% url 'prints:roll_detail' filament_roll.id %}>{{ filament_roll }}</a>
-        <br>
-        <ul>
-            {% if filament_roll.instances.all %}
-                Filament Instances ({{ filament_roll.instances.count }}):
-                <ul>
-                {% for filament_instance in filament_roll.instances.all %}
-                    <li>
-                    {% if filament_instance.print %}
-                        {{ filament_instance }} for 
-                        <a href={% url 'prints:model_detail' filament_instance.print.id %}>
-                            {{ filament_instance.print }}
-                        </a>
-                    {% else %}
-                        {{ filament_instance }} for a deleted print<br>
-                    {% endif %}
-                    </li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        </ul>
+            <p>Filament Instance Count: {{ filament_roll.instances.count }}</p>
+            <p>Filament Consumed: sum of 'filament_consumed' </p>
         <br>
     </li>
     {% endfor %}
