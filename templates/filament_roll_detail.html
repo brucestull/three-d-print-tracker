@@ -5,7 +5,8 @@
 {% block content %}
 
 <h2>Filament Roll Detail</h1>
+    {{ filamentroll }}<br>
+    
     <a href={% url 'prints:roll_edit' filamentroll.id %}>Edit {{ filamentroll }}</a><br>
-{{ filamentroll }}
-
+    <a href={% url 'prints:roll_delete' filamentroll.id %}>Delete this Filament Roll</a><br>
 {% endblock %}

@@ -31,6 +31,11 @@ urlpatterns = [
         views.FilamentRollUpdateView.as_view(),
         name='roll_edit'
     ),
+    path(
+        'rolls/<int:pk>/delete/',
+        views.FilamentRollDeleteView.as_view(),
+        name='roll_delete'
+    ),
     #================================================================
 
 

@@ -59,7 +59,6 @@ class FilamentRollDetailView(LoginRequiredMixin, DetailView):
     template_name = 'filament_roll_detail.html'
 
 
-# class FilamentRollUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class FilamentRollUpdateView(LoginRequiredMixin, UpdateView):
     model = FilamentRoll
     template_name = 'filament_roll_edit.html'
@@ -68,15 +67,11 @@ class FilamentRollUpdateView(LoginRequiredMixin, UpdateView):
        'material',
     ]
 
-    # def test_func(self):
-    #     """
-    #     Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to update the `ModelPrint` is the user who is associated with the `ModelPrint`.
-    #     """
-    #     print('test_func() called:')
-    #     the_object = self.get_object()
-    #     print('Object type: ', type(the_object))
-    #     return True
-    #     return self.request.user == model_print.creator
+
+class FilamentRollDeleteView(LoginRequiredMixin, DeleteView):
+    model = FilamentRoll
+    template_name ='filament_roll_delete.html'
+    success_url = reverse_lazy('prints:rolls')
 #================================================================
 
 
