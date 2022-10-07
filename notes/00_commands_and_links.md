@@ -66,13 +66,9 @@
 * Server Root:
     * http://localhost:8000/
 * Filament Rolls:
-    * http://localhost:8000/prints/print/filament-roll-create-view/
-    * http://localhost:8000/prints/print/filament-rolls/
+
 * Models Home:
-    * http://localhost:8000/prints/
-    * http://localhost:8000/prints/print/create/
-    * http://localhost:8000/prints/print/create-model-print/
-    * http://localhost:8000/prints/print/1/
+
 * Django Admin:
     * http://localhost:8000/admin/
 * Django Admin Documentation:

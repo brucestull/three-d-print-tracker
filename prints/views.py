@@ -40,12 +40,12 @@ import pprint
 
 #================================================================
 ## `FilamentRoll` Views:
-class FilamentRollListView(ListView):
+class FilamentRollListView(LoginRequiredMixin, ListView):
     model = FilamentRoll
     template_name = 'filament_roll_list.html'
 
 
-class FilamentRollCreateView(CreateView):
+class FilamentRollCreateView(LoginRequiredMixin, CreateView):
     model = FilamentRoll
     template_name = 'filament_roll_create.html'
     fields = [
@@ -54,25 +54,29 @@ class FilamentRollCreateView(CreateView):
     ]
 
 
-class FilamentRollDetailView(DetailView):
+class FilamentRollDetailView(LoginRequiredMixin, DetailView):
     model = FilamentRoll
     template_name = 'filament_roll_detail.html'
 
 
-def create_filament_roll(request):
-    print("\n\ncreate_filament_roll() has been called:")
+# class FilamentRollUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class FilamentRollUpdateView(LoginRequiredMixin, UpdateView):
+    model = FilamentRoll
+    template_name = 'filament_roll_edit.html'
+    fields = [
+       'manufacturer',
+       'material',
+    ]
 
-    the_origin = request.headers['Origin']
-    the_referer = request.headers['Referer']
-    the_url_we_want_to_go = the_referer.replace(the_origin, '')
-
-    current_manufacturer = request.POST.get('manufacturer')
-    current_material = request.POST.get('material')
-    new_filament_roll = FilamentRoll.objects.create(
-        manufacturer=current_manufacturer,
-        material=current_material,
-    )
-    return HttpResponseRedirect(the_url_we_want_to_go)
+    # def test_func(self):
+    #     """
+    #     Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to update the `ModelPrint` is the user who is associated with the `ModelPrint`.
+    #     """
+    #     print('test_func() called:')
+    #     the_object = self.get_object()
+    #     print('Object type: ', type(the_object))
+    #     return True
+    #     return self.request.user == model_print.creator
 #================================================================
 
 
@@ -83,7 +87,7 @@ def create_filament_roll(request):
 
 #================================================================
 ## `ModelPrint` Views:
-class ModelPrintListView(ListView):
+class ModelPrintListView(LoginRequiredMixin, ListView):
     """
     Class-based view, which inherits from `django.views.generic.list.ListView`, to provide list view of model `ModelPrint`.
     """
@@ -91,174 +95,8 @@ class ModelPrintListView(ListView):
     template_name = 'model_print_list.html'
 
 
-class ModelPrintDetailView(DetailView):
-    """
-    Class-based view, which inherits from `django.views.generic.detail.DetailView`, to provide detail view of model `ModelPrint`.
-    """
-    model = ModelPrint
-    template_name = 'model_print_detail.html'
-
-
-class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    """
-    Class-based view, which inherits from `LoginRequiredMixin`, `UserPassesTestMixin`, and `django.views.generic.UpdateView`. Allows users to update their own `ModelPrint` instances.
-    """
-    model = ModelPrint
-    template_name ='model_print_update.html'
-    fields = ['name']
-
-    def test_func(self):
-        """
-        Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to update the `ModelPrint` is the user who is associated with the `ModelPrint`.
-        """
-        model_print = self.get_object()
-        return self.request.user == model_print.creator
-
-
-class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    """
-    Class-based view, which inherits from `django.contrib.auth.mixins.LoginRequiredMixin`, `django.contrib.auth.mixins.UserPassesTestMixin`, and `django.views.generic.edit.DeleteView`. Allows users to delete their own `ModelPrint` instances.
-    """
-    model = ModelPrint
-    template_name ='model_print_delete.html'
-    success_url = reverse_lazy('prints:home')
-
-    def test_func(self):
-        """
-        Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to delete the `ModelPrint` is the user who is associated with the `ModelPrint`.
-        """
-        model_print = self.get_object()
-        return self.request.user == model_print.creator
-#================================================================
-
-
-#================================================================
-## `ModelPrint` **CREATE** Views:
-class ModelPrintFormView(LoginRequiredMixin, FormView):
-    """
-    Class-based `FormView` to create `ModelPrint` instance.
-    """
-    form_class = CreateModelPrintForm
-    template_name = 'model_print_create_fv.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        filament_roll_form = CreateFilamentRollForm()
-        context['filament_roll_form'] = filament_roll_form
-
-        filament_rolls = FilamentRoll.objects.all()
-        context['filament_rolls_in_template'] = filament_rolls
-
-        hard_coded_view_name = 'model_print_form_view'
-        context['the_view_name'] = hard_coded_view_name
-        print("\n\n'get_context_data()' has been called:", context['the_view_name'])
-        print('context: ')
-        pprint.pprint(context)
-        return context
-
-    def get_success_url(self, model_print=None):
-        the_url = reverse('prints:model_detail', kwargs={ 'pk': model_print.id})
-        print("\n\n'get_success_url()' has been called:", the_url)
-        return the_url
-
-    def form_valid(self, form):
-        print("\n\n'form_valid() has been called:")
-
-        current_filament_roll = form.cleaned_data['filament_roll_chosen']
-        print('current_filament_roll: ', current_filament_roll)
-
-        current_filament_consumed = form.cleaned_data['filament_consumed']
-        print('current_filament_consumed: ', current_filament_consumed)
-
-        current_model_print_name = form.cleaned_data['model_print_name']
-        print('current_model_print_name: ', current_model_print_name)
-
-        current_user = auth.get_user(self.request)
-        print('current_user: ', current_user)
-
-        new_filament_instance = FilamentInstance.objects.create(
-            filament_consumed=current_filament_consumed,
-            filament_roll=current_filament_roll,
-        )
-
-        new_model_print = ModelPrint.objects.create(
-            name=current_model_print_name,
-            creator=current_user,
-            filament_instance=new_filament_instance,
-        )
-        print('new_model_print: ', new_model_print)
-
-        the_success_url = self.get_success_url(new_model_print)
-        print('new_model_print: ', new_model_print)
-        return HttpResponseRedirect(the_success_url)
-
-
-class ModelPrintCreateView(LoginRequiredMixin, CreateView):
-    """
-    Class-based `CreateView` to create `ModelPrint` instance.
-
-    This view doesn't function as needed yet. Haven't figured out how to programmatically create `FilamentInstance`.
-    """
-    model = ModelPrint
-    template_name = 'model_print_create_cv.html'
-    fields = [
-        'name',
-        # 'filament_instance',
-    ]
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        filament_roll_form = CreateFilamentRollForm()
-        context['filament_roll_form'] = filament_roll_form
-
-        filament_rolls = FilamentRoll.objects.all()
-        context['filament_rolls_in_template'] = filament_rolls
-
-        hard_coded_view_name = 'model_print_create_view'
-        context['the_view_name'] = hard_coded_view_name
-
-        print("\n\n'get_context_data()' has been called:", context['the_view_name'])
-        print('context: ')
-        pprint.pprint(context)
-        return context
-
-    def get_success_url(self):
-        new_model_print = self.object
-        the_url = reverse('prints:model_detail', kwargs={ 'pk': new_model_print.id})
-        print("\n\n'get_success_url()' has been called:", the_url)
-        return the_url
-
-    def form_valid(self, form):
-        filament_roll_id = self.request.POST.get('filament_roll')
-        current_filament_roll = get_object_or_404(
-            FilamentRoll,
-            pk=filament_roll_id
-        )
-        current_filament_consumed = self.request.POST.get('filament_consumed')
-        new_filament_instance = FilamentInstance.objects.create(
-            filament_roll=current_filament_roll,
-            filament_consumed=current_filament_consumed,
-        )
-
-        current_model_print_name = self.request.POST.get('name')
-        current_user = auth.get_user(self.request)
-        new_model_print = ModelPrint.objects.create(
-            filament_instance=new_filament_instance,
-            name=current_model_print_name,
-            creator=current_user,
-        )
-
-        print("\n\n'form_valid()' has been called:")
-        print("new_model_print: ", new_model_print)
-        return HttpResponseRedirect(
-            reverse('prints:model_detail', kwargs={ 'pk': new_model_print.id})
-        )
-
-
-def model_print_create_function(request):
-    print("\n\n'model_print_create_function()' has been called:")
+def new_model_print(request):
+    print("\n\n'new_model_print()' has been called:")
     
     if request.method == 'POST':
         filament_roll_id = request.POST.get('filament_roll_chosen')
@@ -305,25 +143,44 @@ def model_print_create_function(request):
         )
 
 
+class ModelPrintDetailView(LoginRequiredMixin, DetailView):
+    """
+    Class-based view, which inherits from `django.views.generic.detail.DetailView`, to provide detail view of model `ModelPrint`.
+    """
+    model = ModelPrint
+    template_name = 'model_print_detail.html'
+
+
+class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """
+    Class-based view, which inherits from `LoginRequiredMixin`, `UserPassesTestMixin`, and `django.views.generic.UpdateView`. Allows users to update their own `ModelPrint` instances.
+    """
+    model = ModelPrint
+    template_name ='model_print_edit.html'
+    fields = ['name']
+
+    def test_func(self):
+        """
+        Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to update the `ModelPrint` is the user who is associated with the `ModelPrint`.
+        """
+        model_print = self.get_object()
+        return self.request.user == model_print.creator
+
+
+class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """
+    Class-based view, which inherits from `django.contrib.auth.mixins.LoginRequiredMixin`, `django.contrib.auth.mixins.UserPassesTestMixin`, and `django.views.generic.edit.DeleteView`. Allows users to delete their own `ModelPrint` instances.
+    """
+    model = ModelPrint
+    template_name ='model_print_delete.html'
+    success_url = reverse_lazy('prints:models')
+
+    def test_func(self):
+        """
+        Returns `True` if `self.request.user` is `model_print.creator`. In other words, returns `True` if the user requesting to delete the `ModelPrint` is the user who is associated with the `ModelPrint`.
+        """
+        model_print = self.get_object()
+        return self.request.user == model_print.creator
 #================================================================
-
-# #================================================================
-# #### **TESTING**: Needs `FilamentInstance` to be already created.
-# ## `ModelPrint` **CREATE** Views:
-# class ModelPrintCreateView(LoginRequiredMixin, CreateView):
-#     model = ModelPrint
-#     template_name = 'model_print_temp_create.html'
-#     fields = [
-#         'name',
-#         'creator',
-#         'filament_instance',
-#     ]
-
-#     def get_success_url(self):
-#         new_model_print = self.object
-#         the_url = reverse('prints:model_detail', kwargs={ 'pk': new_model_print.id})
-#         print("\n\n'get_success_url()' has been called:", the_url)
-#         return the_url
-# #================================================================
 
 

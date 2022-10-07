@@ -33,7 +33,7 @@ class FilamentRoll(models.Model):
         return f'{self.material} - {self.manufacturer.name} - #{self.id}'
 
     def get_absolute_url(self):
-        return reverse('prints:filament_roll', args=(self.pk,))
+        return reverse('prints:roll_detail', args=(self.pk,))
 
 
 class FilamentInstance(models.Model):

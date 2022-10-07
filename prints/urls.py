@@ -4,60 +4,67 @@ from . import views
 
 app_name = 'prints'
 urlpatterns = [
-    path('', views.ModelPrintListView.as_view(), name='home'),
+    #================================================================
+    ## `Manufacturer` Views:
+    #================================================================
 
-    path(
-        'print/model-print-form-view/',
-        views.ModelPrintFormView.as_view(),
-        name='model_print_form_view',
-    ),
 
+    #================================================================
+    ## `FilamentRoll` Routes:
     path(
-        'print/model-print-create-view/',
-        views.ModelPrintCreateView.as_view(),
-        name='model_print_create_view'
-    ),
-
-    path(
-        'print/create-model-print/',
-        views.model_print_create_function,
-        name='model_print_function_view'
-    ),
-    path(
-        'print/create-filament-roll/',
-        views.create_filament_roll,
-        name='create_filament_roll'
-    ),
-
-    path(
-        'print/filament-roll-create-view/',
-        views.FilamentRollCreateView.as_view(),
-        name='filament_roll_create_view'
-    ),
-    path(
-        'print/filament-roll/<int:pk>/',
-        views.FilamentRollDetailView.as_view(),
-        name='filament_roll'
-    ),
-    path(
-        'print/filament-rolls/',
+        'rolls/',
         views.FilamentRollListView.as_view(),
-        name='filament_rolls',
+        name='rolls',
     ),
-
     path(
-        'print/<int:pk>/',
+        'rolls/new/',
+        views.FilamentRollCreateView.as_view(),
+        name='roll_new'
+    ),
+    path(
+        'rolls/<int:pk>/',
+        views.FilamentRollDetailView.as_view(),
+        name='roll_detail'
+    ),
+    path(
+        'rolls/<int:pk>/edit/',
+        views.FilamentRollUpdateView.as_view(),
+        name='roll_edit'
+    ),
+    #================================================================
+
+
+    #================================================================
+    ## `FilamentInstance` Routes:
+    #================================================================
+
+
+    #================================================================
+    ## `ModelPrint` Routes:
+    path(
+        'models/',
+        views.ModelPrintListView.as_view(),
+        name='models'
+    ),
+    path(
+        'models/new/',
+        views.new_model_print,
+        name='model_new'
+    ),
+    path(
+        'models/<int:pk>/',
         views.ModelPrintDetailView.as_view(),
         name='model_detail'
     ),
     path(
-        'print/<int:pk>/edit/',
+        'models/<int:pk>/edit/',
         views.ModelPrintUpdateView.as_view(),
         name='model_update'
     ),
     path(
-        'print/<int:pk>/delete/',
+        'models/<int:pk>/delete/',
         views.ModelPrintDeleteView.as_view(),
         name='model_delete'
     ),
+    #================================================================
 ]

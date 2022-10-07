@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Print Tracker - Filament Roll Detail View{% endblock %}
+{% block title %}Print Tracker - {{ filamentroll }}{% endblock %}
 
 {% block content %}
 
 <h2>Filament Roll Detail</h1>
+    <a href={% url 'prints:roll_edit' filamentroll.id %}>Edit {{ filamentroll }}</a><br>
 {{ filamentroll }}
 
 {% endblock %}

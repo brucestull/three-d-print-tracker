@@ -3,7 +3,7 @@
 {% block title %}Print Tracker - {{ modelprint.name }}{% endblock %}
 
 {% block content %}
-
+<br>
 User: {{ user.username | capfirst }}<br>
 ModelPrint Creator: {{ modelprint.creator.username | capfirst }}<br>
 User is the 3D Model Print Creator: {% if user.id == modelprint.creator.id %} Yep! {% else %} Nope! {% endif %}

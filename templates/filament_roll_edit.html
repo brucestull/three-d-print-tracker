@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - Edit: {{ filamentroll }}{% endblock %}
+
+{% block content %}
+
+<h2> 3D Model Print</h2>
+<a href={% url 'prints:roll_detail' filamentroll.id %}>Cancel Edit of {{ filamentroll }}</a><br>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save changes to Filament Roll" />
+</form>
+
+{% endblock %}

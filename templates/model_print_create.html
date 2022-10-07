@@ -4,23 +4,13 @@
 
 {% block content %}
 
-<h1><code>model_print_create_function()</code></h1>
 <h2>Create New 3D Model Print</h2>
-<form action="{% url 'prints:model_print_function_view' %}" method="post">
+<form action="{% url 'prints:model_new' %}" method="post">
     {% csrf_token %}
 
     {{ model_print_form.as_p }}
 
     <input type="submit" value="Create New 3D Model Print" />
-</form>
-
-<h2>Create New Filament Roll</h1>
-<form action="{% url 'prints:create_filament_roll' %}" method="post">
-    {% csrf_token %}
-
-    {{ filament_roll_form.as_p }}
-
-    <input type="submit" value="Create New Filament Roll" />
 </form>
 
 <h2>List of Filament Rolls</h2>
