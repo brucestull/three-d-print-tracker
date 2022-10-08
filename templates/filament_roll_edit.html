@@ -8,11 +8,11 @@
 {{ filamentroll }}<br>
 <a href={% url 'prints:roll_detail' filamentroll.id %}>Cancel Edit</a><br>
 
-{% if filamentroll.creator.id == user.id %}
+{% if filamentroll.owner.id == user.id %}
 {{ 'Owner!'|upper }}
 {% endif %}<br>
 
-{% if filamentroll.instances.count == 0 and filamentroll.creator.id == user.id %}
+{% if filamentroll.instances.count == 0 and filamentroll.owner.id == user.id %}
 <a href={% url 'prints:roll_delete' filamentroll.id %}>Delete Filament Roll</a><br>
 {% endif %}
 

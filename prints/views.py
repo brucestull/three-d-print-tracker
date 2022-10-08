@@ -55,7 +55,7 @@ class FilamentRollCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         print('self.request.user: ', self.request.user)
-        form.instance.creator = self.request.user
+        form.instance.owner = self.request.user
         return super().form_valid(form)
 
 class FilamentRollDetailView(LoginRequiredMixin, DetailView):
@@ -80,7 +80,7 @@ class FilamentRollDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView
     def test_func(self):
         roll = self.get_object()
         print('roll: ', roll)
-        return self.request.user == roll.creator
+        return self.request.user == roll.owner
 #================================================================
 
 

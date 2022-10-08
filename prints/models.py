@@ -27,7 +27,7 @@ class FilamentRoll(models.Model):
         # `PROTECT` prevents deletion of `Manufacturer` instance if it is associated with a `FilamentRoll` instance.
         on_delete=models.PROTECT,
     )
-    creator = models.ForeignKey(
+    owner = models.ForeignKey(
         AUTH_USER_MODEL,
         related_name='rolls',
         # `CASCADE` allows deletion of `AUTH_USER_MODEL` instance and also does a cascading deletion of `FilamentRoll` instance.
