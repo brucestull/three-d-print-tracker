@@ -5,10 +5,9 @@
 {% block content %}
 
 <h2>Filament Roll: {{ filamentroll }}</h1>
-    <ul>
-        <p>Filament Instance Count: {{ filamentroll.instances.count }}</p>
-        <p>Filament Consumed: sum of 'filament_consumed' </p>
-    </ul>
+    <p>{{ filamentroll.owner }}</p>
+    <p>Filament Instance Count: {{ filamentroll.instances.count }}</p>
+    <p>Filament Consumed: sum of 'filament_consumed' </p>
 
     {% if filamentroll.instances.all %}
     <h3>Filament Consumed Per Print</h3>
