@@ -4,28 +4,33 @@
 
 {% block content %}
 
-<h2>Filament Roll: {{ filamentroll }}</h1>
-    <p>{{ filamentroll.owner }}</p>
-    <p>Filament Instance Count: {{ filamentroll.instances.count }}</p>
-    <p>Filament Consumed: sum of 'filament_consumed' </p>
+<h2>Filament Roll: {{ filamentroll }}</h2>
+    <a href={% url 'prints:roll_edit' filamentroll.id %}>Edit {{ filamentroll }}</a><br>
+    <dl>
+        <dt>Filament Roll Owner</dt>
+        <dd>{{ filamentroll.owner }}</dd>
+        <dt>Number of Times this Roll is used</dt>
+        <dd>{{ filamentroll.instances.count }}</dd>
+        <dt>Total Filament Consumed</dt>
+        <dd>sum of 'filament_consumed'</dd>
+    </dl>
 
     {% if filamentroll.instances.all %}
     <h3>Filament Consumed Per Print</h3>
-    <ul>
     {% for filament_instance in filamentroll.instances.all %}
-        <li>
-        {% if filament_instance.print %}
-            {{ filament_instance }} for 
-            <a href={% url 'prints:model_detail' filament_instance.print.id %}>
-                {{ filament_instance.print }}
-            </a>
-        {% else %}
-            {{ filament_instance }} for a deleted print<br>
-        {% endif %}
-        </li>
+        <dl>
+            <dt>Filament Consumed</dt>
+            <dd>{{ filament_instance }}</dd>
+            <dt>Model Print</dt>
+            <dd>
+                {% if filament_instance.print %}
+                    <a href={% url 'prints:model_detail' filament_instance.print.id %}>{{ filament_instance.print }}</a>
+                {% else %}
+                    Model Print has been deleted
+                {% endif %}
+            </dd>
+        </dl>
     {% endfor %}
-    </ul>
 {% endif %}
     
-    <a href={% url 'prints:roll_edit' filamentroll.id %}>Edit {{ filamentroll }}</a><br>
 {% endblock %}

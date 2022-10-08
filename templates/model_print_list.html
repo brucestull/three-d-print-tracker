@@ -5,16 +5,21 @@
 {% block content %}
 
 <h2>Model Prints</h2>
+
 <ul>
-{% for model in object_list %}
+    {% for model in object_list %}
     <li>
-        <a href={% url 'prints:model_detail' model.id %}>{{ model.name }}</a>
-        <ul>
-            <li>{{ model.filament_instance.filament_consumed }} grams of Roll: {{ model.filament_instance.filament_roll }}</li>
-            <li>Maker: {{ model.creator.username }}</li>
-        </ul>
+        <p><a href={% url 'prints:model_detail' model.id %}>{{ model.name }}</a></p>
+        <dl>
+            <dt>Filament Roll Used</dt>
+            <dd>{{ model.filament_instance.filament_roll }}</dd>
+            <dt>Grams Filament Used</dt>
+            <dd>{{ model.filament_instance.filament_consumed }}</dd>
+            <dt>Model Print Creator</dt>
+            <dd>{{ model.creator.username }}</dd>
+        </dl>
     </li>
-{% endfor %}
+    {% endfor %}
 </ul>
 
 {% endblock %}
