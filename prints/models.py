@@ -27,6 +27,15 @@ class FilamentRoll(models.Model):
         # `PROTECT` prevents deletion of `Manufacturer` instance if it is associated with a `FilamentRoll` instance.
         on_delete=models.PROTECT,
     )
+    creator = models.ForeignKey(
+        AUTH_USER_MODEL,
+        related_name='rolls',
+        # `CASCADE` allows deletion of `AUTH_USER_MODEL` instance and also does a cascading deletion of `FilamentRoll` instance.
+        # `PROTECT` prevents deletion of `AUTH_USER_MODEL` instance if it is associated with a `FilamentRoll` instance.
+        # `SET_NULL` Set the ForeignKey null; this is only possible if null is True..
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     material = models.CharField(max_length=255)
 
     def __str__(self):
@@ -62,7 +71,7 @@ class ModelPrint(models.Model):
     creator = models.ForeignKey(
         AUTH_USER_MODEL,
         related_name='prints',
-        # `CASCADE` allows deletion of `CustomUser` and also does a cascading deletion of `ModelPrint`.
+        # `CASCADE` allows deletion of `AUTH_USER_MODEL` instance and also does a cascading deletion of `ModelPrint`.
         on_delete=models.CASCADE,
     )
     filament_instance = models.OneToOneField(
