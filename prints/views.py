@@ -53,6 +53,10 @@ class FilamentRollCreateView(LoginRequiredMixin, CreateView):
         'material',
     ]
 
+    def form_valid(self, form):
+        print('self.request.user: ', self.request.user)
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
 
 class FilamentRollDetailView(LoginRequiredMixin, DetailView):
     model = FilamentRoll
@@ -68,10 +72,15 @@ class FilamentRollUpdateView(LoginRequiredMixin, UpdateView):
     ]
 
 
-class FilamentRollDeleteView(LoginRequiredMixin, DeleteView):
+class FilamentRollDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = FilamentRoll
     template_name ='filament_roll_delete.html'
     success_url = reverse_lazy('prints:rolls')
+
+    def test_func(self):
+        roll = self.get_object()
+        print('roll: ', roll)
+        return self.request.user == roll.creator
 #================================================================
 
 
