@@ -26,6 +26,11 @@ urlpatterns = [
         views.ManufacturerUpdateView.as_view(),
         name='manufacturer_edit'
     ),
+    path(
+        'manufacturers/<int:pk>/delete/',
+        views.ManufacturerDeleteView.as_view(),
+        name='manufacturer_delete'
+    ),
     #================================================================
 
 

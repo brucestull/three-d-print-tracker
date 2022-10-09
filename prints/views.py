@@ -60,6 +60,12 @@ class ManufacturerUpdateView(LoginRequiredMixin, UpdateView):
     fields = [
         'name',
     ]
+
+
+class ManufacturerDeleteView(LoginRequiredMixin, DeleteView):
+    model = Manufacturer
+    template_name = 'manufacturers/manufacturer_delete.html'
+    success_url = reverse_lazy('prints:manufacturers')
 #================================================================
 
 

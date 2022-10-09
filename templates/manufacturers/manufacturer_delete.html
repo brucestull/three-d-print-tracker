@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - Delete {{ manufacturer }}{% endblock %}
+
+{% block content %}
+
+<h2>Delete Manufacturer</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Do you really want to delete "{{ manufacturer }}"?</p>
+    <input type="submit" value="Confirm Delete" />
+</form>
+
+{% endblock %}
