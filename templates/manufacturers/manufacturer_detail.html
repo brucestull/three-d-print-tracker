@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - {{ manufacturer }}{% endblock %}
+
+{% block content %}
+
+<h2>{{ manufacturer }}</h2>
+    <a href={% url 'prints:manufacturer_edit' manufacturer.id %}>Edit Manufacturer</a><br>
+    <dl>
+        <dt>Number of Rolls by this Manufacturer</dt>
+        <dd>{{ manufacturer.rolls.count }}</dd>
+    </dl>
+
+    {% if manufacturer.rolls.all %}
+        <h3>Rolls</h3>
+        {% for roll in manufacturer.rolls.all %}
+            <dl>
+                <dt>{{ roll }}</dt>
+            </dl>
+        {% endfor %}
+    {% endif %}
+    
+{% endblock %}

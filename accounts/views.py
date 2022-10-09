@@ -2,10 +2,10 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 
-from users.forms import CustomUserCreationForm
-from users.forms import CustomUserChangeForm
+from accounts.forms import CustomUserCreationForm
+from accounts.forms import CustomUserChangeForm
 
-from users.models import CustomUser
+from accounts.models import CustomUser
 
 class SignUpView(CreateView):
     """

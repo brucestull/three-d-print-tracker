@@ -6,6 +6,26 @@ app_name = 'prints'
 urlpatterns = [
     #================================================================
     ## `Manufacturer` Routes:
+    path(
+        'manufacturers/',
+        views.ManufacturerListView.as_view(),
+        name='manufacturers',
+    ),
+    path(
+        'manufacturers/<int:pk>/',
+        views.ManufacturerDetailView.as_view(),
+        name='manufacturer_detail'
+    ),
+    path(
+        'manufacturers/new/',
+        views.ManufacturerCreateView.as_view(),
+        name='manufacturer_new'
+    ),
+    path(
+        'manufacturers/<int:pk>/edit/',
+        views.ManufacturerUpdateView.as_view(),
+        name='manufacturer_edit'
+    ),
     #================================================================
 
 
@@ -17,14 +37,14 @@ urlpatterns = [
         name='rolls',
     ),
     path(
-        'rolls/new/',
-        views.FilamentRollCreateView.as_view(),
-        name='roll_new'
-    ),
-    path(
         'rolls/<int:pk>/',
         views.FilamentRollDetailView.as_view(),
         name='roll_detail'
+    ),
+    path(
+        'rolls/new/',
+        views.FilamentRollCreateView.as_view(),
+        name='roll_new'
     ),
     path(
         'rolls/<int:pk>/edit/',
@@ -52,14 +72,14 @@ urlpatterns = [
         name='models'
     ),
     path(
-        'models/new/',
-        views.new_model_print,
-        name='model_new'
-    ),
-    path(
         'models/<int:pk>/',
         views.ModelPrintDetailView.as_view(),
         name='model_detail'
+    ),
+    path(
+        'models/new/',
+        views.new_model_print,
+        name='model_new'
     ),
     path(
         'models/<int:pk>/edit/',

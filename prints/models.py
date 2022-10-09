@@ -13,6 +13,8 @@ class Manufacturer(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('prints:manufacturer_detail', args=(self.pk,))
 
 class FilamentRoll(models.Model):
     """

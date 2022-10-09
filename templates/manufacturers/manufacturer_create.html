@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - New Manufacturer{% endblock %}
+
+{% block content %}
+
+<h2>New Manufacturer</h1>
+<form action="{% url 'prints:manufacturer_new' %}" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Create New Manufacturer" />
+</form>
+
+{% endblock %}

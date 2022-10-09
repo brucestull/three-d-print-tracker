@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - Manufacturers List View{% endblock %}
+
+{% block content %}
+
+<h2>Manufacturers</h1>
+
+<ul>
+    {% for manufacturer in object_list %}
+    <li>
+        <p><a href={% url 'prints:manufacturer_detail' manufacturer.id %}>{{ manufacturer }}</a></p>
+        <dl>
+            <dt>{{ manufacturer.name }}</dt>
+            <dd></dd>
+            <dt></dt>
+            <dd></dd>
+            <dt></dt>
+            <dd></dd>
+        </dl>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
