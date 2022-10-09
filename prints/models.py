@@ -26,22 +26,28 @@ class FilamentRoll(models.Model):
     manufacturer = models.ForeignKey(
         Manufacturer,
         related_name='rolls',
-        # `PROTECT` prevents deletion of `Manufacturer` instance if it is associated with a `FilamentRoll` instance.
+        # `PROTECT` prevents deletion of `Manufacturer` instance if it
+        # is associated with a `FilamentRoll` instance.
         on_delete=models.PROTECT,
     )
     owner = models.ForeignKey(
         AUTH_USER_MODEL,
         related_name='rolls',
-        # `CASCADE` allows deletion of `AUTH_USER_MODEL` instance and also does a cascading deletion of `FilamentRoll` instance.
-        # `PROTECT` prevents deletion of `AUTH_USER_MODEL` instance if it is associated with a `FilamentRoll` instance.
-        # `SET_NULL` Set the ForeignKey null; this is only possible if null is True..
+        # `CASCADE` allows deletion of `AUTH_USER_MODEL` instance and
+        #     also does a cascading deletion of `FilamentRoll` instance.
+        # `PROTECT` prevents deletion of `AUTH_USER_MODEL` instance if
+        #     it is associated with a `FilamentRoll` instance.
+        # `SET_NULL` Set the ForeignKey null; this is only possible if
+        #     null is True. We do this here so a user can be deleted
+        #     but their `FilamentRoll` instances stay. This may change
+        #     in future.
         on_delete=models.SET_NULL,
         null=True,
     )
     material = models.CharField(max_length=255)
 
     def __str__(self):
-        return f'{self.material} - {self.manufacturer.name} - #{self.id}'
+        return f'[ {self.material} ] {self.manufacturer.name} #{self.id}'
 
     def get_absolute_url(self):
         return reverse('prints:roll_detail', args=(self.pk,))
@@ -55,13 +61,14 @@ class FilamentInstance(models.Model):
     filament_roll = models.ForeignKey(
         FilamentRoll,
         related_name='instances',
-        # `PROTECT` prevents deletion of `FilamentRoll` instance if it is associated with a `FilamentInstance` instance.
+        # `PROTECT` prevents deletion of `FilamentRoll` instance if it
+        #     is associated with a `FilamentInstance` instance.
         on_delete=models.PROTECT,
     )
 
     def __str__(self):
-        return f'{self.filament_consumed}g'
         return f'{self.filament_consumed}g of {self.filament_roll}'
+        return f'{self.filament_consumed}g'
 
 
 class ModelPrint(models.Model):
@@ -73,25 +80,21 @@ class ModelPrint(models.Model):
     creator = models.ForeignKey(
         AUTH_USER_MODEL,
         related_name='prints',
-        # `CASCADE` allows deletion of `AUTH_USER_MODEL` instance and also does a cascading deletion of `ModelPrint`.
+        # `CASCADE` allows deletion of `AUTH_USER_MODEL` instance and
+        #     also does a cascading deletion of `ModelPrint`.
         on_delete=models.CASCADE,
     )
     filament_instance = models.OneToOneField(
         FilamentInstance,
         related_name='print',
-        # `PROTECT` prevents deletion of `FilamentInstance` instance if it is associated with a `ModelPrint` instance.
+        # `PROTECT` prevents deletion of `FilamentInstance` instance
+        #     if it is associated with a `ModelPrint` instance.
         on_delete=models.PROTECT,
     )
 
     def __str__(self):
         return (
             self.name
-
-            # f'{self.id} : '
-            # f'{self.name} : '
-            # f'{self.creator.username} : '
-            # f'{self.filament_instance.filament_consumed if self.filament_instance else "No FilamentInstance provided"} grams of '
-            # f'"{self.filament_instance.filament_roll if self.filament_instance else "No FilamentInstance provided"}"'
         )
     
     def get_absolute_url(self):
