@@ -20,7 +20,7 @@
     {% for filament_instance in filamentroll.instances.all %}
         <dl>
             <dt>Filament Consumed</dt>
-            <dd>{{ filament_instance }}</dd>
+            <dd><a href={% url 'prints:filament_instance_detail' filament_instance.id %}>{{ filament_instance }}</a></dd>
             <dt>Model Print</dt>
             <dd>
                 {% if filament_instance.print %}
