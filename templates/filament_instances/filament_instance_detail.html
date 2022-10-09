@@ -19,7 +19,9 @@
     {% if filamentinstance.print %}
         <dl>
             <dt>Model Print</dt>
-            <dd>{{ filamentinstance.print }}</dd>
+            <dd><a href={% url 'prints:model_detail' filamentinstance.print.id %}>
+                {{ filamentinstance.print }}
+            </a></dd>
         </dl>
     {% else %}
     <p>No associated Model Print</p>

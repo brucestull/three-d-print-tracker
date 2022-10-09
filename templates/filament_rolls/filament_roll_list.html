@@ -5,9 +5,9 @@
 {% block content %}
 
 <h2>Filament Rolls</h1>
-
 <ul>
     {% for filament_roll in object_list %}
+    <hr>
     <li>
         <p><a href={% url 'prints:roll_detail' filament_roll.id %}>{{ filament_roll }}</a></p>
         <dl>
@@ -20,6 +20,7 @@
         </dl>
     </li>
     {% endfor %}
+    <hr>
 </ul>
 
 {% endblock %}

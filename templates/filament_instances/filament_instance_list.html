@@ -8,6 +8,7 @@
 
 <ul>
     {% for filament_instance in object_list %}
+    <hr>
     <li>
         <p><a href={% url 'prints:filament_instance_detail' filament_instance.id %}>
             {{ filament_instance }}
@@ -27,6 +28,7 @@
         </dl>
     </li>
     {% endfor %}
+    <hr>
 </ul>
 
 {% endblock %}
