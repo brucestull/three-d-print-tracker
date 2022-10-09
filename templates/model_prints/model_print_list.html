@@ -8,18 +8,20 @@
 
 <ul>
     {% for model in object_list %}
+    <hr>
     <li>
         <p><a href={% url 'prints:model_detail' model.id %}>{{ model.name }}</a></p>
         <dl>
             <dt>Filament Roll Used</dt>
-            <dd>{{ model.filament_instance.filament_roll }}</dd>
-            <dt>Grams Filament Used</dt>
-            <dd>{{ model.filament_instance.filament_consumed }}</dd>
+            <dd><a href={% url 'prints:roll_detail' model.filament_instance.filament_roll.id %}>{{ model.filament_instance.filament_roll }}</a></dd>
+            <dt>Filament Consumed</dt>
+            <dd><a href={% url 'prints:filament_instance_detail' model.filament_instance.id %}>{{ model.filament_instance }}</a></dd>
             <dt>Model Print Creator</dt>
             <dd>{{ model.creator.username }}</dd>
         </dl>
     </li>
     {% endfor %}
+    <hr>
 </ul>
 
 {% endblock %}

@@ -8,18 +8,16 @@
 
 <ul>
     {% for manufacturer in object_list %}
+    <hr>
     <li>
         <p><a href={% url 'prints:manufacturer_detail' manufacturer.id %}>{{ manufacturer }}</a></p>
         <dl>
-            <dt>{{ manufacturer.name }}</dt>
-            <dd></dd>
-            <dt></dt>
-            <dd></dd>
-            <dt></dt>
-            <dd></dd>
+            <dt>Number of Rolls</dt>
+            <dd>{{ manufacturer.rolls.count }}</dd>
         </dl>
     </li>
     {% endfor %}
+    <hr>
 </ul>
 
 {% endblock %}
