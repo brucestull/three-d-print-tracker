@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - {{ filamentinstance }}{% endblock %}
+
+{% block content %}
+
+<h2>{{ filamentinstance }}</h2>
+    <a href={% url 'prints:filament_instance_edit' filamentinstance.id %}>
+        Edit Filament Instance
+    </a><br>
+    <dl>
+        <dt>Filament Instance Roll</dt>
+        <dd><a href={% url 'prints:roll_detail' filamentinstance.filament_roll.id %}>
+            {{ filamentinstance.filament_roll }}
+        </a></dd>
+        <dt>Filament Consumed</dt>
+        <dd>{{ filamentinstance.filament_consumed }} grams</dd>
+    </dl>
+    {% if filamentinstance.print %}
+        <dl>
+            <dt>Model Print</dt>
+            <dd>{{ filamentinstance.print }}</dd>
+        </dl>
+    {% else %}
+    <p>No associated Model Print</p>
+    {% endif %}
+    
+{% endblock %}

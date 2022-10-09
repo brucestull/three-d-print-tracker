@@ -21,6 +21,7 @@
 * `python .\manage.py runserver`
 * `<Ctrl+C>`
 * `python .\manage.py makemigrations users`
+* `python .\manage.py makemigrations accounts`
 * `python .\manage.py makemigrations`
 * `python .\manage.py migrate`
 * `python .\manage.py createsuperuser`
@@ -61,10 +62,14 @@
 * Django Admin Documentation:
 
 ## Development server web links:
-* Create user:
-    * http://localhost:8000/users/signup/
 * Server Root:
     * http://localhost:8000/
+* Accounts:
+    * http://localhost:8000/accounts/signup/
+    * http://localhost:8000/accounts/login/
+    * http://localhost:8000/accounts/logout/
+    * http://localhost:8000/accounts/password_reset/
+    * http://localhost:8000/accounts/reset/Mg/set-password/
 * Filament Rolls:
 
 * Models Home:

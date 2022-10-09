@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - Edit: {{ filamentinstance }}{% endblock %}
+
+{% block content %}
+
+<h2>Filament Instance</h2>
+{{ filamentinstance }}<br>
+<a href={% url 'prints:filament_instance_detail' filamentinstance.id %}>Cancel Edit</a><br>
+<a href={% url 'prints:filament_instance_delete' filamentinstance.id %}>Delete Filament Instance</a><br>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save changes to Filament Instance" />
+</form>
+
+
+{% endblock %}

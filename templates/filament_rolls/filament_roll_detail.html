@@ -26,7 +26,7 @@
                 {% if filament_instance.print %}
                     <a href={% url 'prints:model_detail' filament_instance.print.id %}>{{ filament_instance.print }}</a>
                 {% else %}
-                    Model Print has been deleted
+                    Model Print does not exist
                 {% endif %}
             </dd>
         </dl>

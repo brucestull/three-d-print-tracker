@@ -66,6 +66,31 @@ urlpatterns = [
 
     #================================================================
     ## `FilamentInstance` Routes:
+    path(
+        'filament-instances/',
+        views.FilamentInstanceListView.as_view(),
+        name='filament_instances',
+    ),
+    path(
+        'filament-instances/<int:pk>/',
+        views.FilamentInstanceDetailView.as_view(),
+        name='filament_instance_detail'
+    ),
+    path(
+        'filament-instances/new/',
+        views.FilamentInstanceCreateView.as_view(),
+        name='filament_instance_new'
+    ),
+    path(
+        'filament-instances/<int:pk>/edit/',
+        views.FilamentInstanceUpdateView.as_view(),
+        name='filament_instance_edit'
+    ),
+    path(
+        'filament-instances/<int:pk>/delete/',
+        views.FilamentInstanceDeleteView.as_view(),
+        name='filament_instance_delete'
+    ),
     #================================================================
 
 

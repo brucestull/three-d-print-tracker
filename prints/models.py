@@ -67,8 +67,11 @@ class FilamentInstance(models.Model):
     )
 
     def __str__(self):
-        return f'{self.filament_consumed}g of {self.filament_roll}'
-        return f'{self.filament_consumed}g'
+        return f'{self.filament_consumed} grams of {self.filament_roll}'
+
+    def get_absolute_url(self):
+        return reverse('prints:filament_instance_detail', args=(self.pk,))
+
 
 
 class ModelPrint(models.Model):
