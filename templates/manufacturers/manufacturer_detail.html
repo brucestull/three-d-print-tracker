@@ -18,6 +18,10 @@
             <hr>
             <dl>
                 <dt><a href={% url 'prints:roll_detail' roll.id %}>{{ roll }}</a></dt>
+                <dt>Number of Filament Instances</dt>
+                <dd>{{ roll.instances.count }}</dd>
+                <dt>Number of Model Prints</dt>
+                <dd><code>number_of_model_prints</code></dd>
             </dl>
         {% endfor %}
         <hr>
