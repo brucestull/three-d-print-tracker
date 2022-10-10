@@ -18,6 +18,7 @@
 ### Django:
 * `django-admin startproject the_project .`
 * `python .\manage.py startapp the_app`
+* `python .\manage.py startapp api`
 * `python .\manage.py runserver`
 * `<Ctrl+C>`
 * `python .\manage.py makemigrations users`
@@ -64,6 +65,12 @@
 ## Development server web links:
 * Server Root:
     * http://localhost:8000/
+* Django REST Endpoints:
+    * http://localhost:8000/api/v1/
+    * http://localhost:8000/api/v1/users/
+    * http://localhost:8000/api/v1/groups/
+    * http://localhost:8000/
+
 * Accounts:
     * http://localhost:8000/accounts/signup/
     * http://localhost:8000/accounts/login/
