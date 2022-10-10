@@ -7,7 +7,9 @@ from . import views
 router = DefaultRouter()
 router.register('users', views.UserViewSet, basename='users')
 router.register('groups', views.GroupViewSet, basename='groups')
+
 router.register('basic-model-prints', views.BasicModelPrintViewSet, basename='basic_model_prints')
+router.register('basic-manufacturers', views.BasicManufacturerViewSet, basename='basic_manufacturers')
 
 urlpatterns = router.urls + [
 
