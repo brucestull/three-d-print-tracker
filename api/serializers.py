@@ -3,6 +3,8 @@ from rest_framework import serializers
 
 from django.contrib.auth import get_user_model
 
+from prints import models
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,3 +25,10 @@ class GroupSerializer(serializers.ModelSerializer):
         ]
 
 
+class BasicModelPrintSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.ModelPrint
+        fields = [
+            'id',
+            'name',
+        ]
