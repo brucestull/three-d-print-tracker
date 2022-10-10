@@ -63,10 +63,7 @@
         Server time:	Mon, 10 Oct 2022 05:20:59 -0400
         ```
 
-
-
-
-1. Proceed to []()
+1. Proceed to [Add Basic `Manufacturer` Endpoint](./20_add_basic_manufacturer_endpoint.md)
 
 ## Repository Links:
 * Back to [Add Basic API](./18_add_basic_api.md)

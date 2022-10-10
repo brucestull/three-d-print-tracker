@@ -32,3 +32,12 @@ class BasicModelPrintSerializer(serializers.ModelSerializer):
             'id',
             'name',
         ]
+
+
+class BasicManufacturerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Manufacturer
+        fields = [
+            'id',
+            'name',
+        ]
