@@ -88,7 +88,7 @@
     * `python .\manage.py runserver`
     * http://localhost:8000/prints/print/create-model-print/
 
-1. Proceed to []()
+1. Proceed to [Fast Forward to Next Thing](./17_fast_forward.md)
 
 ## Repository Links:
 * Back to [Convert `ModelPrint` `CreateView` to Function-Based View](./15_convert_create_view_to_function_based.md)

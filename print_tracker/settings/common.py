@@ -33,6 +33,8 @@ INSTALLED_APPS = [
 
     'django.contrib.admindocs',
 
+    'rest_framework',
+
     'accounts.apps.UsersConfig',
 
     'prints.apps.PrintsConfig',
