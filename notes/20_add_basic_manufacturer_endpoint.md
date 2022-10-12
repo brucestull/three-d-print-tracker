@@ -1,6 +1,9 @@
 # Add Basic `Manufacturer` Endpoint
 
 ## Resources:
+* [Django REST Framework](https://www.django-rest-framework.org/)
+* [Quickstart - django-rest-framework.org](https://www.django-rest-framework.org/tutorial/quickstart/#quickstart)
+* [Funding - django-rest-framework.org](https://fund.django-rest-framework.org/topics/funding/#funding)
 
 ## Process:
 
@@ -28,7 +31,7 @@
 
 1. Add endpoint for `BasicManufacturerViewSet` in [`api/urls.py`](../api/urls.py):
     ```
-    router.register('basic-manufacturers', views.BasicManufacturerViewSet, basename='basic_manufacturers')
+    router.register('basic-manufacturers', views.BasicManufacturerViewSet)
     ```
 
 1. Test endpoints:

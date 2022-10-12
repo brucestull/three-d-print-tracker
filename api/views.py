@@ -44,3 +44,12 @@ class BasicManufacturerViewSet(viewsets.ModelViewSet):
     queryset = models.Manufacturer.objects.all()
     serializer_class = serializers.BasicManufacturerSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+# class HyperManufacturerViewSet(viewsets.ModelViewSet):
+#     """
+#     Test `ViewSet` for `HyperlinkedModelSerializer`.
+#     """
+#     queryset = models.Manufacturer.objects.all()
+#     serializer_class = serializers.HyperManufacturerSerializer
+#     permission_classes = [permissions.IsAuthenticated]

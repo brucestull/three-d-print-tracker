@@ -41,3 +41,12 @@ class BasicManufacturerSerializer(serializers.ModelSerializer):
             'id',
             'name',
         ]
+
+
+# class HyperManufacturerSerializer(serializers.HyperlinkedModelSerializer):
+#     class Meta:
+#         model = models.Manufacturer
+#         fields = [
+#             'url',
+#             'name',
+#         ]
