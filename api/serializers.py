@@ -16,6 +16,15 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
 
+class NestedUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = [
+            'id',
+            'username',
+        ]
+
+
 class ManufacturerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Manufacturer
@@ -26,13 +35,14 @@ class ManufacturerSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class FilamentRollSerializer(serializers.HyperlinkedModelSerializer):
+    owner_detail = NestedUserSerializer(read_only=True, source='owner')
     class Meta:
         model = models.FilamentRoll
         fields = [
             'url',
             'material',
             'manufacturer',
-            # 'owner',
+            'owner_detail',
         ]
 
 
