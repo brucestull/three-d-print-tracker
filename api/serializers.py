@@ -34,19 +34,10 @@ class BasicModelPrintSerializer(serializers.ModelSerializer):
         ]
 
 
-class BasicManufacturerSerializer(serializers.ModelSerializer):
+class ManufacturerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Manufacturer
         fields = [
-            'id',
+            'url',
             'name',
         ]
-
-
-# class HyperManufacturerSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = models.Manufacturer
-#         fields = [
-#             'url',
-#             'name',
-#         ]

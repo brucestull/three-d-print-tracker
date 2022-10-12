@@ -9,8 +9,7 @@ router.register('users', views.UserViewSet, basename='users')
 router.register('groups', views.GroupViewSet, basename='groups')
 
 router.register('basic-model-prints', views.BasicModelPrintViewSet)
-router.register('basic-manufacturers', views.BasicManufacturerViewSet)
-# router.register('hyper-manufacturers', views.HyperManufacturerViewSet)
+router.register('manufacturers', views.ManufacturerViewSet)
 
 urlpatterns = router.urls + [
 

@@ -3,7 +3,6 @@
 ## Resources:
 * [Django REST Framework](https://www.django-rest-framework.org/)
 * [Quickstart - django-rest-framework.org](https://www.django-rest-framework.org/tutorial/quickstart/#quickstart)
-* [Funding - django-rest-framework.org](https://fund.django-rest-framework.org/topics/funding/#funding)
 
 ## Process:
 
@@ -38,7 +37,7 @@
     * http://localhost:8000/api/v1/
     * http://localhost:8000/api/v1/basic-manufacturers/
 
-1. Proceed to []()
+1. Proceed to [Convert `Manufacturer` serializer to use `HyperlinkedModelSerializer`](./21_convert_manufacturer_serializer_to_hyperlinked.md)
 
 ## Repository Links:
 * Back to [Add Basic Endpoint for `ModelPrint`](./19_add_basic_endpoint_for_model_print.md)
