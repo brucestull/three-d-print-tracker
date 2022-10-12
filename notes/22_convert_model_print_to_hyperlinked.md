@@ -48,7 +48,7 @@
 
 1. Next, add `FilamentRoll` endpoints.
 
-1. Proceed to []()
+1. Proceed to [Add `FilamentRoll` API Endpoint](./23_add_filament_roll_endpoint.md)
 
 ## Repository Links:
 * Back to [Convert `Manufacturer` serializer to use `HyperlinkedModelSerializer`](./21_convert_manufacturer_serializer_to_hyperlinked.md)
