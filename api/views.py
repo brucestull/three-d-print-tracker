@@ -28,12 +28,12 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class BasicModelPrintViewSet(viewsets.ModelViewSet):
+class ModelPrintViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows `ModelPrint`s to be viewed or edited.
     """
     queryset = models.ModelPrint.objects.all()
-    serializer_class = serializers.BasicModelPrintSerializer
+    serializer_class = serializers.ModelPrintSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
