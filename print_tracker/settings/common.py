@@ -36,8 +36,8 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'accounts.apps.UsersConfig',
-
     'prints.apps.PrintsConfig',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [

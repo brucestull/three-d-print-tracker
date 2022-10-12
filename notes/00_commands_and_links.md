@@ -69,7 +69,6 @@
     * http://localhost:8000/api/v1/
     * http://localhost:8000/api/v1/users/
     * http://localhost:8000/api/v1/groups/
-    * http://localhost:8000/
 
 * Accounts:
     * http://localhost:8000/accounts/signup/

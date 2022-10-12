@@ -37,10 +37,10 @@ class BasicModelPrintViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class BasicManufacturerViewSet(viewsets.ModelViewSet):
+class ManufacturerViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows `Manufacturer`s to be viewed or edited.
     """
     queryset = models.Manufacturer.objects.all()
-    serializer_class = serializers.BasicManufacturerSerializer
+    serializer_class = serializers.ManufacturerSerializer
     permission_classes = [permissions.IsAuthenticated]
