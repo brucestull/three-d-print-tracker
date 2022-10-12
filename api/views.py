@@ -19,12 +19,21 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class GroupViewSet(viewsets.ModelViewSet):
+class ManufacturerViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows `groups` to be viewed or edited.
+    API endpoint that allows `Manufacturer`s to be viewed or edited.
     """
-    queryset = Group.objects.all()
-    serializer_class = serializers.GroupSerializer
+    queryset = models.Manufacturer.objects.all()
+    serializer_class = serializers.ManufacturerSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class FilamentRollViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows `FilamentRoll`s to be viewed or edited.
+    """
+    queryset = models.FilamentRoll.objects.all()
+    serializer_class = serializers.FilamentRollSerializer
     permission_classes = [permissions.IsAuthenticated]
 
 
@@ -37,10 +46,10 @@ class ModelPrintViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class ManufacturerViewSet(viewsets.ModelViewSet):
+class GroupViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows `Manufacturer`s to be viewed or edited.
+    API endpoint that allows `groups` to be viewed or edited.
     """
-    queryset = models.Manufacturer.objects.all()
-    serializer_class = serializers.ManufacturerSerializer
+    queryset = Group.objects.all()
+    serializer_class = serializers.GroupSerializer
     permission_classes = [permissions.IsAuthenticated]

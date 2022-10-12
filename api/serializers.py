@@ -16,12 +16,23 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
 
-class GroupSerializer(serializers.ModelSerializer):
+class ManufacturerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Group
+        model = models.Manufacturer
         fields = [
-            'id',
+            'url',
             'name',
+        ]
+
+
+class FilamentRollSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.FilamentRoll
+        fields = [
+            'url',
+            'material',
+            'manufacturer',
+            # 'owner',
         ]
 
 
@@ -34,10 +45,10 @@ class ModelPrintSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
-class ManufacturerSerializer(serializers.HyperlinkedModelSerializer):
+class GroupSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Manufacturer
+        model = Group
         fields = [
-            'url',
+            'id',
             'name',
         ]

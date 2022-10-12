@@ -10,6 +10,7 @@ router.register('groups', views.GroupViewSet, basename='groups')
 
 router.register('model-prints', views.ModelPrintViewSet)
 router.register('manufacturers', views.ManufacturerViewSet)
+router.register('filament-rolls', views.FilamentRollViewSet)
 
 urlpatterns = router.urls + [
 
