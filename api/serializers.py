@@ -25,11 +25,11 @@ class GroupSerializer(serializers.ModelSerializer):
         ]
 
 
-class BasicModelPrintSerializer(serializers.ModelSerializer):
+class ModelPrintSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.ModelPrint
         fields = [
-            'id',
+            'url',
             'name',
         ]
 

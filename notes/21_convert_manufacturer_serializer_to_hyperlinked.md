@@ -35,7 +35,7 @@
 
 1. Start server and test endpoints:
     1. `python .\manage.py runserver`
-    1. Test old endpoints:
+    1. Test existing endpoints:
         * http://localhost:8000/api/v1/
         * http://localhost:8000/api/v1/users/
         * http://localhost:8000/api/v1/groups/
@@ -48,7 +48,7 @@
 
 1. Next, change `ModelPrint` endpoint to use `HyperlinkedModelSerializer`.
 
-1. Proceed to []()
+1. Proceed to [Convert `ModelPrint` endpoint to `HyperlinkedModelSerializer`](./22_convert_model_print_to_hyperlinked.md)
 
 ## Repository Links:
 * Back to [Add Basic `Manufacturer` Endpoint](./20_add_basic_manufacturer_endpoint.md)
