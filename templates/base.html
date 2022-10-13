@@ -1,109 +1,109 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Print Tracker - Base{% endblock %}</title>
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     </head>
     <body>
-        <main>
-            <a
-                href="https://github.com/brucestull/three-d-print-tracker"
-                target="_blank"
-                >
-                Flynnt Knapp's Print Tracker Git Repository
-            </a><br>
-            <a
-                href="/api/v1/"
-                target="_blank"
-                >
-                Django REST Browsable API
-            </a><br>
-            <a
-                href={% url 'home' %}
-                >
-                Print Tracker - Home
-            </a><br>
-            <br>
-            {% if user.is_authenticated %}
-                Who am I: {{ user.username | capfirst }}<br>
-                <a href="{% url 'logout' %}">Log Out</a><br>
-                <a href="{% url 'edit_profile' user.id %}">Edit Profile</a><br>
-                <a href="{% url 'password_change' %}">Password Change</a><br>
-                <a href="{% url 'password_reset' %}">Reset Password</a><br>
-            {% else %}
-                <p>You are not logged in.</p>
-                <a href="{% url 'login' %}">Log In</a> <b>OR</b>
-                <a href="{% url 'signup' %}">Sign Up</a>
-            {% endif %}
+        <header>
+            <h1>Print Tracker</h1>
+            <nav>
+                <h2>Development Links:</h2>
+                <a
+                    href="https://github.com/brucestull/three-d-print-tracker"
+                    target="_blank"
+                    >
+                    Flynnt Knapp's Print Tracker Git Repository
+                </a><br>
+                <a
+                    href="/api/v1/"
+                    target="_blank"
+                    >
+                    Django REST Browsable API
+                </a><br>
+                <a
+                    href={% url 'home' %}
+                    >
+                    Print Tracker - Home
+                </a><br>
 
-            {% if user.is_staff %}
-            <p>Staff Links:</p>
-            <a
-                href="/admin"
-                target="_blank"
-                >
-                Django Admin Interface
-            </a>
-            <br>
-            <br>
-            {% endif %}
+                <h2>Accounts Links:</h2>
+                {% if user.is_authenticated %}
+                    Who am I: {{ user.username | capfirst }}<br>
+                    <a href="{% url 'logout' %}">Log Out</a><br>
+                    <a href="{% url 'edit_profile' user.id %}">Edit Profile</a><br>
+                    <a href="{% url 'password_change' %}">Password Change</a><br>
+                    <a href="{% url 'password_reset' %}">Reset Password</a><br>
+                {% else %}
+                    <p>You are not logged in.</p>
+                    <a href="{% url 'login' %}">Log In</a> <b>OR</b>
+                    <a href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
 
-            <hr>
-            {% if user.is_authenticated %}
-            <a
-                href={% url 'prints:manufacturers' %}
-                >
-                Manufacturers
-            </a>
-            <br>
-            <a
-                href={% url 'prints:manufacturer_new' %}
-                >
-                Add New Manufacturer
-            </a>
-            <hr>
-            <br>
-            <a
-                href={% url 'prints:rolls' %}
-                >
-                Filament Rolls
-            </a>
-            <br>
-            <a
-                href={% url 'prints:roll_new' %}
-                >
-                Add New Filament Roll
-            </a>
-            <hr>
-            <br>
-            <a
-                href={% url 'prints:filament_instances' %}
-                >
-                Filament Instances
-            </a>
-            <br>
-            <a
-                href={% url 'prints:filament_instance_new' %}
-                >
-                Add New Filament Instance
-            </a>
-            <hr>
-            <br>
-            <a
-                href={% url 'prints:models' %}
-                >
-                3D Model Prints
-            </a>
-            <br>
-            <a
-                href={% url 'prints:model_new' %}
-                >
-                Add New 3D Model Print
-            </a>
-            <hr>
-            <br>
-            {% endif %}
+                {% if user.is_staff %}
+                <h2>Staff Links:</h2>
+                <a
+                    href="/admin"
+                    target="_blank"
+                    >
+                    Django Admin Interface
+                </a><br>
+                {% endif %}
 
+                <h2>Application Links:</h2>
+                {% if user.is_authenticated %}
+                <a
+                    href={% url 'prints:models' %}
+                    >
+                    3D Model Prints
+                </a><br>
+                <a
+                    href={% url 'prints:model_new' %}
+                    >
+                    Add New 3D Model Print
+                </a><br>
+                <a
+                    href={% url 'prints:filament_instances' %}
+                    >
+                    Filament Instances
+                </a><br>
+                <a
+                    href={% url 'prints:filament_instance_new' %}
+                    >
+                    Add New Filament Instance
+                </a><br>
+                <a
+                    href={% url 'prints:rolls' %}
+                    >
+                    Filament Rolls
+                </a><br>
+                <a
+                    href={% url 'prints:roll_new' %}
+                    >
+                    Add New Filament Roll
+                </a><br>
+                <a
+                    href={% url 'prints:manufacturers' %}
+                    >
+                    Manufacturers
+                </a><br>
+                <a
+                    href={% url 'prints:manufacturer_new' %}
+                    >
+                    Add New Manufacturer
+                </a><br>
+                {% endif %}
+
+            
+
+            </nav>
+        </header>
+        <main class='flex-gallery'>
             {% block content %}
 
             {% endblock %}

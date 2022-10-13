@@ -7,17 +7,17 @@
 <h2>Manufacturers</h1>
 
 <ul>
+
     {% for manufacturer in object_list %}
-    <hr>
     <li>
-        <p><a href={% url 'prints:manufacturer_detail' manufacturer.id %}>{{ manufacturer }}</a></p>
+        <a href={% url 'prints:manufacturer_detail' manufacturer.id %}>{{ manufacturer }}</a>
         <dl>
             <dt>Number of Rolls</dt>
             <dd>{{ manufacturer.rolls.count }}</dd>
         </dl>
     </li>
     {% endfor %}
-    <hr>
+
 </ul>
 
 {% endblock %}

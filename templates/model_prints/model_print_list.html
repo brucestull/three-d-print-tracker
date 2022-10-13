@@ -7,10 +7,10 @@
 <h2>Model Prints</h2>
 
 <ul>
+
     {% for model in object_list %}
-    <hr>
     <li>
-        <p><a href={% url 'prints:model_detail' model.id %}>{{ model.name }}</a></p>
+        <a href={% url 'prints:model_detail' model.id %}>{{ model.name }}</a>
         <dl>
             <dt>Filament Roll Used</dt>
             <dd><a href={% url 'prints:roll_detail' model.filament_instance.filament_roll.id %}>{{ model.filament_instance.filament_roll }}</a></dd>
@@ -21,7 +21,7 @@
         </dl>
     </li>
     {% endfor %}
-    <hr>
+    
 </ul>
 
 {% endblock %}

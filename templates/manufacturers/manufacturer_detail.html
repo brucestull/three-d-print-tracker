@@ -5,17 +5,17 @@
 {% block content %}
 
 <h2>Manufacturer: {{ manufacturer }}</h2>
+
     <a href={% url 'prints:manufacturer_edit' manufacturer.id %}>Edit Manufacturer</a><br>
     <dl>
         <dt>Number of Rolls by this Manufacturer</dt>
         <dd>{{ manufacturer.rolls.count }}</dd>
     </dl>
-    <hr>
-    <hr>
+
     {% if manufacturer.rolls.all %}
+
         <h3>Rolls</h3>
         {% for roll in manufacturer.rolls.all %}
-            <hr>
             <dl>
                 <dt><a href={% url 'prints:roll_detail' roll.id %}>{{ roll }}</a></dt>
                 <dt>Number of Filament Instances</dt>
@@ -24,7 +24,7 @@
                 <dd><code>number_of_model_prints</code></dd>
             </dl>
         {% endfor %}
-        <hr>
+
     {% endif %}
     
 {% endblock %}
