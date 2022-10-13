@@ -1,16 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Print Tracker - Filament Instance List View{% endblock %}
+{% block title %}Print Tracker - Filament Instances{% endblock %}
 
 {% block content %}
-
-<h2>Filament Instances</h1>
-
-<ul>
+<main class="flex-gallery">
 
     {% for filament_instance in object_list %}
 
-    <li>
+    <div class="flex-item">
         <a href={% url 'prints:filament_instance_detail' filament_instance.id %}>
             {{ filament_instance }}
 
@@ -29,10 +26,9 @@
             {% endif %}
 
         </dl>
-    </li>
+    </div>
 
     {% endfor %}
 
-</ul>
-
+</main>
 {% endblock %}

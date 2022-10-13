@@ -3,14 +3,16 @@
 {% block title %}Print Tracker - New 3D Filament Roll{% endblock %}
 
 {% block content %}
+<main>
 
-<h2>New Filament Roll</h1>
-<form action="{% url 'prints:roll_new' %}" method="post">
-    {% csrf_token %}
+    <h2>New Filament Roll</h1>
+    <form action="{% url 'prints:roll_new' %}" method="post">
+        {% csrf_token %}
+    
+        {{ form.as_p }}
+    
+        <input type="submit" value="Create New Filament Roll" />
+    </form>
 
-    {{ form.as_p }}
-
-    <input type="submit" value="Create New Filament Roll" />
-</form>
-
+</main>
 {% endblock %}

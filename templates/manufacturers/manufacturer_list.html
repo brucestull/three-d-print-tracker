@@ -1,23 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}Print Tracker - Manufacturers List View{% endblock %}
+{% block title %}Print Tracker - Manufacturers{% endblock %}
 
 {% block content %}
-
-<h2>Manufacturers</h1>
-
-<ul>
+<main class="flex-gallery">
 
     {% for manufacturer in object_list %}
-    <li>
-        <a href={% url 'prints:manufacturer_detail' manufacturer.id %}>{{ manufacturer }}</a>
-        <dl>
-            <dt>Number of Rolls</dt>
-            <dd>{{ manufacturer.rolls.count }}</dd>
-        </dl>
-    </li>
+
+        <div class="flex-item">
+            <a href={% url 'prints:manufacturer_detail' manufacturer.id %}>{{ manufacturer }}</a>
+            <dl>
+                <dt>Number of Rolls</dt>
+                <dd>{{ manufacturer.rolls.count }}</dd>
+            </dl>
+        </div>
+
     {% endfor %}
 
-</ul>
-
+</main>
 {% endblock %}

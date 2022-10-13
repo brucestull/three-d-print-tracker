@@ -1,27 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Print Tracker - Filament Roll List View{% endblock %}
+{% block title %}Print Tracker - Filament Rolls{% endblock %}
 
 {% block content %}
-
-<h2>Filament Rolls</h1>
-<ul>
-    {% for filament_roll in object_list %}
-
-    <li>
-        <a href={% url 'prints:roll_detail' filament_roll.id %}>{{ filament_roll }}</a>
-        <dl>
-            <dt>Filament Roll Owner</dt>
-            <dd>{{ filament_roll.owner }}</dd>
-            <dt>Number of Times this Roll is used</dt>
-            <dd>{{ filament_roll.instances.count }}</dd>
-            <dt>Total Filament Consumed</dt>
-            <dd>sum of 'filament_consumed'</dd>
-        </dl>
-    </li>
-
-    {% endfor %}
-
-</ul>
-
+    <main class="flex-gallery">
+    
+        {% for filament_roll in object_list %}
+    
+            <div class="flex-item">
+                <a href={% url 'prints:roll_detail' filament_roll.id %}>{{ filament_roll }}</a>
+                <dl>
+                    <dt>Filament Roll Owner</dt>
+                    <dd>{{ filament_roll.owner }}</dd>
+                    <dt>Number of Times this Roll is used</dt>
+                    <dd>{{ filament_roll.instances.count }}</dd>
+                    <dt>Total Filament Consumed</dt>
+                    <dd>sum of 'filament_consumed'</dd>
+                </dl>
+            </div>
+        
+        {% endfor %}
+        
+    </main>
 {% endblock %}
