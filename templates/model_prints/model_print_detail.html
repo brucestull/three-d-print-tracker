@@ -3,15 +3,8 @@
 {% block title %}Print Tracker - {{ modelprint.name }}{% endblock %}
 
 {% block content %}
-<br>
-User: {{ user.username | capfirst }}<br>
-ModelPrint Creator: {{ modelprint.creator.username | capfirst }}<br>
-User is the 3D Model Print Creator: {% if user.id == modelprint.creator.id %} Yep! {% else %} Nope! {% endif %}
-
-<hr>
-<hr>
 <h2>Model Print: {{ modelprint.name }}</h2>
-<hr>
+
 <dl>
     <dt>Filament Roll Used</dt>
     <dd><a href={% url 'prints:roll_detail' modelprint.filament_instance.filament_roll.id %}>{{ modelprint.filament_instance.filament_roll }}</a></dd>
@@ -20,10 +13,15 @@ User is the 3D Model Print Creator: {% if user.id == modelprint.creator.id %} Ye
     <dt>Model Print Creator</dt>
     <dd>{{ modelprint.creator.username }}</dd>
 </dl>
-<hr>
+
 {% if user.id == modelprint.creator.id %}
     <a href={% url 'prints:model_update' modelprint.id %}>Edit this 3D Model Print</a><br>
     <a href={% url 'prints:model_delete' modelprint.id %}>Delete this 3D Model Print</a><br>
 {% endif %}
+
+<br>
+User: {{ user.username | capfirst }}<br>
+ModelPrint Creator: {{ modelprint.creator.username | capfirst }}<br>
+User is the 3D Model Print Creator: {% if user.id == modelprint.creator.id %} Yep! {% else %} Nope! {% endif %}
 
 {% endblock %}

@@ -1,0 +1,32 @@
+html {
+    /* If you want to create the gap by shrinking the content, set the box-sizing property to border-box (i.e. box-sizing: border-box). */
+    /* https://blog.hubspot.com/website/css-margin-vs-padding */
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing */
+    box-sizing: border-box;
+}
+
+/* Make everything inherit the box-sizing. */
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+@media (min-width: 700px) {
+    body {
+        display: flex;
+        flex-direction: row;
+    }
+
+}
+
+@media (min-width: 1100px) {
+
+}
+
+/* We should set a max width. If user uses a really large display width, we want the site to stay within reason. If the site had a design where the items could keep accumulating and the header would look good, we could still allow display width to grow. */
+@media (min-width: 1400px) {
+    header, main, footer {
+        width: 1350px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
