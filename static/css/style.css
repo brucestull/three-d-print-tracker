@@ -42,7 +42,6 @@ html {
     }
 
     .flex-item {
-        /* Make the divs form two columns of 50% width. */
         width: 100%;
         /* Give a temporary small border. */
         border: 3px solid blueviolet;

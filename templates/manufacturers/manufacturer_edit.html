@@ -3,17 +3,17 @@
 {% block title %}Print Tracker - Edit: {{ manufacturer }}{% endblock %}
 
 {% block content %}
+    <main>
 
-<h2>Manufacturer</h2>
-{{ manufacturer }}<br>
-<a href={% url 'prints:manufacturer_detail' manufacturer.id %}>Cancel Edit</a><br>
-<a href={% url 'prints:manufacturer_delete' manufacturer.id %}>Delete Manufacturer</a><br>
+        {{ manufacturer }}<br>
+        <a href={% url 'prints:manufacturer_detail' manufacturer.id %}>Cancel Edit</a><br>
+        <a href={% url 'prints:manufacturer_delete' manufacturer.id %}>Delete Manufacturer</a><br>
+        
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save changes to Manufacturer" />
+        </form>
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save changes to Manufacturer" />
-</form>
-
-
+    </main>
 {% endblock %}
