@@ -3,23 +3,23 @@
 {% block title %}Print Tracker - Model Prints{% endblock %}
 
 {% block content %}
-<main class="flex-gallery">
-
-    {% for model in object_list %}
-
-        <div class="flex-item">
-            <a href={% url 'prints:model_detail' model.id %}>{{ model.name }}</a>
-            <dl>
-                <dt>Filament Roll Used</dt>
-                <dd><a href={% url 'prints:roll_detail' model.filament_instance.filament_roll.id %}>{{ model.filament_instance.filament_roll }}</a></dd>
-                <dt>Filament Consumed</dt>
-                <dd><a href={% url 'prints:filament_instance_detail' model.filament_instance.id %}>{{ model.filament_instance }}</a></dd>
-                <dt>Model Print Creator</dt>
-                <dd>{{ model.creator.username }}</dd>
-            </dl>
-        </div>
-
-    {% endfor %}
-
-</main>
+    <main class="flex-gallery">
+    
+        {% for model in object_list %}
+    
+            <div class="flex-item">
+                <a href={% url 'prints:model_detail' model.id %}>{{ model.name }}</a>
+                <dl>
+                    <dt>Filament Roll Used</dt>
+                    <dd><a href={% url 'prints:roll_detail' model.filament_instance.filament_roll.id %}>{{ model.filament_instance.filament_roll }}</a></dd>
+                    <dt>Filament Consumed</dt>
+                    <dd><a href={% url 'prints:filament_instance_detail' model.filament_instance.id %}>{{ model.filament_instance }}</a></dd>
+                    <dt>Model Print Creator</dt>
+                    <dd>{{ model.creator.username }}</dd>
+                </dl>
+            </div>
+    
+        {% endfor %}
+    
+    </main>
 {% endblock %}

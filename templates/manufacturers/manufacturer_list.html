@@ -3,19 +3,19 @@
 {% block title %}Print Tracker - Manufacturers{% endblock %}
 
 {% block content %}
-<main class="flex-gallery">
-
-    {% for manufacturer in object_list %}
-
-        <div class="flex-item">
-            <a href={% url 'prints:manufacturer_detail' manufacturer.id %}>{{ manufacturer }}</a>
-            <dl>
-                <dt>Number of Rolls</dt>
-                <dd>{{ manufacturer.rolls.count }}</dd>
-            </dl>
-        </div>
-
-    {% endfor %}
-
-</main>
+    <main class="flex-gallery">
+    
+        {% for manufacturer in object_list %}
+    
+            <div class="flex-item">
+                <a href={% url 'prints:manufacturer_detail' manufacturer.id %}>{{ manufacturer }}</a>
+                <dl>
+                    <dt>Number of Rolls</dt>
+                    <dd>{{ manufacturer.rolls.count }}</dd>
+                </dl>
+            </div>
+    
+        {% endfor %}
+    
+    </main>
 {% endblock %}
