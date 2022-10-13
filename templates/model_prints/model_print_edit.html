@@ -3,13 +3,15 @@
 {% block title %}Print Tracker - : {{ modelprint.name }}{% endblock %}
 
 {% block content %}
+<main>
 
-<h2> 3D Model Print</h2>
-<a href={% url 'prints:model_detail' modelprint.id %}>Cancel Edit of {{ modelprint.name }}</a><br>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save changes to 3D Model Print" />
-</form>
+    <h2>Editing "{{ modelprint.name }}"</h2>
+    <a href={% url 'prints:model_detail' modelprint.id %}>Cancel Edit of {{ modelprint.name }}</a><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save changes to 3D Model Print" />
+    </form>
 
+</main>
 {% endblock %}

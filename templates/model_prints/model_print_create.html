@@ -3,19 +3,21 @@
 {% block title %}Print Tracker - New 3D Model Print{% endblock %}
 
 {% block content %}
+<main>
 
-<h2>Create New 3D Model Print</h2>
-<form action="{% url 'prints:model_new' %}" method="post">
-    {% csrf_token %}
+    <h2>Create New 3D Model Print</h2>
+    <form action="{% url 'prints:model_new' %}" method="post">
+        {% csrf_token %}
+    
+        {{ model_print_form.as_p }}
+    
+        <input type="submit" value="Create New 3D Model Print" />
+    </form>
+    
+    <h3>List of Filament Rolls</h3>
+    {% for filament_roll in filament_rolls_in_template %}
+        {{ filament_roll }}<br>
+    {% endfor %}
 
-    {{ model_print_form.as_p }}
-
-    <input type="submit" value="Create New 3D Model Print" />
-</form>
-
-<h3>List of Filament Rolls</h3>
-{% for filament_roll in filament_rolls_in_template %}
-    {{ filament_roll }}<br>
-{% endfor %}
-
+</main>
 {% endblock %}
