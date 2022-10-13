@@ -3,14 +3,16 @@
 {% block title %}Print Tracker - New Filament Instance{% endblock %}
 
 {% block content %}
+<main>
 
-<h2>New Filament Instance</h1>
-<form action="{% url 'prints:filament_instance_new' %}" method="post">
-    {% csrf_token %}
+    <h2>New Filament Instance</h1>
+    <form action="{% url 'prints:filament_instance_new' %}" method="post">
+        {% csrf_token %}
+    
+        {{ form.as_p }}
+    
+        <input type="submit" value="Create New Filament Instance" />
+    </form>
 
-    {{ form.as_p }}
-
-    <input type="submit" value="Create New Filament Instance" />
-</form>
-
+</main>
 {% endblock %}

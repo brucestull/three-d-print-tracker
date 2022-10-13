@@ -3,12 +3,14 @@
 {% block title %}Print Tracker - Delete {{ filamentinstance }}{% endblock %}
 
 {% block content %}
+<main>
 
-<h2>Delete Filament Instance</h2>
-<form action="" method="post">
-    {% csrf_token %}
-    <p>Do you really want to delete "{{ filamentinstance }}"?</p>
-    <input type="submit" value="Confirm Delete" />
-</form>
+    <h2>Delete Filament Instance</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Do you really want to delete "{{ filamentinstance }}"?</p>
+        <input type="submit" value="Confirm Delete" />
+    </form>
 
+</main>
 {% endblock %}

@@ -3,8 +3,9 @@
 {% block title %}Print Tracker - {{ filamentinstance }}{% endblock %}
 
 {% block content %}
+<main>
 
-<h2>Filament Instance: {{ filamentinstance }}</h2>
+    <h2>Filament Instance: {{ filamentinstance }}</h2>
     <a href={% url 'prints:filament_instance_edit' filamentinstance.id %}>
         Edit Filament Instance
     </a><br>
@@ -26,5 +27,6 @@
     {% else %}
     <p>No associated Model Print</p>
     {% endif %}
-    
+
+</main>
 {% endblock %}

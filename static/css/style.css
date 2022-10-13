@@ -1,5 +1,6 @@
 html {
-    /* If you want to create the gap by shrinking the content, set the box-sizing property to border-box (i.e. box-sizing: border-box). */
+    /* If you want to create the gap by shrinking the content, set the
+    box-sizing property to border-box (i.e. box-sizing: border-box). */
     /* https://blog.hubspot.com/website/css-margin-vs-padding */
     /* https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing */
     box-sizing: border-box;
@@ -10,21 +11,60 @@ html {
     box-sizing: inherit;
 }
 
+.flex-item {
+    /* Give a temporary small border. */
+    border: 3px solid burlywood;
+}
+
 @media (min-width: 700px) {
+    /* Make the <header> and <main> be side-by-side */
     body {
         display: flex;
         flex-direction: row;
     }
 
+    header {
+        
+        /* Try `width`: Doesn't do what is expected. */
+        /* width: 300px; */
+        
+        /* Weird! */
+        /* min-width: 6em; */
+
+        /* Try `min-width`: Best results so far. */
+        min-width: 350px;
+    }
+
+    .flex-gallery {
+        display: flex;
+        /* https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap */
+        flex-wrap: wrap;
+    }
+
+    .flex-item {
+        /* Make the divs form two columns of 50% width. */
+        width: 100%;
+        /* Give a temporary small border. */
+        border: 3px solid blueviolet;
+    }
+
 }
 
 @media (min-width: 1100px) {
-
+    .flex-item {
+        /* Make the divs form two columns of 50% width. */
+        width: 50%;
+        /* Give a temporary small border. */
+        border: 3px solid goldenrod;
+    }
 }
 
-/* We should set a max width. If user uses a really large display width, we want the site to stay within reason. If the site had a design where the items could keep accumulating and the header would look good, we could still allow display width to grow. */
+/* We should set a max width. If user uses a really large display width,
+we want the site to stay within reason. If the site had a design where
+the items could keep accumulating and the header would look good, we
+could still allow display width to grow. */
 @media (min-width: 1400px) {
-    header, main, footer {
+    body {
         width: 1350px;
         margin-left: auto;
         margin-right: auto;
