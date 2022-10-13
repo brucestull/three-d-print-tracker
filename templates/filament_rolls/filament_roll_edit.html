@@ -3,26 +3,27 @@
 {% block title %}Print Tracker - Edit: {{ filamentroll }}{% endblock %}
 
 {% block content %}
+<main>
 
-<h2> Filament Roll</h2>
-{{ filamentroll }}<br>
-<a href={% url 'prints:roll_detail' filamentroll.id %}>Cancel Edit</a><br>
+    <h2> Filament Roll</h2>
+    {{ filamentroll }}<br>
+    <a href={% url 'prints:roll_detail' filamentroll.id %}>Cancel Edit</a><br>
 
-{% if filamentroll.owner.id == user.id %}
-{{ 'Owner!'|upper }}<br>
-{% endif %}
+    {% if filamentroll.owner.id == user.id %}
+    {{ 'Owner!'|upper }}<br>
+    {% endif %}
 
-{% if filamentroll.instances.count == 0 and filamentroll.owner.id == user.id %}
-<a href={% url 'prints:roll_delete' filamentroll.id %}>Delete Filament Roll</a><br>
-{% else %}
-<p>Filament Roll cannot be deleted</p>
-{% endif %}
+    {% if filamentroll.instances.count == 0 and filamentroll.owner.id == user.id %}
+    <a href={% url 'prints:roll_delete' filamentroll.id %}>Delete Filament Roll</a><br>
+    {% else %}
+    <p>Filament Roll cannot be deleted since it is associated with an existing Filament Instance</p>
+    {% endif %}
 
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save changes to Filament Roll" />
-</form>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save changes to Filament Roll" />
+    </form>
 
-
+</main>
 {% endblock %}
