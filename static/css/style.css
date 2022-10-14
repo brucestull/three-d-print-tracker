@@ -11,16 +11,16 @@ html {
     box-sizing: inherit;
 }
 
-.flex-item {
+.item {
     /* Give a temporary small border. */
-    border: 3px solid burlywood;
+    border: 3px solid brown;
 }
 
 @media (min-width: 700px) {
     /* Make the <header> and <main> be side-by-side */
     body {
         display: flex;
-        flex-direction: row;
+        /* flex-direction: row; */
     }
 
     header {
@@ -39,12 +39,18 @@ html {
         display: flex;
         /* https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap */
         flex-wrap: wrap;
+        
+        /* justify-content: space-between; */
+        /* flex-wrap: nowrap; */
     }
 
     .flex-item {
         width: 100%;
+        /* min-width: 50%; */
         /* Give a temporary small border. */
         border: 3px solid blueviolet;
+        /* flex-grow: 1; */
+        /* flex-shrink: 1; */
     }
 
 }
@@ -55,6 +61,8 @@ html {
         width: 50%;
         /* Give a temporary small border. */
         border: 3px solid goldenrod;
+        /* flex-grow: 1; */
+        /* flex-shrink: 1; */
     }
 }
 

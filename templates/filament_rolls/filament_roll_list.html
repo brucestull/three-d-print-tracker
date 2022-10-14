@@ -7,7 +7,7 @@
     
         {% for filament_roll in object_list %}
     
-            <div class="flex-item">
+            <div class="flex-item item">
                 <a href={% url 'prints:roll_detail' filament_roll.id %}>{{ filament_roll }}</a>
                 <dl>
                     <dt>Filament Roll Owner</dt>

@@ -7,7 +7,7 @@
     
         {% for manufacturer in object_list %}
     
-            <div class="flex-item">
+            <div class="flex-item item">
                 <a href={% url 'prints:manufacturer_detail' manufacturer.id %}>{{ manufacturer }}</a>
                 <dl>
                     <dt>Number of Rolls</dt>
