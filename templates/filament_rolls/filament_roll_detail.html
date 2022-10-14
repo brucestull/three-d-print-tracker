@@ -5,7 +5,8 @@
 {% block content %}
 <main>
 
-    <h2>Filament Roll: {{ filamentroll }}</h2>
+    <div>
+        <h2>Filament Roll: {{ filamentroll }}</h2>
         <a href={% url 'prints:roll_edit' filamentroll.id %}>Edit Roll: {{ filamentroll }}</a><br>
         <dl>
             <dt>Manufacturer</dt>
@@ -19,33 +20,38 @@
             <dt>Total Filament Consumed</dt>
             <dd>sum of 'filament_consumed'</dd>
         </dl>
+    </div>
     
+    <div>
         {% if filamentroll.instances.all %}
     
-        <h3>Filament Consumed Per Print</h3>
-    
-        {% for filament_instance in filamentroll.instances.all %}
-    
-            <dl>
-                <dt>Model Print</dt>
-                <dd>
+            <h3>Filament Consumed Per Print</h3>
+
+            <div class="flex-gallery">
+                {% for filament_instance in filamentroll.instances.all %}
+            
+                    <dl class="flex-item item">
+                        <dt>Model Print</dt>
+                        <dd>
+                        
+                            {% if filament_instance.print %}
+                                <a href={% url 'prints:model_detail' filament_instance.print.id %}>{{ filament_instance.print }}</a>
+                            {% else %}
+                                Model Print does not exist
+                            {% endif %}
+                            
+                        </dd>
+                        <dt>Filament Consumed (grams)</dt>
+                        <dd>{{ filament_instance.filament_consumed }}</dd>
+                        <dt>Filament Instance</dt>
+                        <dd><a href={% url 'prints:filament_instance_detail' filament_instance.id %}>{{ filament_instance }}</a></dd>
+                    </dl>
                 
-                    {% if filament_instance.print %}
-                        <a href={% url 'prints:model_detail' filament_instance.print.id %}>{{ filament_instance.print }}</a>
-                    {% else %}
-                        Model Print does not exist
-                    {% endif %}
-                    
-                </dd>
-                <dt>Filament Consumed (grams)</dt>
-                <dd>{{ filament_instance.filament_consumed }}</dd>
-                <dt>Filament Instance</dt>
-                <dd><a href={% url 'prints:filament_instance_detail' filament_instance.id %}>{{ filament_instance }}</a></dd>
-            </dl>
+                {% endfor %}
+            </div>
         
-        {% endfor %}
-        
-    {% endif %}
+        {% endif %}
+    </div>
 
 </main>
 {% endblock %}
