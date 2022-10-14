@@ -10,9 +10,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = [
-            'id',
+            'url',
             'username',
             'email',
+            'is_supermaker',
         ]
 
 
@@ -20,8 +21,9 @@ class NestedUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = [
-            'id',
+            'url',
             'username',
+            'is_supermaker',
         ]
 
 
@@ -47,11 +49,13 @@ class FilamentRollSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ModelPrintSerializer(serializers.HyperlinkedModelSerializer):
+    creator_detail = NestedUserSerializer(read_only=True, source='creator')
     class Meta:
         model = models.ModelPrint
         fields = [
             'url',
             'name',
+            'creator_detail',
         ]
 
 
