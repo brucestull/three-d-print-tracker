@@ -1,4 +1,4 @@
 # Notes On Issues
 
 ## Issues:
-* [`048_TBD.md`](./048_TBD.md)
+* [`Manufacturer` `name` Displayed on `FilamentRoll` List View](./048_manufacturer_name_displays.md)
