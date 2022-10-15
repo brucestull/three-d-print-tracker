@@ -33,6 +33,18 @@ class NestedUserSerializer(serializers.ModelSerializer):
         ]
 
 
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializer for `Group`. Provides `name` field.
+    """
+    class Meta:
+        model = Group
+        fields = [
+            'url',
+            'name',
+        ]
+
+
 class ManufacturerSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for `Manufacturer`. Provides 'name' field.
@@ -72,16 +84,4 @@ class ModelPrintSerializer(serializers.HyperlinkedModelSerializer):
             'url',
             'name',
             'creator_detail',
-        ]
-
-
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    """
-    Serializer for `Group`. Provides `name` field.
-    """
-    class Meta:
-        model = Group
-        fields = [
-            'url',
-            'name',
         ]
