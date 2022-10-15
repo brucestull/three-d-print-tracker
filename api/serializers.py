@@ -75,13 +75,13 @@ class ModelPrintSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
-class GroupSerializer(serializers.ModelSerializer):
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for `Group`. Provides `name` field.
     """
     class Meta:
         model = Group
         fields = [
-            'id',
+            'url',
             'name',
         ]
