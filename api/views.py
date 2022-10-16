@@ -37,6 +37,12 @@ class FilamentRollViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+class FilamentInstanceViewSet(viewsets.ModelViewSet):
+    queryset = models.FilamentInstance.objects.all()
+    serializer_class = serializers.FilamentInstanceSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
 class ModelPrintViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows `ModelPrint`s to be viewed or edited.
