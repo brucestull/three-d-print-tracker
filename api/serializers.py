@@ -14,6 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = [
             'url',
+            'id',
             'username',
             'email',
             'is_supermaker',
@@ -41,6 +42,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = [
             'url',
+            'id',
             'name',
         ]
 
@@ -53,6 +55,7 @@ class ManufacturerSerializer(serializers.HyperlinkedModelSerializer):
         model = models.Manufacturer
         fields = [
             'url',
+            'id',
             'name',
         ]
 
@@ -67,6 +70,7 @@ class FilamentRollSerializer(serializers.HyperlinkedModelSerializer):
         model = models.FilamentRoll
         fields = [
             'url',
+            'id',
             'material',
             'manufacturer_detail',
             'owner_detail',
@@ -79,6 +83,7 @@ class FilamentInstanceSerializer(serializers.HyperlinkedModelSerializer):
         model = models.FilamentInstance
         fields = [
             'url',
+            'id',
             'filament_consumed',
             'filament_roll_detail',
         ]
@@ -94,6 +99,7 @@ class ModelPrintSerializer(serializers.HyperlinkedModelSerializer):
         model = models.ModelPrint
         fields = [
             'url',
+            'id',
             'name',
             'creator_detail',
             'filament_instance_detail',
