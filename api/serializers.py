@@ -73,15 +73,28 @@ class FilamentRollSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
+class FilamentInstanceSerializer(serializers.HyperlinkedModelSerializer):
+    filament_roll_detail = FilamentRollSerializer(read_only=True, source='filament_roll')
+    class Meta:
+        model = models.FilamentInstance
+        fields = [
+            'url',
+            'filament_consumed',
+            'filament_roll_detail',
+        ]
+
+
 class ModelPrintSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for `ModelPrint`. Provides `name`, and `creator_detail` fields.
     """
     creator_detail = NestedUserSerializer(read_only=True, source='creator')
+    filament_instance_detail = FilamentInstanceSerializer(read_only=True, source='filament_instance')
     class Meta:
         model = models.ModelPrint
         fields = [
             'url',
             'name',
             'creator_detail',
+            'filament_instance_detail',
         ]
