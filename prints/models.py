@@ -65,7 +65,8 @@ class FilamentInstance(models.Model):
     # -----
     # 0.336
     METERS_PER_GRAM = .336
-    filament_consumed = models.IntegerField(default=0)
+    FILAMENT_CONSUMED_PRECISION = 2
+    grams_filament_consumed = models.IntegerField(default=0)
     filament_roll = models.ForeignKey(
         FilamentRoll,
         related_name='instances',
@@ -75,18 +76,18 @@ class FilamentInstance(models.Model):
     )
 
     def __str__(self):
-        return f'{self.filament_consumed} grams of {self.filament_roll}'
+        return f'{self.grams_filament_consumed} grams of {self.filament_roll}'
 
     def get_absolute_url(self):
         return reverse('prints:filament_instance_detail', args=(self.pk,))
 
-    def meters_consumed(self):
+    def meters_filament_consumed(self):
         """
         Meters used for `FilamentInstance`.
 
         This uses the calculated value for PLA (`METERS_PER_GRAM`). Need to allow for different polymer types.
         """
-        return round(self.filament_consumed * self.METERS_PER_GRAM, 2)
+        return round(self.grams_filament_consumed * self.METERS_PER_GRAM, self.FILAMENT_CONSUMED_PRECISION)
 
 
 class ModelPrint(models.Model):

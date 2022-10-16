@@ -18,7 +18,7 @@
             <dt>Number of Times this Roll is used</dt>
             <dd>{{ filamentroll.instances.count }}</dd>
             <dt>Total Filament Consumed</dt>
-            <dd>sum of 'filament_consumed'</dd>
+            <dd>sum of 'grams_filament_consumed'</dd>
         </dl>
     </div>
     
@@ -42,7 +42,7 @@
                             
                         </dd>
                         <dt>Filament Consumed (grams)</dt>
-                        <dd>{{ filament_instance.filament_consumed }}</dd>
+                        <dd>{{ filament_instance.grams_filament_consumed }}</dd>
                         <dt>Filament Instance</dt>
                         <dd><a href={% url 'prints:filament_instance_detail' filament_instance.id %}>{{ filament_instance }}</a></dd>
                     </dl>

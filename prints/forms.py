@@ -8,7 +8,7 @@ class CreateModelPrintForm(forms.Form):
         label='Model Print Name',
         max_length=255,
     )
-    filament_consumed = forms.IntegerField(
+    grams_filament_consumed = forms.IntegerField(
         label="Filament Consumed",
         help_text='Units of grams (g)',
         min_value=0,
