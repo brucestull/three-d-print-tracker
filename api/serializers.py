@@ -111,13 +111,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 class FilamentInstanceSerializer(serializers.HyperlinkedModelSerializer):
     """
-    Serializer for `FilamentInstance`. Provides 'filament_consumed', 'url', 'id', and 'filament_roll_detail' fields.
+    Serializer for `FilamentInstance`. Provides 'filament_consumed', 'meters_consumed', 'url', 'id', and 'filament_roll_detail' fields.
     """
     filament_roll_detail = FilamentRollSerializer(read_only=True, source='filament_roll')
     class Meta:
         model = models.FilamentInstance
         fields = [
             'filament_consumed',
+            'meters_consumed',
             'url',
             'id',
             'filament_roll_detail',
