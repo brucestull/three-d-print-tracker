@@ -132,7 +132,7 @@ class FilamentInstanceCreateView(LoginRequiredMixin, CreateView):
     model = FilamentInstance
     template_name = 'filament_instances/filament_instance_create.html'
     fields = [
-        'filament_consumed',
+        'grams_filament_consumed',
         'filament_roll',
     ]
 
@@ -141,7 +141,7 @@ class FilamentInstanceUpdateView(LoginRequiredMixin, UpdateView):
     model = FilamentInstance
     template_name = 'filament_instances/filament_instance_edit.html'
     fields = [
-        'filament_consumed',
+        'grams_filament_consumed',
         'filament_roll',
     ]
 
@@ -182,10 +182,10 @@ def new_model_print(request):
             FilamentRoll,
             pk=filament_roll_id
         )
-        current_filament_consumed = request.POST.get('filament_consumed')
+        current_filament_consumed = request.POST.get('grams_filament_consumed')
         new_filament_instance = FilamentInstance.objects.create(
             filament_roll=current_filament_roll,
-            filament_consumed=current_filament_consumed,
+            grams_filament_consumed=current_filament_consumed,
         )
 
         current_model_print_name = request.POST.get('model_print_name')

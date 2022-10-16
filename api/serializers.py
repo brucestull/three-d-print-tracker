@@ -65,13 +65,13 @@ class FilamentRollSerializer(serializers.HyperlinkedModelSerializer):
 
 class NestedFilamentInstanceSerializer(serializers.HyperlinkedModelSerializer):
     """
-    Nested serializer for `FilamentInstance`. Provides 'filament_consumed', '__str__' as 'filament_used', and 'url' fields.
+    Nested serializer for `FilamentInstance`. Provides 'grams_filament_consumed', '__str__' as 'filament_used', and 'url' fields.
     """
     filament_used = serializers.StringRelatedField(source='__str__')
     class Meta:
         model = models.FilamentInstance
         fields = [
-            'filament_consumed',
+            'grams_filament_consumed',
             'filament_used',
             'url',
         ]
@@ -111,14 +111,14 @@ class UserSerializer(serializers.ModelSerializer):
 
 class FilamentInstanceSerializer(serializers.HyperlinkedModelSerializer):
     """
-    Serializer for `FilamentInstance`. Provides 'filament_consumed', 'meters_consumed', 'url', 'id', and 'filament_roll_detail' fields.
+    Serializer for `FilamentInstance`. Provides 'grams_filament_consumed', 'meters_filament_consumed', 'url', 'id', and 'filament_roll_detail' fields.
     """
     filament_roll_detail = FilamentRollSerializer(read_only=True, source='filament_roll')
     class Meta:
         model = models.FilamentInstance
         fields = [
-            'filament_consumed',
-            'meters_consumed',
+            'grams_filament_consumed',
+            'meters_filament_consumed',
             'url',
             'id',
             'filament_roll_detail',
