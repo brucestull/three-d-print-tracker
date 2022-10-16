@@ -29,6 +29,7 @@ class NestedUserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = [
             'url',
+            'id',
             'username',
             'is_supermaker',
         ]
