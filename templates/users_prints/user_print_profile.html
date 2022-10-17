@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% comment %} {% block title %}Print Tracker - User Profile{% endblock %} {% endcomment %}
+{% block title %}Print Tracker - User: {{ current_user.username | capfirst }}{% endblock %}
+
+{% block content %}
+    <main>
+        <div>
+            <h2>User Profile: {{ current_user.username | capfirst }}</h2>
+            <dt>Number of Model Prints</dt>
+            <dd>{{ current_user.prints.count }}</dd>
+            <dt>Number of Filament Rolls</dt>
+            <dd>{{ current_user.rolls.count }}</dd>
+        </div>
+        <div>
+            <h3>Model Prints</h3>
+            <div class="flex-gallery">
+                {% for model_print in object_list %}
+
+                <dl class="flex-item item">
+                    <dt>Model Print</dt>
+                    <dd>
+                        {% if model_print %}
+                        <a href={% url 'prints:model_detail' model_print.id %}>{{ model_print }}</a>
+                        {% else %}
+                        No Model Prints Available
+                        {% endif %}
+                    </dd>
+                    <dt>Filament Roll Used</dt>
+                    <dd><a href={% url 'prints:roll_detail' model_print.filament_instance.filament_roll.id %}>{{ model_print.filament_instance.filament_roll }}</a></dd>
+                    <dt>Filament Consumed</dt>
+                    <dd><a href={% url 'prints:filament_instance_detail' model_print.filament_instance.id %}>{{ model_print.filament_instance }}</a></dd>
+                </dl>
+
+                {% endfor %}
+            </div>
+            {{ object_list }}
+        </div>
+
+    </main>
+{% endblock %}

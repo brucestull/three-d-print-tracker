@@ -21,6 +21,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 
+from django.forms.models import modelform_factory
+import pprint
 
 from prints.models import Manufacturer
 from prints.models import FilamentMaterial
@@ -28,12 +30,9 @@ from prints.models import FilamentRoll
 from prints.models import FilamentInstance
 from prints.models import ModelPrint
 
-from django.forms.models import modelform_factory
-
 from .forms import CreateModelPrintForm
 from .forms import CreateFilamentRollForm
 
-import pprint
 
 #================================================================
 ## `Manufacturer` Views:
@@ -258,4 +257,25 @@ class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user == model_print.creator
 #================================================================
 
+
+#================================================================
+## User Prints Profile View
+class UserPrintsProfileView(LoginRequiredMixin, ListView):
+    template_name = 'users_prints/user_print_profile.html'
+
+    def get_context_data(self,**kwargs):
+        # Get the Django-provided context dictionary.
+        context = super().get_context_data(**kwargs)
+        current_user = self.request.user
+        # Add `current_user` to the context dictionary.
+        context['current_user'] = current_user
+        return context
+
+    def get_queryset(self):
+        """
+        Get only the `ModelPrint` instances which have a 'creator' of
+        the current logged in 'user' (The 'user' who made the 'request').
+        """
+        return ModelPrint.objects.filter(creator=self.request.user)
+#================================================================
 
