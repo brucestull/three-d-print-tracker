@@ -23,6 +23,7 @@ from django.shortcuts import get_object_or_404
 
 
 from prints.models import Manufacturer
+from prints.models import FilamentMaterial
 from prints.models import FilamentRoll
 from prints.models import FilamentInstance
 from prints.models import ModelPrint
@@ -88,6 +89,11 @@ class FilamentRollCreateView(LoginRequiredMixin, CreateView):
         'manufacturer',
         'material',
     ]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filament_materials'] = FilamentMaterial.objects.all()
+        return context
 
     def form_valid(self, form):
         print('self.request.user: ', self.request.user)

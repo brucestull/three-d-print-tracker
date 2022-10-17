@@ -16,6 +16,22 @@ class Manufacturer(models.Model):
     def get_absolute_url(self):
         return reverse('prints:manufacturer_detail', args=(self.pk,))
 
+
+class FilamentMaterial(models.Model):
+    """
+    Model for the `prints.filamentmaterial` of a `prints.filamentinstance`
+    object. This model will be used to populate the `FilamentRoll`'s
+    'material' and 'meters_per_gram' fields.
+    """
+    # How many meters of the filament in one gram filament.
+    # PLA:.336
+    METERS_PER_GRAM = models.DecimalField('Number of meters of Filament in one gram of Filament', max_digits=5, decimal_places=3)
+    polymer_type = models.CharField('Polymer type of the Filament (PLA, PLA+, PET, PETG, etc.)', max_length=255)
+
+    def __str__(self):
+        return self.polymer_type
+
+
 class FilamentRoll(models.Model):
     """
     Model for the `prints.filamentroll` used in each `prints.filamentinstance` instance.
@@ -44,7 +60,13 @@ class FilamentRoll(models.Model):
         on_delete=models.SET_NULL,
         null=True,
     )
-    material = models.CharField(max_length=255)
+    material = models.ForeignKey(
+        FilamentMaterial,
+        related_name='rolls',
+        # `PROTECT` prevents deletion of `FilamentMaterial` instance if
+        #     it is associated with a `FilamentRoll` instance.
+        on_delete=models.PROTECT,
+    )
 
     def __str__(self):
         return f'[ {self.material} ] {self.manufacturer.name} #{self.id}'

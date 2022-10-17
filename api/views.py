@@ -28,6 +28,12 @@ class ManufacturerViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+class FilamentMaterialViewSet(viewsets.ModelViewSet):
+    queryset = models.FilamentMaterial.objects.all()
+    serializer_class = serializers.FilamentMaterialSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
 class FilamentRollViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows `FilamentRoll`s to be viewed or edited.
