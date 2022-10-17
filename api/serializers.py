@@ -6,16 +6,17 @@ from django.contrib.auth import get_user_model
 from prints import models
 
 
-class ManufacturerSerializer(serializers.HyperlinkedModelSerializer):
+class NestedUserSerializer(serializers.ModelSerializer):
     """
-    Serializer for `Manufacturer`. Provides 'id', 'url', and 'name' fields.
+    Nested serializer for `CustomUser`. Provides 'id', 'username', 'url', and 'is_supermaker' fields.
     """
     class Meta:
-        model = models.Manufacturer
+        model = get_user_model()
         fields = [
             'id',
-            'name',
+            'username',
             'url',
+            'is_supermaker',
         ]
 
 
@@ -32,17 +33,27 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
-class NestedUserSerializer(serializers.ModelSerializer):
+class ManufacturerSerializer(serializers.HyperlinkedModelSerializer):
     """
-    Nested serializer for `CustomUser`. Provides 'id', 'username', 'url', and 'is_supermaker' fields.
+    Serializer for `Manufacturer`. Provides 'id', 'url', and 'name' fields.
     """
     class Meta:
-        model = get_user_model()
+        model = models.Manufacturer
         fields = [
             'id',
-            'username',
+            'name',
             'url',
-            'is_supermaker',
+        ]
+
+
+class FilamentMaterialSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.FilamentMaterial
+        fields = [
+            'id',
+            'url',
+            'polymer_type',
+            'METERS_PER_GRAM',
         ]
 
 
