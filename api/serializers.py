@@ -51,23 +51,25 @@ class FilamentMaterialSerializer(serializers.HyperlinkedModelSerializer):
         model = models.FilamentMaterial
         fields = [
             'id',
-            'url',
             'polymer_type',
             'METERS_PER_GRAM',
+            'url',
         ]
 
 
 class FilamentRollSerializer(serializers.HyperlinkedModelSerializer):
     """
-    Serializer for `FilamentRoll`. Provides 'id', 'material', 'url', 'manufacturer_detail', and 'owner_detail' fields.
+    Serializer for `FilamentRoll`. Provides 'id', 'material', 'url',
+    'manufacturer_detail', and 'owner_detail' fields.
     """
+    filament_material_detail = FilamentMaterialSerializer(read_only=True, source='material')
     owner_detail = NestedUserSerializer(read_only=True, source='owner')
     manufacturer_detail = ManufacturerSerializer(read_only=True, source='manufacturer')
     class Meta:
         model = models.FilamentRoll
         fields = [
             'id',
-            'material',
+            'filament_material_detail',
             'url',
             'manufacturer_detail',
             'owner_detail',
