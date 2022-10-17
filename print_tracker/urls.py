@@ -21,7 +21,7 @@ from django.views.generic.base import RedirectView
 
 
 urlpatterns = [
-    path('', RedirectView.as_view(pattern_name='prints:models'), name='home'),
+    path('', RedirectView.as_view(pattern_name='prints:user_print_profile'), name='home'),
 
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),

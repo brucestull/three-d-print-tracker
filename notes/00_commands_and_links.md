@@ -76,9 +76,15 @@
     * http://localhost:8000/accounts/logout/
     * http://localhost:8000/accounts/password_reset/
     * http://localhost:8000/accounts/reset/Mg/set-password/
-* Filament Rolls:
 
-* Models Home:
+* Prints:
+
+    * Filament Rolls:
+
+    * Models Home:
+
+    * User Prints Profile:
+        * http://localhost:8000/prints/user-print-profile/
 
 * Django Admin:
     * http://localhost:8000/admin/

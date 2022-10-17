@@ -122,4 +122,14 @@ urlpatterns = [
         name='model_delete'
     ),
     #================================================================
+
+
+    #================================================================
+    ## User Print Profile Routes:
+    path(
+        'user-print-profile/',
+        views.UserPrintsProfileView.as_view(),
+        name='user_print_profile'
+    )
+    #================================================================
 ]
