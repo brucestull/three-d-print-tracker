@@ -25,6 +25,7 @@ class FilamentMaterial(models.Model):
     """
     # How many meters of the filament in one gram filament.
     # PLA:.336
+    # PETG: .328
     METERS_PER_GRAM = models.DecimalField('Number of meters of Filament in one gram of Filament', max_digits=5, decimal_places=3)
     polymer_type = models.CharField('Polymer type of the Filament (PLA, PLA+, PET, PETG, etc.)', max_length=255)
 
