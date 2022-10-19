@@ -9,14 +9,10 @@
     {{ filamentroll }}<br>
     <a href={% url 'prints:roll_detail' filamentroll.id %}>Cancel Edit</a><br>
 
-    {% if filamentroll.owner.id == user.id %}
-    {{ 'Owner!'|upper }}<br>
-    {% endif %}
-
-    {% if filamentroll.instances.count == 0 and filamentroll.owner.id == user.id %}
+    {% if filamentroll.instances.count == 0 %}
     <a href={% url 'prints:roll_delete' filamentroll.id %}>Delete Filament Roll</a><br>
     {% else %}
-    <p>Filament Roll cannot be deleted since it is associated with an existing Filament Instance</p>
+    <p>Filament Roll cannot be deleted since it is associated with at least one existing Filament Instance</p>
     {% endif %}
 
     <form action="" method="post">
