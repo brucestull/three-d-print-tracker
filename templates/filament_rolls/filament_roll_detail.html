@@ -7,7 +7,9 @@
 
     <div>
         <h2>Filament Roll: {{ filamentroll }}</h2>
-        <a href={% url 'prints:roll_edit' filamentroll.id %}>Edit Roll: {{ filamentroll }}</a><br>
+        {% if user.id == filamentroll.owner.id %}
+            <a href={% url 'prints:roll_edit' filamentroll.id %}>Edit Roll: {{ filamentroll }}</a><br>
+        {% endif %}
         <dl>
             <dt>Manufacturer</dt>
         <dd><a href={% url 'prints:manufacturer_detail' filamentroll.manufacturer.id %}>{{ filamentroll.manufacturer }}</a></dd>
