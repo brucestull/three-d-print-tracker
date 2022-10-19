@@ -100,13 +100,18 @@ class FilamentRollCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class FilamentRollUpdateView(LoginRequiredMixin, UpdateView):
+class FilamentRollUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = FilamentRoll
     template_name = 'filament_rolls/filament_roll_edit.html'
     fields = [
        'manufacturer',
        'material',
     ]
+
+    def test_func(self):
+        roll = self.get_object()
+        print('roll: ', roll)
+        return self.request.user == roll.owner
 
 
 class FilamentRollDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
