@@ -147,19 +147,13 @@ class FilamentInstanceCreateView(LoginRequiredMixin, CreateView):
     ]
 
 
-class FilamentInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class FilamentInstanceUpdateView(LoginRequiredMixin, UpdateView):
     model = FilamentInstance
     template_name = 'filament_instances/filament_instance_edit.html'
     fields = [
         'grams_filament_consumed',
         'filament_roll',
     ]
-
-    def test_func(self):
-        filament_instance = self.get_object()
-        print('filament_instance: ', filament_instance)
-        print('Can we update filament_instance?: ', self.request.user == filament_instance.print.creator)
-        return self.request.user == filament_instance.print.creator
 
 
 class FilamentInstanceDeleteView(LoginRequiredMixin, DeleteView):
