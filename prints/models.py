@@ -99,13 +99,10 @@ class FilamentInstance(models.Model):
         related_name='filament_instances',
         # `PROTECT` prevents deletion of `FilamentRoll` instance if it
         #     is associated with a `FilamentInstance` instance.
-        on_delete=models.PROTECT,
-    )
-    model_creator = models.ForeignKey(
-        AUTH_USER_MODEL,
-        related_name='filament_instances',
-        # `CASCADE` allows deletion of `AUTH_USER_MODEL` instance and
+        # `CASCADE` allows deletion of `FilamentRoll` instance and
         #     also does a cascading deletion of `FilamentInstance`.
+        # `RESTRICT` allows deletion of `FilamentRoll` only if there
+        #     is a cascading deletion of `FilamentInstance`.
         on_delete=models.CASCADE,
     )
     FILAMENT_CONSUMED_PRECISION = 2
@@ -147,7 +144,11 @@ class ModelPrint(models.Model):
         related_name='print',
         # `PROTECT` prevents deletion of `FilamentInstance` instance
         #     if it is associated with a `ModelPrint` instance.
-        on_delete=models.PROTECT,
+        # `CASCADE` allows deletion of `FilamentInstance` instance and
+        #     also does a cascading deletion of `ModelPrint`.
+        # `RESTRICT` allows deletion of `FilamentInstance` only if there
+        #     is a cascading deletion of `ModelPrint`.
+        on_delete=models.RESTRICT,
     )
 
     def __str__(self):
