@@ -147,7 +147,7 @@ class FilamentInstanceCreateView(LoginRequiredMixin, CreateView):
     ]
 
 
-class FilamentInstanceUpdateView(LoginRequiredMixin, UpdateView):
+class FilamentInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = FilamentInstance
     template_name = 'filament_instances/filament_instance_edit.html'
     fields = [
@@ -155,11 +155,27 @@ class FilamentInstanceUpdateView(LoginRequiredMixin, UpdateView):
         'filament_roll',
     ]
 
+    def test_func(self):
+        filament_instance = self.get_object()
+        print('filament_instance: ', filament_instance)
+        return self.request.user == filament_instance.filament_roll.owner
 
-class FilamentInstanceDeleteView(LoginRequiredMixin, DeleteView):
+
+class FilamentInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = FilamentInstance
     template_name = 'filament_instances/filament_instance_delete.html'
     success_url = reverse_lazy('prints:filament_instances')
+
+    def test_func(self):
+        filament_instance = self.get_object()
+        print('filament_instance: ', filament_instance)
+        if hasattr(filament_instance, 'print'):
+            print("FilamentInstance deletion possible: False")
+            print('filament_instance.print: ', filament_instance.print)
+            print('bool(filament_instance.print): ', bool(filament_instance.print))
+        if not hasattr(filament_instance, 'print'):
+            print("FilamentInstance deletion possible: True")
+        return self.request.user == filament_instance.filament_roll.owner
 
 #================================================================
 

@@ -6,9 +6,11 @@
 <main>
 
     <h2>Filament Instance: {{ filamentinstance }}</h2>
-    <a href={% url 'prints:filament_instance_edit' filamentinstance.id %}>
-        Edit Filament Instance
-    </a><br>
+    {% if filamentinstance.filament_roll.owner == user %}
+        <a href={% url 'prints:filament_instance_edit' filamentinstance.id %}>
+            Edit Filament Instance
+        </a><br>
+    {% endif %}
     <dl>
         <dt>Filament Instance Roll</dt>
         <dd><a href={% url 'prints:roll_detail' filamentinstance.filament_roll.id %}>

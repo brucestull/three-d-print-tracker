@@ -71,9 +71,8 @@ class FilamentRoll(models.Model):
         # `SET_NULL` Set the ForeignKey null; this is only possible if
         #     null is True. We do this here so a user can be deleted
         #     but their `FilamentRoll` instances stay. This may change
-        #     in future.
-        on_delete=models.SET_NULL,
-        null=True,
+        #     in future. This setting requires `null=True`.
+        on_delete=models.CASCADE,
     )
     material = models.ForeignKey(
         FilamentMaterial,
@@ -94,15 +93,19 @@ class FilamentInstance(models.Model):
     """
     Model for the `prints.filamentinstance` used in `prints.modelprint`.
     """
-    FILAMENT_CONSUMED_PRECISION = 2
     grams_filament_consumed = models.IntegerField(default=0)
     filament_roll = models.ForeignKey(
         FilamentRoll,
-        related_name='instances',
+        related_name='filament_instances',
         # `PROTECT` prevents deletion of `FilamentRoll` instance if it
         #     is associated with a `FilamentInstance` instance.
-        on_delete=models.PROTECT,
+        # `CASCADE` allows deletion of `FilamentRoll` instance and
+        #     also does a cascading deletion of `FilamentInstance`.
+        # `RESTRICT` allows deletion of `FilamentRoll` only if there
+        #     is a cascading deletion of `FilamentInstance`.
+        on_delete=models.CASCADE,
     )
+    FILAMENT_CONSUMED_PRECISION = 2
 
     def __str__(self):
         return f'{self.grams_filament_consumed} grams of {self.filament_roll}'
@@ -141,7 +144,11 @@ class ModelPrint(models.Model):
         related_name='print',
         # `PROTECT` prevents deletion of `FilamentInstance` instance
         #     if it is associated with a `ModelPrint` instance.
-        on_delete=models.PROTECT,
+        # `CASCADE` allows deletion of `FilamentInstance` instance and
+        #     also does a cascading deletion of `ModelPrint`.
+        # `RESTRICT` allows deletion of `FilamentInstance` only if there
+        #     is a cascading deletion of `ModelPrint`.
+        on_delete=models.RESTRICT,
     )
 
     def __str__(self):
