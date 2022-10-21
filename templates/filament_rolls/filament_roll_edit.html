@@ -9,12 +9,14 @@
     {{ filamentroll }}<br>
     <a href={% url 'prints:roll_detail' filamentroll.id %}>Cancel Edit</a><br>
 
-    {% if filamentroll.filament_instances.count == 0 %}
+    {% if filamentroll.owner != user%}
+    <p>Filament Roll cannot be deleted since it is owned by someone else.</p>
+    {% elif filamentroll.filament_instances.count != 0 %}
+    <p>Filament Roll cannot be deleted since it is associated with at least one existing Filament Instance.</p>
+    {% elif filamentroll.filament_instances.count == 0 %}
     <a href={% url 'prints:roll_delete' filamentroll.id %}>Delete Filament Roll</a><br>
-    {% else %}
-    <p>Filament Roll cannot be deleted since it is associated with at least one existing Filament Instance</p>
-    {% comment %} Provide `FilamentInstance` list here? {% endcomment %}
     {% endif %}
+    {% comment %} Provide `FilamentInstance` list here? {% endcomment %}
 
     <form action="" method="post">
         {% csrf_token %}
