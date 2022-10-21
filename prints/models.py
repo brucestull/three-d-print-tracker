@@ -83,7 +83,7 @@ class FilamentRoll(models.Model):
     )
 
     def __str__(self):
-        return f'[ {self.material} ] {self.manufacturer.name} #{self.id}'
+        return f'[ {self.material} ] {self.manufacturer.name} : {self.owner} : #{self.id}'
 
     def get_absolute_url(self):
         return reverse('prints:roll_detail', args=(self.pk,))
