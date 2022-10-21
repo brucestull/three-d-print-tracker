@@ -9,18 +9,24 @@
     
             <div class="flex-item item">
                 <a href={% url 'prints:filament_instance_detail' filament_instance.id %}>
-                    {{ filament_instance }}
-        
+                    {{ filament_instance }} : 
+                    {{ filament_instance.filament_roll.owner }}
                 </a>
                 <dl>
-                    <dt>Filament Instance Roll</dt>
+                    <dt>Filament Roll</dt>
                     <dd>{{ filament_instance.filament_roll }}</dd>
                     <dt>Filament Consumed</dt>
                     <dd>{{ filament_instance.grams_filament_consumed }} grams</dd>
         
                     {% if filament_instance.print %}
                         <dt>Associated Model Print</dt>
-                        <dd><a href={% url 'prints:model_detail' filament_instance.print.id %}>{{ filament_instance.print }}</a></dd>
+                        <dd>
+                            <a
+                            href={% url 'prints:model_detail' filament_instance.print.id %}
+                            >
+                            {{ filament_instance.print }}
+                            </a>
+                        </dd>
                     {% else %}
                         <p>No associated Model Print</p>
                     {% endif %}

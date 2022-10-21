@@ -7,8 +7,16 @@
 
     <h2>Filament Instance</h2>
     {{ filamentinstance }}<br>
-    <a href={% url 'prints:filament_instance_detail' filamentinstance.id %}>Cancel Edit</a><br>
-    <a href={% url 'prints:filament_instance_delete' filamentinstance.id %}>Delete Filament Instance</a><br>
+    <a href={% url 'prints:filament_instance_detail' filamentinstance.id %}>
+        Cancel Edit
+    </a><br>
+    {% if filamentinstance.print %}
+        Filament Instance can not be deleted since it is associated with at least one Model Print
+    {% else %}
+        <a href={% url 'prints:filament_instance_delete' filamentinstance.id %}>
+            Delete Filament Instance
+        </a><br>
+    {% endif %}
     
     <form action="" method="post">
         {% csrf_token %}
