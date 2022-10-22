@@ -32,6 +32,7 @@
                     Print Tracker - Home
                 </a><br>
 
+                
                 <h2>Accounts Links:</h2>
                 {% if user.is_authenticated %}
                     Who am I: {{ user.username | capfirst }}<br>
@@ -45,6 +46,7 @@
                     <a href="{% url 'signup' %}">Sign Up</a>
                 {% endif %}
 
+
                 {% if user.is_staff %}
                 <h2>Staff Links:</h2>
                 <a
@@ -54,6 +56,7 @@
                     Django Admin Interface
                 </a><br>
                 {% endif %}
+
 
                 <h2>Application Links:</h2>
                 {% if user.is_authenticated %}
@@ -103,7 +106,6 @@
                     Add New Manufacturer
                 </a><br>
                 {% endif %}
-
             
 
             </nav>
