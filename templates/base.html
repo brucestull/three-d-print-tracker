@@ -7,7 +7,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Print Tracker - Base{% endblock %}</title>
         <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+        {% comment %} Either of these css static location designations will work with css file location of `static/prints/css/style.css` {% endcomment %}
+        <link rel="stylesheet" type="text/css" href="{% static 'prints/style.css' %}" />
+        {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'prints/css/style.css' %}" /> {% endcomment %}
+        {% comment %}  {% endcomment %}
+
     </head>
     <body>
         <header>
