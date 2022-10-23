@@ -8,9 +8,9 @@
         <title>{% block title %}Print Tracker - Base{% endblock %}</title>
         <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
 
-        {% comment %} Either of these css static location designations will work with css file location of `static/prints/css/style.css` {% endcomment %}
-        <link rel="stylesheet" type="text/css" href="{% static 'prints/style.css' %}" />
-        {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'prints/css/style.css' %}" /> {% endcomment %}
+        {% comment %} Either of these css static location designations will work (LOCALLY) with css file location of `static/prints/css/style.css` {% endcomment %}
+        {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'prints/style.css' %}" /> {% endcomment %}
+        <link rel="stylesheet" type="text/css" href="{% static 'prints/css/style.css' %}" />
         {% comment %}  {% endcomment %}
 
     </head>
