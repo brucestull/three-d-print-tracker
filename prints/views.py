@@ -169,13 +169,14 @@ class FilamentInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, Delete
     def test_func(self):
         filament_instance = self.get_object()
         print('filament_instance: ', filament_instance)
-        if hasattr(filament_instance, 'print'):
-            print("FilamentInstance deletion possible: False")
-            print('filament_instance.print: ', filament_instance.print)
-            print('bool(filament_instance.print): ', bool(filament_instance.print))
-        if not hasattr(filament_instance, 'print'):
-            print("FilamentInstance deletion possible: True")
-        return self.request.user == filament_instance.filament_roll.owner
+        print(f"FilamentInstance deletion possible: {not hasattr(filament_instance, 'print')}")
+        return (
+            # User is `FilamentRoll` `owner`:
+            self.request.user == filament_instance.filament_roll.owner
+            and
+            # `FilamentInstance` has no associated `ModelPrint`s:
+            not hasattr(filament_instance, 'print')
+        )
 
 #================================================================
 
