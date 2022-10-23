@@ -188,7 +188,7 @@ class ModelPrintListView(LoginRequiredMixin, ListView):
     Class-based view, which inherits from `django.views.generic.list.ListView`, to provide list view of model `ModelPrint`.
     """
     model = ModelPrint
-    template_name = 'model_prints/model_print_list.html'
+    template_name = 'prints/model_print_list.html'
 
 
 class ModelPrintDetailView(LoginRequiredMixin, DetailView):
@@ -196,7 +196,7 @@ class ModelPrintDetailView(LoginRequiredMixin, DetailView):
     Class-based view, which inherits from `django.views.generic.detail.DetailView`, to provide detail view of model `ModelPrint`.
     """
     model = ModelPrint
-    template_name = 'model_prints/model_print_detail.html'
+    template_name = 'prints/model_print_detail.html'
 
 
 def new_model_print(request):
@@ -242,7 +242,7 @@ def new_model_print(request):
         pprint.pprint(context)
         return render(
             request,
-            'model_prints/model_print_create.html',
+            'prints/model_print_create.html',
             context
         )
 
@@ -252,7 +252,7 @@ class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     Class-based view, which inherits from `LoginRequiredMixin`, `UserPassesTestMixin`, and `django.views.generic.UpdateView`. Allows users to update their own `ModelPrint` instances.
     """
     model = ModelPrint
-    template_name ='model_prints/model_print_edit.html'
+    template_name ='prints/model_print_edit.html'
     fields = ['name']
 
     def test_func(self):
@@ -268,7 +268,7 @@ class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     Class-based view, which inherits from `django.contrib.auth.mixins.LoginRequiredMixin`, `django.contrib.auth.mixins.UserPassesTestMixin`, and `django.views.generic.edit.DeleteView`. Allows users to delete their own `ModelPrint` instances.
     """
     model = ModelPrint
-    template_name ='model_prints/model_print_delete.html'
+    template_name ='prints/model_print_delete.html'
     success_url = reverse_lazy('prints:models')
 
     def test_func(self):
