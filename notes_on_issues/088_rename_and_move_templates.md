@@ -144,3 +144,42 @@
     PS C:\Users\Bruce\Programming\three-d-print-tracker>
     ```
 
+1. Move `manufacturer_*.html` files to [`prints/templates/prints/`](../prints/templates/prints/):
+    ```
+    PS C:\Users\Bruce\Programming\three-d-print-tracker> tree /f /a prints/templates
+    Folder PATH listing for volume OS
+    Volume serial number is CC00-DD12
+    C:\USERS\BRUCE\PROGRAMMING\THREE-D-PRINT-TRACKER\PRINTS\TEMPLATES
+    \---prints
+            ...
+            manufacturer_create.html
+            manufacturer_delete.html
+            manufacturer_detail.html
+            manufacturer_edit.html
+            manufacturer_list.html
+            ...
+    
+    PS C:\Users\Bruce\Programming\three-d-print-tracker>
+    ```
+
+1. Check `template_name` variables have been changed to reflect new template location in [`prints/views.py`](../prints/views.py):
+    ```
+    PS C:\Users\Bruce\Programming\three-d-print-tracker> Get-ChildItem .\prints\views.py | Select-String template_name | Select-String manufacturer_
+    
+    prints\views.py:41:    template_name = 'prints/manufacturer_list.html'
+    prints\views.py:46:    template_name = 'prints/manufacturer_detail.html'
+    prints\views.py:51:    template_name = 'prints/manufacturer_create.html'
+    prints\views.py:59:    template_name = 'prints/manufacturer_edit.html'
+    prints\views.py:67:    template_name = 'prints/manufacturer_delete.html'
+    
+    PS C:\Users\Bruce\Programming\three-d-print-tracker>
+    ```
+
+1. Move `manufacturer_*.html` files to [`prints/templates/prints/`](../prints/templates/prints/):
+    ```
+
+    ```
+
+1. Check `template_name` variables have been changed to reflect new template location in [`prints/views.py`](../prints/views.py):
+
+

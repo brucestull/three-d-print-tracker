@@ -38,17 +38,17 @@ from .forms import CreateFilamentRollForm
 ## `Manufacturer` Views:
 class ManufacturerListView(LoginRequiredMixin, ListView):
     model = Manufacturer
-    template_name = 'manufacturers/manufacturer_list.html'
+    template_name = 'prints/manufacturer_list.html'
 
 
 class ManufacturerDetailView(LoginRequiredMixin, DetailView):
     model = Manufacturer
-    template_name ='manufacturers/manufacturer_detail.html'
+    template_name = 'prints/manufacturer_detail.html'
 
 
 class ManufacturerCreateView(LoginRequiredMixin, CreateView):
     model = Manufacturer
-    template_name = 'manufacturers/manufacturer_create.html'
+    template_name = 'prints/manufacturer_create.html'
     fields = [
         'name',
     ]
@@ -56,7 +56,7 @@ class ManufacturerCreateView(LoginRequiredMixin, CreateView):
 
 class ManufacturerUpdateView(LoginRequiredMixin, UpdateView):
     model = Manufacturer
-    template_name = 'manufacturers/manufacturer_edit.html'
+    template_name = 'prints/manufacturer_edit.html'
     fields = [
         'name',
     ]
@@ -64,7 +64,7 @@ class ManufacturerUpdateView(LoginRequiredMixin, UpdateView):
 
 class ManufacturerDeleteView(LoginRequiredMixin, DeleteView):
     model = Manufacturer
-    template_name = 'manufacturers/manufacturer_delete.html'
+    template_name = 'prints/manufacturer_delete.html'
     success_url = reverse_lazy('prints:manufacturers')
 #================================================================
 
