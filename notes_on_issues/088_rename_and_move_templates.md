@@ -175,11 +175,27 @@
     PS C:\Users\Bruce\Programming\three-d-print-tracker>
     ```
 
-1. Move `manufacturer_*.html` files to [`prints/templates/prints/`](../prints/templates/prints/):
+1. Move `user_print_profile.html` file to [`prints/templates/prints/`](../prints/templates/prints/):
     ```
-
+    PS C:\Users\Bruce\Programming\three-d-print-tracker> tree /f /a prints/templates
+    Folder PATH listing for volume OS
+    Volume serial number is CC00-DD12
+    C:\USERS\BRUCE\PROGRAMMING\THREE-D-PRINT-TRACKER\PRINTS\TEMPLATES
+    \---prints
+            ...
+            user_print_profile.html
+            ...
+    
+    PS C:\Users\Bruce\Programming\three-d-print-tracker>
     ```
 
 1. Check `template_name` variables have been changed to reflect new template location in [`prints/views.py`](../prints/views.py):
+    ```
+    PS C:\Users\Bruce\Programming\three-d-print-tracker> Get-ChildItem .\prints\views.py | Select-String template_name | Select-String user_print_
+    
+    prints\views.py:286:    template_name = 'prints/user_print_profile.html'
+    
+    PS C:\Users\Bruce\Programming\three-d-print-tracker>
+    ```
 
 

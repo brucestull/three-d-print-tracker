@@ -283,7 +283,7 @@ class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 #================================================================
 ## User Prints Profile View
 class UserPrintsProfileView(LoginRequiredMixin, ListView):
-    template_name = 'users_prints/user_print_profile.html'
+    template_name = 'prints/user_print_profile.html'
 
     def get_context_data(self,**kwargs):
         # Get the Django-provided context dictionary.
