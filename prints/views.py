@@ -62,10 +62,31 @@ class ManufacturerUpdateView(LoginRequiredMixin, UpdateView):
     ]
 
 
-class ManufacturerDeleteView(LoginRequiredMixin, DeleteView):
+class ManufacturerDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Manufacturer
     template_name = 'prints/manufacturer_delete.html'
     success_url = reverse_lazy('prints:manufacturers')
+
+    def test_func(self):
+        manufacturer = self.get_object()
+        # print('manufacturer: ', manufacturer)
+        # print('manufacturer.rolls: ', manufacturer.rolls)
+        print('manufacturer.rolls.count(): ', manufacturer.rolls.count())
+        print('manufacturer.rolls.all(): ', manufacturer.rolls.all())
+
+        if manufacturer.rolls.count():
+            print("manufacturer.rolls.count() is Truthy")
+        else:
+            print("manufacturer.rolls.count() is NOT Truthy")
+
+        if manufacturer.rolls.all():
+            print("manufacturer.rolls.all() is Truthy")
+        else:
+            print("manufacturer.rolls.all() is NOT Truthy")
+
+        # Allow delete view if `Manufacturer` instance has no related 
+        #     `FilamentRoll` instances.
+        return not manufacturer.rolls.count()
 #================================================================
 
 
@@ -174,7 +195,7 @@ class FilamentInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, Delete
             # User is `FilamentRoll` `owner`:
             self.request.user == filament_instance.filament_roll.owner
             and
-            # `FilamentInstance` has no associated `ModelPrint`s:
+            # `FilamentInstance` instance has no associated `ModelPrint`s:
             not hasattr(filament_instance, 'print')
         )
 
