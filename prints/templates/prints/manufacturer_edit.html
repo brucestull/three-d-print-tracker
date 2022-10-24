@@ -7,7 +7,12 @@
 
         {{ manufacturer }}<br>
         <a href={% url 'prints:manufacturer_detail' manufacturer.id %}>Cancel Edit</a><br>
-        <a href={% url 'prints:manufacturer_delete' manufacturer.id %}>Delete Manufacturer</a><br>
+
+        {% if manufacturer.rolls.count == 0 %}
+            <a href={% url 'prints:manufacturer_delete' manufacturer.id %}>Delete Manufacturer</a><br>
+        {% else %}
+            <p>Manufacturer cannot be deleted since it is associated with at least one existing Filament Roll.</p>
+        {% endif %}
         
         <form action="" method="post">
             {% csrf_token %}
