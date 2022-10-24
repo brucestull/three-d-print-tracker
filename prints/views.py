@@ -38,17 +38,17 @@ from .forms import CreateFilamentRollForm
 ## `Manufacturer` Views:
 class ManufacturerListView(LoginRequiredMixin, ListView):
     model = Manufacturer
-    template_name = 'manufacturers/manufacturer_list.html'
+    template_name = 'prints/manufacturer_list.html'
 
 
 class ManufacturerDetailView(LoginRequiredMixin, DetailView):
     model = Manufacturer
-    template_name ='manufacturers/manufacturer_detail.html'
+    template_name = 'prints/manufacturer_detail.html'
 
 
 class ManufacturerCreateView(LoginRequiredMixin, CreateView):
     model = Manufacturer
-    template_name = 'manufacturers/manufacturer_create.html'
+    template_name = 'prints/manufacturer_create.html'
     fields = [
         'name',
     ]
@@ -56,7 +56,7 @@ class ManufacturerCreateView(LoginRequiredMixin, CreateView):
 
 class ManufacturerUpdateView(LoginRequiredMixin, UpdateView):
     model = Manufacturer
-    template_name = 'manufacturers/manufacturer_edit.html'
+    template_name = 'prints/manufacturer_edit.html'
     fields = [
         'name',
     ]
@@ -64,7 +64,7 @@ class ManufacturerUpdateView(LoginRequiredMixin, UpdateView):
 
 class ManufacturerDeleteView(LoginRequiredMixin, DeleteView):
     model = Manufacturer
-    template_name = 'manufacturers/manufacturer_delete.html'
+    template_name = 'prints/manufacturer_delete.html'
     success_url = reverse_lazy('prints:manufacturers')
 #================================================================
 
@@ -73,17 +73,17 @@ class ManufacturerDeleteView(LoginRequiredMixin, DeleteView):
 ## `FilamentRoll` Views:
 class FilamentRollListView(LoginRequiredMixin, ListView):
     model = FilamentRoll
-    template_name = 'filament_rolls/filament_roll_list.html'
+    template_name = 'prints/filament_roll_list.html'
 
 
 class FilamentRollDetailView(LoginRequiredMixin, DetailView):
     model = FilamentRoll
-    template_name = 'filament_rolls/filament_roll_detail.html'
+    template_name = 'prints/filament_roll_detail.html'
 
 
 class FilamentRollCreateView(LoginRequiredMixin, CreateView):
     model = FilamentRoll
-    template_name = 'filament_rolls/filament_roll_create.html'
+    template_name = 'prints/filament_roll_create.html'
     fields = [
         'manufacturer',
         'material',
@@ -102,7 +102,7 @@ class FilamentRollCreateView(LoginRequiredMixin, CreateView):
 
 class FilamentRollUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = FilamentRoll
-    template_name = 'filament_rolls/filament_roll_edit.html'
+    template_name = 'prints/filament_roll_edit.html'
     fields = [
        'manufacturer',
        'material',
@@ -116,7 +116,7 @@ class FilamentRollUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView
 
 class FilamentRollDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = FilamentRoll
-    template_name ='filament_rolls/filament_roll_delete.html'
+    template_name = 'prints/filament_roll_delete.html'
     success_url = reverse_lazy('prints:rolls')
 
     def test_func(self):
@@ -130,17 +130,17 @@ class FilamentRollDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView
 ## `FilamentInstance` Views:
 class FilamentInstanceListView(LoginRequiredMixin, ListView):
     model = FilamentInstance
-    template_name = 'filament_instances/filament_instance_list.html'
+    template_name = 'prints/filament_instance_list.html'
 
 
 class FilamentInstanceDetailView(LoginRequiredMixin, DetailView):
     model = FilamentInstance
-    template_name = 'filament_instances/filament_instance_detail.html'
+    template_name = 'prints/filament_instance_detail.html'
 
 
 class FilamentInstanceCreateView(LoginRequiredMixin, CreateView):
     model = FilamentInstance
-    template_name = 'filament_instances/filament_instance_create.html'
+    template_name = 'prints/filament_instance_create.html'
     fields = [
         'grams_filament_consumed',
         'filament_roll',
@@ -149,7 +149,7 @@ class FilamentInstanceCreateView(LoginRequiredMixin, CreateView):
 
 class FilamentInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = FilamentInstance
-    template_name = 'filament_instances/filament_instance_edit.html'
+    template_name = 'prints/filament_instance_edit.html'
     fields = [
         'grams_filament_consumed',
         'filament_roll',
@@ -163,7 +163,7 @@ class FilamentInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, Update
 
 class FilamentInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = FilamentInstance
-    template_name = 'filament_instances/filament_instance_delete.html'
+    template_name = 'prints/filament_instance_delete.html'
     success_url = reverse_lazy('prints:filament_instances')
 
     def test_func(self):
@@ -188,7 +188,7 @@ class ModelPrintListView(LoginRequiredMixin, ListView):
     Class-based view, which inherits from `django.views.generic.list.ListView`, to provide list view of model `ModelPrint`.
     """
     model = ModelPrint
-    template_name = 'model_prints/model_print_list.html'
+    template_name = 'prints/model_print_list.html'
 
 
 class ModelPrintDetailView(LoginRequiredMixin, DetailView):
@@ -196,7 +196,7 @@ class ModelPrintDetailView(LoginRequiredMixin, DetailView):
     Class-based view, which inherits from `django.views.generic.detail.DetailView`, to provide detail view of model `ModelPrint`.
     """
     model = ModelPrint
-    template_name = 'model_prints/model_print_detail.html'
+    template_name = 'prints/model_print_detail.html'
 
 
 def new_model_print(request):
@@ -242,7 +242,7 @@ def new_model_print(request):
         pprint.pprint(context)
         return render(
             request,
-            'model_prints/model_print_create.html',
+            'prints/model_print_create.html',
             context
         )
 
@@ -252,7 +252,7 @@ class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     Class-based view, which inherits from `LoginRequiredMixin`, `UserPassesTestMixin`, and `django.views.generic.UpdateView`. Allows users to update their own `ModelPrint` instances.
     """
     model = ModelPrint
-    template_name ='model_prints/model_print_edit.html'
+    template_name = 'prints/model_print_edit.html'
     fields = ['name']
 
     def test_func(self):
@@ -268,7 +268,7 @@ class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     Class-based view, which inherits from `django.contrib.auth.mixins.LoginRequiredMixin`, `django.contrib.auth.mixins.UserPassesTestMixin`, and `django.views.generic.edit.DeleteView`. Allows users to delete their own `ModelPrint` instances.
     """
     model = ModelPrint
-    template_name ='model_prints/model_print_delete.html'
+    template_name = 'prints/model_print_delete.html'
     success_url = reverse_lazy('prints:models')
 
     def test_func(self):
@@ -283,7 +283,7 @@ class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 #================================================================
 ## User Prints Profile View
 class UserPrintsProfileView(LoginRequiredMixin, ListView):
-    template_name = 'users_prints/user_print_profile.html'
+    template_name = 'prints/user_print_profile.html'
 
     def get_context_data(self,**kwargs):
         # Get the Django-provided context dictionary.
