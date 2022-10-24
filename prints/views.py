@@ -73,17 +73,17 @@ class ManufacturerDeleteView(LoginRequiredMixin, DeleteView):
 ## `FilamentRoll` Views:
 class FilamentRollListView(LoginRequiredMixin, ListView):
     model = FilamentRoll
-    template_name = 'filament_rolls/filament_roll_list.html'
+    template_name = 'prints/filament_roll_list.html'
 
 
 class FilamentRollDetailView(LoginRequiredMixin, DetailView):
     model = FilamentRoll
-    template_name = 'filament_rolls/filament_roll_detail.html'
+    template_name = 'prints/filament_roll_detail.html'
 
 
 class FilamentRollCreateView(LoginRequiredMixin, CreateView):
     model = FilamentRoll
-    template_name = 'filament_rolls/filament_roll_create.html'
+    template_name = 'prints/filament_roll_create.html'
     fields = [
         'manufacturer',
         'material',
@@ -102,7 +102,7 @@ class FilamentRollCreateView(LoginRequiredMixin, CreateView):
 
 class FilamentRollUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = FilamentRoll
-    template_name = 'filament_rolls/filament_roll_edit.html'
+    template_name = 'prints/filament_roll_edit.html'
     fields = [
        'manufacturer',
        'material',
@@ -116,7 +116,7 @@ class FilamentRollUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView
 
 class FilamentRollDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = FilamentRoll
-    template_name ='filament_rolls/filament_roll_delete.html'
+    template_name = 'prints/filament_roll_delete.html'
     success_url = reverse_lazy('prints:rolls')
 
     def test_func(self):

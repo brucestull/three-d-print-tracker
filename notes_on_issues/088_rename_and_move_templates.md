@@ -113,9 +113,34 @@
     PS C:\Users\Bruce\Programming\three-d-print-tracker>
     ```
 
-1. Move `filament_instance_*.html` files to [`prints/templates/prints/`](../prints/templates/prints/):
+1. Move `filament_roll_*.html` files to [`prints/templates/prints/`](../prints/templates/prints/):
+    ```
+    PS C:\Users\Bruce\Programming\three-d-print-tracker> tree /f /a prints/templates
+    Folder PATH listing for volume OS
+    Volume serial number is CC00-DD12
+    C:\USERS\BRUCE\PROGRAMMING\THREE-D-PRINT-TRACKER\PRINTS\TEMPLATES
+    \---prints
+            ...
+            filament_roll_create.html
+            filament_roll_delete.html
+            filament_roll_detail.html
+            filament_roll_edit.html
+            filament_roll_list.html
+            ...
+    
+    PS C:\Users\Bruce\Programming\three-d-print-tracker>
     ```
 
+1. Check `template_name` variables have been changed to reflect new template location in [`prints/views.py`](../prints/views.py):
     ```
-
+    PS C:\Users\Bruce\Programming\three-d-print-tracker> Get-ChildItem .\prints\views.py | Select-String template_name | Select-String filament_roll_
+    
+    prints\views.py:76:    template_name = 'prints/filament_roll_list.html'
+    prints\views.py:81:    template_name = 'prints/filament_roll_detail.html'
+    prints\views.py:86:    template_name = 'prints/filament_roll_create.html'
+    prints\views.py:105:    template_name = 'prints/filament_roll_edit.html'
+    prints\views.py:119:    template_name = 'prints/filament_roll_delete.html'
+    
+    PS C:\Users\Bruce\Programming\three-d-print-tracker>
+    ```
 
