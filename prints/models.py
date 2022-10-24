@@ -148,6 +148,9 @@ class ModelPrint(models.Model):
         #     also does a cascading deletion of `ModelPrint`.
         # `RESTRICT` allows deletion of `FilamentInstance` only if there
         #     is a cascading deletion of `ModelPrint`.
+        # Currently using `RESTRICT` since there may be situations where
+        #     a user wants to delete a `ModelPrint` instance but wants to
+        #     keep the `FilamentInstance` instance.
         on_delete=models.RESTRICT,
     )
 

@@ -8,29 +8,6 @@
         {{ manufacturer }}<br>
         <a href={% url 'prints:manufacturer_detail' manufacturer.id %}>Cancel Edit</a><br>
 
-
-        {% comment %} TODO: Remove Test Area {% endcomment %}
-        {% comment %} Test Area {% endcomment %}
-        {% if manufacturer %}
-        'manufacturer': '{{ manufacturer }}' is Truthy!
-        {% else %}
-        '{{ manufacturer }}' is NOT Truthy!
-        {% endif %}<br>
-        
-        {% if manufacturer.rolls %}
-        'manufacturer.rolls': '{{ manufacturer.rolls }}' is Truthy!
-        {% else %}
-        'manufacturer.rolls': '{{ manufacturer.rolls }}' is NOT Truthy!
-        {% endif %}<br>
-        
-        {% if manufacturer.rolls.count %}
-        'manufacturer.rolls.count': '{{ manufacturer.rolls.count }}' is Truthy!
-        {% else %}
-        'manufacturer.rolls.count': '{{ manufacturer.rolls.count }}' is NOT Truthy!
-        {% endif %}<br>
-        {% comment %} End Test Area {% endcomment %}
-        
-
         {% if manufacturer.rolls.count == 0 %}
             <a href={% url 'prints:manufacturer_delete' manufacturer.id %}>Delete Manufacturer</a><br>
         {% else %}

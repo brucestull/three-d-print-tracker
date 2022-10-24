@@ -68,24 +68,11 @@ class ManufacturerDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView
     success_url = reverse_lazy('prints:manufacturers')
 
     def test_func(self):
+        """
+        Allow delete view if `Manufacturer` instance has no related 
+        `FilamentRoll` instances.
+        """
         manufacturer = self.get_object()
-        # print('manufacturer: ', manufacturer)
-        # print('manufacturer.rolls: ', manufacturer.rolls)
-        print('manufacturer.rolls.count(): ', manufacturer.rolls.count())
-        print('manufacturer.rolls.all(): ', manufacturer.rolls.all())
-
-        if manufacturer.rolls.count():
-            print("manufacturer.rolls.count() is Truthy")
-        else:
-            print("manufacturer.rolls.count() is NOT Truthy")
-
-        if manufacturer.rolls.all():
-            print("manufacturer.rolls.all() is Truthy")
-        else:
-            print("manufacturer.rolls.all() is NOT Truthy")
-
-        # Allow delete view if `Manufacturer` instance has no related 
-        #     `FilamentRoll` instances.
         return not manufacturer.rolls.count()
 #================================================================
 
