@@ -130,17 +130,17 @@ class FilamentRollDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView
 ## `FilamentInstance` Views:
 class FilamentInstanceListView(LoginRequiredMixin, ListView):
     model = FilamentInstance
-    template_name = 'filament_instances/filament_instance_list.html'
+    template_name = 'prints/filament_instance_list.html'
 
 
 class FilamentInstanceDetailView(LoginRequiredMixin, DetailView):
     model = FilamentInstance
-    template_name = 'filament_instances/filament_instance_detail.html'
+    template_name = 'prints/filament_instance_detail.html'
 
 
 class FilamentInstanceCreateView(LoginRequiredMixin, CreateView):
     model = FilamentInstance
-    template_name = 'filament_instances/filament_instance_create.html'
+    template_name = 'prints/filament_instance_create.html'
     fields = [
         'grams_filament_consumed',
         'filament_roll',
@@ -149,7 +149,7 @@ class FilamentInstanceCreateView(LoginRequiredMixin, CreateView):
 
 class FilamentInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = FilamentInstance
-    template_name = 'filament_instances/filament_instance_edit.html'
+    template_name = 'prints/filament_instance_edit.html'
     fields = [
         'grams_filament_consumed',
         'filament_roll',
@@ -163,7 +163,7 @@ class FilamentInstanceUpdateView(LoginRequiredMixin, UserPassesTestMixin, Update
 
 class FilamentInstanceDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = FilamentInstance
-    template_name = 'filament_instances/filament_instance_delete.html'
+    template_name = 'prints/filament_instance_delete.html'
     success_url = reverse_lazy('prints:filament_instances')
 
     def test_func(self):
@@ -252,7 +252,7 @@ class ModelPrintUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     Class-based view, which inherits from `LoginRequiredMixin`, `UserPassesTestMixin`, and `django.views.generic.UpdateView`. Allows users to update their own `ModelPrint` instances.
     """
     model = ModelPrint
-    template_name ='prints/model_print_edit.html'
+    template_name = 'prints/model_print_edit.html'
     fields = ['name']
 
     def test_func(self):
@@ -268,7 +268,7 @@ class ModelPrintDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     Class-based view, which inherits from `django.contrib.auth.mixins.LoginRequiredMixin`, `django.contrib.auth.mixins.UserPassesTestMixin`, and `django.views.generic.edit.DeleteView`. Allows users to delete their own `ModelPrint` instances.
     """
     model = ModelPrint
-    template_name ='prints/model_print_delete.html'
+    template_name = 'prints/model_print_delete.html'
     success_url = reverse_lazy('prints:models')
 
     def test_func(self):
