@@ -78,6 +78,51 @@ class ManufacturerDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView
 
 
 #================================================================
+## `FilamentMaterial` Views:
+class FilamentMaterialListView(LoginRequiredMixin, ListView):
+    model = FilamentMaterial
+    template_name = 'prints/filament_material_list.html'
+
+
+class FilamentMaterialDetailView(LoginRequiredMixin, DetailView):
+    model = FilamentMaterial
+    template_name = 'prints/filament_material_detail.html'
+
+
+class FilamentMaterialCreateView(LoginRequiredMixin, CreateView):
+    model = FilamentMaterial
+    template_name = 'prints/filament_material_create.html'
+    fields = [
+        'METERS_PER_GRAM',
+        'polymer_type',
+    ]
+
+
+class FilamentMaterialUpdateView(LoginRequiredMixin, UpdateView):
+    model = FilamentMaterial
+    template_name = 'prints/filament_material_edit.html'
+    fields = [
+        'METERS_PER_GRAM',
+        'polymer_type',
+    ]
+
+
+class FilamentMaterialDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = FilamentMaterial
+    template_name = 'prints/filament_material_delete.html'
+    success_url = reverse_lazy('prints:filament_materials')
+
+    def test_func(self):
+        """
+        Allow delete view if `FilamentMaterial` instance has no related 
+        `FilamentRoll` instances.
+        """
+        filament_material = self.get_object()
+        return not filament_material.rolls.count()
+#================================================================
+
+
+#================================================================
 ## `FilamentRoll` Views:
 class FilamentRollListView(LoginRequiredMixin, ListView):
     model = FilamentRoll

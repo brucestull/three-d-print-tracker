@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% comment %} `filamentmaterial` is Django's default context variable for
+`FilamentMaterial`. {% endcomment %}
+{% block title %}Print Tracker - {{ filamentmaterial }}{% endblock %}
+
+{% block content %}
+    <main>
+    
+        <div>
+            <h2>Filament Material: {{ filamentmaterial.polymer_type }}</h2>
+            <h3>Filament Material Meters Per Gram: {{ filamentmaterial.METERS_PER_GRAM }} meters/gram</h3>
+            <a href={% url 'prints:filament_material_edit' filamentmaterial.id %}>
+                Edit Filament Material
+            </a><br>
+            <dl>
+                <dt>Number of Rolls associated with this Filament Material</dt>
+                <dd>{{ filamentmaterial.rolls.count }}</dd>
+            </dl>
+        </div>
+        
+        <div>
+            {% if filamentmaterial.rolls.all %}
+        
+                <h3>Rolls</h3>
+
+                <div class="flex-gallery">
+                    {% for roll in filamentmaterial.rolls.all %}
+
+                        <dl class="flex-item item">
+                            <dt><a href={% url 'prints:roll_detail' roll.id %}>
+                                {{ roll }}
+                            </a></dt>
+                            <dt>Number of Filament Instances</dt>
+                            <dd>{{ roll.instances.count }}</dd>
+                            <dt>Number of Model Prints</dt>
+                            <dd><code>number_of_model_prints</code></dd>
+                        </dl>
+
+                    {% endfor %}
+                </div>
+                
+            {% endif %}
+        </div>
+            
+    </main>
+{% endblock %}

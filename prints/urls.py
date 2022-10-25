@@ -32,6 +32,36 @@ urlpatterns = [
         name='manufacturer_delete'
     ),
     #================================================================
+    
+    
+    #================================================================
+    ## `FilamentMaterial` Routes:
+    path(
+        'filament-materials/',
+        views.FilamentMaterialListView.as_view(),
+        name='filament_materials',
+    ),
+    path(
+        'filament-materials/<int:pk>/',
+        views.FilamentMaterialDetailView.as_view(),
+        name='filament_material_detail'
+    ),
+    path(
+        'filament-materials/new/',
+        views.FilamentMaterialCreateView.as_view(),
+        name='filament_material_new'
+    ),
+    path(
+        'filament-materials/<int:pk>/edit/',
+        views.FilamentMaterialUpdateView.as_view(),
+        name='filament_material_edit'
+    ),
+    path(
+        'ilament-materials/<int:pk>/delete/',
+        views.FilamentMaterialDeleteView.as_view(),
+        name='filament_material_delete'
+    ),
+    #================================================================
 
 
     #================================================================
