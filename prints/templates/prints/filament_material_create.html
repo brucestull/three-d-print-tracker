@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - New Filament Material{% endblock %}
+
+{% block content %}
+<main>
+
+    <form action="{% url 'prints:filament_material_new' %}" method="post">
+        {% csrf_token %}
+    
+        {{ form.as_p }}
+    
+        <input type="submit" value="Create New Filament Material" />
+    </form>
+
+</main>
+{% endblock %}

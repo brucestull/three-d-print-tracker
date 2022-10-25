@@ -27,7 +27,7 @@
 * `python .\manage.py migrate`
 * `python .\manage.py createsuperuser`
 * `python .\manage.py createsuperuser --email admin@email.app --username admin`
-* `python .\manage.py runserver`
+* `python .\manage.py test`
 
 ### Django Create `SECRET_KEY`:
 * `python manage.py shell`
@@ -81,7 +81,11 @@
 
     * Filament Rolls:
 
+    * Filament Materials:
+        * http://localhost:8000/prints/filament-materials/
+
     * Models Home:
+        * http://localhost:8000/prints/models/
 
     * User Prints Profile:
         * http://localhost:8000/prints/user-print-profile/

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Print Tracker - Filament Materials{% endblock %}
+
+{% block content %}
+    <main class="flex-gallery">
+    
+        {% for filament_material in object_list %}
+    
+            <div class="flex-item item">
+
+                <a href={% url 'prints:filament_material_detail' filament_material.id %}>
+                    {{ filament_material }}
+                </a>
+                <dl>
+                    <dt>Number of Rolls</dt>
+                    <dd>{{ filament_material.rolls.count }}</dd>
+                </dl>
+            </div>
+    
+        {% endfor %}
+    
+    </main>
+{% endblock %}

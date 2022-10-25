@@ -46,6 +46,9 @@ class FilamentMaterial(models.Model):
     def __str__(self):
         return f'{self.polymer_type} : {self.METERS_PER_GRAM} meters/gram'
 
+    def get_absolute_url(self):
+        return reverse('prints:filament_material_detail', args=(self.pk,))
+
 
 class FilamentRoll(models.Model):
     """
