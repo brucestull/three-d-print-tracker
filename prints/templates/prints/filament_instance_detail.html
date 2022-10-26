@@ -12,7 +12,7 @@
         </a><br>
     {% endif %}
     <dl>
-        <dt>Filament Instance Roll</dt>
+        <dt>Associated Filament Roll</dt>
         <dd><a href={% url 'prints:roll_detail' filamentinstance.filament_roll.id %}>
             {{ filamentinstance.filament_roll }}
         </a></dd>
@@ -21,7 +21,7 @@
     </dl>
     {% if filamentinstance.print %}
         <dl>
-            <dt>Model Print</dt>
+            <dt>Associated Model Print</dt>
             <dd><a href={% url 'prints:model_detail' filamentinstance.print.id %}>
                 {{ filamentinstance.print }}
             </a></dd>
