@@ -11,7 +11,10 @@
         Cancel Edit
     </a><br>
     {% if filamentinstance.print %}
-        Filament Instance can not be deleted since it is associated with a Model Print: <a href={% url 'prints:model_detail' filamentinstance.print.id %}>{{ filamentinstance.print }}</a>
+        Filament Instance can not be deleted since it is associated with a Model Print:
+        <a href={% url 'prints:model_detail' filamentinstance.print.id %}>
+            {{ filamentinstance.print }}
+        </a>
     {% else %}
         <a href={% url 'prints:filament_instance_delete' filamentinstance.id %}>
             Delete Filament Instance
