@@ -11,6 +11,7 @@ class CustomUserAdmin(UserAdmin):
     list_display = (
         'username',
         'email',
+        'is_supermaker',
     )
 
 admin.site.register(CustomUser, CustomUserAdmin)
