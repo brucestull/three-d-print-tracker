@@ -19,6 +19,15 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+class SuperMakerViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint that allows `is_supermaker` users to be viewed.
+    """
+    queryset = get_user_model().objects.filter(is_supermaker=True)
+    serializer_class = serializers.SuperMakerUserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
 class ManufacturerViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows `Manufacturer`s to be viewed or edited.
@@ -64,13 +73,4 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = serializers.GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-
-class SuperMakerViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    API endpoint that allows `is_supermaker` users to be viewed.
-    """
-    queryset = get_user_model().objects.filter(is_supermaker=True)
-    serializer_class = serializers.UserSerializer
     permission_classes = [permissions.IsAuthenticated]

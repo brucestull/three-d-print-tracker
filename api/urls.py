@@ -6,8 +6,9 @@ from . import views
 
 router = DefaultRouter()
 
-router.register('super-makers', views.SuperMakerViewSet),
 router.register('users', views.UserViewSet, basename='user')
+# router.register('users', views.UserViewSet)
+router.register('super-makers', views.SuperMakerViewSet)
 
 router.register('groups', views.GroupViewSet)
 

@@ -122,6 +122,19 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
 
+class SuperMakerUserSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serializer for `CustomUser`. Provides 'id', 'username', and 'is_supermaker' fields.
+    """
+    class Meta:
+        model = get_user_model()
+        fields = [
+            'id',
+            'username',
+            'is_supermaker',
+        ]
+
+
 class FilamentInstanceSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serializer for `FilamentInstance`. Provides 'grams_filament_consumed', 'meters_filament_consumed', 'url', 'id', and 'filament_roll_detail' fields.
