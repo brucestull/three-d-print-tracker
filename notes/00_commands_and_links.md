@@ -30,6 +30,7 @@
 * `python manage.py migrate`
 * `python manage.py createsuperuser`
 * `python manage.py createsuperuser --email admin@email.app --username admin`
+* `python manage.py createsuperuser --email FlynntKnapp@email.app --username FlynntKnapp`
 * `python manage.py test`
 
 ### Django Create `SECRET_KEY`
@@ -64,9 +65,7 @@
 * Dashboard:
   * <https://dashboard.heroku.com/apps>
 * Server Root:
-  * <https://flynnt-knapp-print-tracker.herokuapp.com/>
 * Models Home:
-  * <http://flynnt-knapp-print-tracker.herokuapp.com/prints/>
 * Create user:
 * Django Admin:
 * Django Admin Documentation:
