@@ -294,7 +294,7 @@ Temporary Items
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 
 ### VisualStudioCode ###
-.vscode
+# .vscode
 # .vscode/*
 # !.vscode/settings.json
 # !.vscode/tasks.json
