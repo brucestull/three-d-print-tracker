@@ -31,5 +31,4 @@
 
 ## Links to this project's pages
 
-* Repository: [Flynnt Knapp's Print Tracker](https://github.com/brucestull/see-3d)
-* Production Deployment: <https://flynnt-knapp-print-tracker.herokuapp.com/>
+* Repository: [https://github.com/brucestull/three-d-print-tracker](https://github.com/brucestull/three-d-print-tracker)
