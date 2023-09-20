@@ -4,15 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==4.0"
-docutils = "==0.18.1"
-gunicorn = "==20.1.0"
-whitenoise = "==6.1.0"
-psycopg2 = "==2.9.3"
-tzdata = "*"
+django = "==4.2.5"
+docutils = "==0.20.1"
+gunicorn = "==21.2.0"
+whitenoise = "==6.5.0"
+psycopg2 = "==2.9.7"
+tzdata = "==2023.3"
 djangorestframework = "==3.14.0"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "3.11"
