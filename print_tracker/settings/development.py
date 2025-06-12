@@ -19,7 +19,7 @@ DATABASES = {
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-secret-key")
 
 # To create a new `SECRET_KEY`:
 """
